@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_31_080712) do
+ActiveRecord::Schema.define(version: 2020_07_31_080956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,24 @@ ActiveRecord::Schema.define(version: 2020_07_31_080712) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "hotel_id", null: false
+    t.date "check_in_date"
+    t.date "check_out_date"
+    t.time "arrival_time"
+    t.time "departure_time"
+    t.string "reservation_number"
+    t.integer "number_of_guests"
+    t.string "purpose"
+    t.string "channel"
+    t.integer "room_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hotel_id"], name: "index_reservations_on_hotel_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +52,6 @@ ActiveRecord::Schema.define(version: 2020_07_31_080712) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reservations", "hotels"
+  add_foreign_key "reservations", "users"
 end
