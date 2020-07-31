@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_31_081449) do
+ActiveRecord::Schema.define(version: 2020_07_31_081552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 2020_07_31_081449) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.bigint "reservation_id", null: false
+    t.bigint "hotel_amenity_id", null: false
+    t.string "status"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hotel_amenity_id"], name: "index_requests_on_hotel_amenity_id"
+    t.index ["reservation_id"], name: "index_requests_on_reservation_id"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "hotel_id", null: false
@@ -62,6 +73,16 @@ ActiveRecord::Schema.define(version: 2020_07_31_081449) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
+  create_table "time_requests", force: :cascade do |t|
+    t.time "time"
+    t.boolean "check_in"
+    t.string "status"
+    t.bigint "reservation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reservation_id"], name: "index_time_requests_on_reservation_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -76,6 +97,9 @@ ActiveRecord::Schema.define(version: 2020_07_31_081449) do
 
   add_foreign_key "hotel_amenities", "amenities"
   add_foreign_key "hotel_amenities", "hotels"
+  add_foreign_key "requests", "hotel_amenities"
+  add_foreign_key "requests", "reservations"
   add_foreign_key "reservations", "hotels"
   add_foreign_key "reservations", "users"
+  add_foreign_key "time_requests", "reservations"
 end
