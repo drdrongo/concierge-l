@@ -1,16 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
+# Method that clears Database
 def destroy_everything
   Hotel.destroy_all
   Amenity.destroy_all
   Article.destroy_all
   User.destroy_all
+end
+
+# Method that creates a reservation
+def create_reservation(user, hotel)
+  reservation = Reservation.new(
+    user: user,
+    hotel: hotel,
+    check_in_date: Date.today + rand(0..10),
+    reservation_number: rand(5555..9999),
+    number_of_guests: rand(1..3),
+    purpose: %w[travel work leisure].sample,
+    channel: %w[website airbnb booking.com].sample,
+    room_number: "#{rand(1..4)}#{rand(0..10)}".to_i
+  )
+  reservation.check_out_date = reservation.check_in_date + rand(1..5)
+  reservation.save
 end
 
 puts 'Clearing database...'
@@ -34,21 +43,20 @@ puts 'Creating 10 users with reservations...'
   )
   user.save
 
-  reservation = Reservation.new(
-    user: user,
-    hotel: hotel,
-    check_in_date: Date.new,
-    check_out_date: Date.new,
-    arrival_time: Time.now,
-    departure_time: Time.now,
-    reservation_number: rand(5555..9999),
-    number_of_guests: rand(1..3),
-    purpose: %w[travel work leisure].sample,
-    channel: %w[website airbnb booking.com].sample,
-    room_number: "#{rand(1..4)}#{rand(0..10)}".to_i
-  )
-  reservation.save
+  create_reservation(user, hotel)
 end
+
+# Create a user for admins to use.
+puts 'Creating one user for the admin to use...'
+admin = User.create(
+  first_name: 'Zeke',
+  last_name: 'Chanel',
+  email: 'section@gmail.com',
+  password: 'secret'
+)
+create_reservation(admin, hotel)
+create_reservation(admin, hotel)
+
 
 puts 'Creating Amenities...'
 5.times do 
@@ -58,8 +66,6 @@ puts 'Creating Amenities...'
   amenity.save
   HotelAmenity.create(amenity: amenity, hotel: hotel)
 end
-
-
 
 puts 'Creating several time requests..'
 3.times do 
@@ -71,8 +77,6 @@ puts 'Creating several time requests..'
   )
   time_request.save
 end
-
-
 
 puts 'Creating 5 articles...'
 titles = %w[washer restaurants hairdryer kitchen bars]
