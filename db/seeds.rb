@@ -9,8 +9,8 @@
 
 puts 'Creating 1 hotel...'
 hotel = Hotel.new(
-  address: 'Chuo-ku Shintomi 1-14-5',
-  name: 'Section-L Ginza'
+  address: '1-14-5 Shintomi, Chuo-ku, Tokyo',
+  name: 'Section L Ginza East'
 )
 hotel.save
 
