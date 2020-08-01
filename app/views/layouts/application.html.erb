@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
   <head>
     <title>ConciergeL</title>
     <%= csrf_meta_tags %>
@@ -11,10 +11,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
+  <body style="height: 100%;">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div class="container-fluid p-0 m-0 h-100 w-100">
+      <%= yield %>
+    </div>
   </body>
 </html>
