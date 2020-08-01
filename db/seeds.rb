@@ -6,6 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+def destroy_everything
+  Hotel.destroy_all
+  Amenity.destroy_all
+  Article.destroy_all
+  User.destroy_all
+  HotelArticle.destroy_all
+end
+
+puts 'Clearing database...'
+  destroy_everything
+puts 'Database cleared.'
 
 puts 'Creating 1 hotel...'
 hotel = Hotel.new(

@@ -1,0 +1,7 @@
+<h1>hello, i'm the index page</h1>
+
+<ol>
+  <% @reservations.each do |reservation| %>
+    <li><%= reservation.user.first_name %></li>
+  <% end %>
+</ol>
