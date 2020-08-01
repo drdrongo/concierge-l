@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_31_081616) do
+ActiveRecord::Schema.define(version: 2020_08_01_051409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2020_07_31_081616) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["amenity_id"], name: "index_hotel_amenities_on_amenity_id"
     t.index ["hotel_id"], name: "index_hotel_amenities_on_hotel_id"
+  end
+
+  create_table "hotel_articles", force: :cascade do |t|
+    t.bigint "hotel_id", null: false
+    t.bigint "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_hotel_articles_on_article_id"
+    t.index ["hotel_id"], name: "index_hotel_articles_on_hotel_id"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -101,12 +110,17 @@ ActiveRecord::Schema.define(version: 2020_07_31_081616) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "host"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "hotel_amenities", "amenities"
   add_foreign_key "hotel_amenities", "hotels"
+  add_foreign_key "hotel_articles", "articles"
+  add_foreign_key "hotel_articles", "hotels"
   add_foreign_key "messages", "reservations"
   add_foreign_key "messages", "users"
   add_foreign_key "requests", "hotel_amenities"
