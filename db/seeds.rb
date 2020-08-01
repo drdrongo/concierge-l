@@ -11,7 +11,6 @@ def destroy_everything
   Amenity.destroy_all
   Article.destroy_all
   User.destroy_all
-  HotelArticle.destroy_all
 end
 
 puts 'Clearing database...'
