@@ -12,8 +12,6 @@ def create_reservation(user, hotel)
     user: user,
     hotel: hotel,
     check_in_date: Date.today + rand(0..10),
-    arrival_time: Time.now,
-    departure_time: Time.now,
     reservation_number: rand(5555..9999),
     number_of_guests: rand(1..3),
     purpose: %w[travel work leisure].sample,

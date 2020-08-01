@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_051409) do
+ActiveRecord::Schema.define(version: 2020_08_01_083942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2020_08_01_051409) do
     t.bigint "hotel_id", null: false
     t.date "check_in_date"
     t.date "check_out_date"
-    t.time "arrival_time"
-    t.time "departure_time"
+    t.time "arrival_time", default: "2000-01-01 06:00:00"
+    t.time "departure_time", default: "2000-01-01 02:00:00"
     t.string "reservation_number"
     t.integer "number_of_guests"
     t.string "purpose"
