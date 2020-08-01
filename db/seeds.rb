@@ -46,7 +46,7 @@ puts 'Creating Amenities...'
     name: Faker::Appliance.equipment,
   )
   amenity.save
-  AmenityRequest.create(amenity: amenity, hotel: hotel)
+  HotelAmenity.create(amenity: amenity, hotel: hotel)
 end
 
 
@@ -64,11 +64,14 @@ end
 
 
 
-# puts 'Creating 5 articles...'
-# 5.times do 
-#   article = Article.new(
-#     article.title,
+puts 'Creating 5 articles...'
+titles = %w[washer restaurants hairdryer kitchen bars]
+titles.each do |title|
+  article = Article.new(
+    title: title,
+  )
+  article.save
+  HotelArticle.create(article: article, hotel: hotel)
+end
 
-#   )
-#   article.save
-# end
+puts 'Seeding completed successfully. Have a nice day.'
