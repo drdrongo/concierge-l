@@ -2,10 +2,6 @@
   <i class="fas fa-arrow-left"></i>
 <% end %>
 
-<h1>hello, i'm the index page</h1>
-
-<ol>
   <% @reservations.each do |reservation| %>
-    <li><%= link_to "#{reservation.user.first_name}'s booking:", reservation_path(reservation) %></li>
+    <%= render 'reservations/reservation_card', reservation: reservation %>
   <% end %>
-</ol>
