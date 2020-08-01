@@ -1,6 +1,6 @@
 <h1>Current Stay</h1>
-<p>Check in: <%= @reservation.check_in_date.strftime("%b %d (%a) 3PM~") %></p>
-<p>Check out: <%= @reservation.check_out_date.strftime("%b %d (%a) 3PM~") %></p>
+<p>Check in: <%= @reservation.check_in_date.strftime("%b %d (%a) #{(@reservation.arrival_time + 9.hours).strftime("%l%p")}~") %></p>
+<p>Check out: <%= @reservation.check_out_date.strftime("%b %d (%a) ~#{(@reservation.departure_time + 9.hours).strftime("%l%p")}") %></p>
 <p>Address: <%= @reservation.hotel.address %></p>
 <p> <%= @reservation.hotel.name %> </p>
 <p>Room Number: <%= @reservation.room_number %></p>
