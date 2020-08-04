@@ -79,7 +79,7 @@ puts 'Creating several time requests..'
 end
 
 puts 'Creating 5 articles...'
-titles = %w[washer restaurants hairdryer kitchen bars]
+titles = %w[washer_&_dryer recycling elevator house_manual]
 titles.each do |title|
   article = Article.new(
     title: title,

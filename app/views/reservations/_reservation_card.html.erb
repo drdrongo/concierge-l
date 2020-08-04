@@ -1,0 +1,8 @@
+
+<%= link_to reservation_path(reservation) do %>
+  <div class="card-reservation">
+    <%= image_tag("hotel_1", height: '140', width: '300')  %>
+    <h5>check-in</h5>
+    <p><%= reservation.reservation_number %></p> 
+  </div>  
+<% end %>
