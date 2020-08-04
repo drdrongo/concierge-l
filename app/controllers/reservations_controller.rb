@@ -9,4 +9,9 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @articles = @reservation.hotel.articles
   end
+
+  def new
+    @reservation = Reservation.new
+  end
+
 end
