@@ -1,8 +1,8 @@
 class ReservationsController < ApplicationController
   def index
-    @reservations = Reservation.where(user: current_user)
-    # @upcoming_reservations = Reservation.where(user: current_user, )
-    # @past_reservations = Reservation.where(user: current_user, checkout_date: )
+    # @reservations = Reservation.where(user: current_user)
+    @upcoming_reservations = Reservation.where(user: current_user, past: false)
+    @past_reservations = Reservation.where(user: current_user, past: true)
   end
 
   def show

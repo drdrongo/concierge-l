@@ -2,7 +2,7 @@
 <%= link_to reservation_path(reservation) do %>
   <div class="card-reservation">
     <%= image_tag("hotel_1.jpg", height: '140', width: '300')  %>
-    <h5>check-in</h5>
-    <p><%= reservation.reservation_number %></p> 
+    <p><%= reservation.hotel.name %></p>
+    <p><%= "#{reservation.check_in_date.strftime('%b %e')} - #{reservation.check_out_date.strftime('%b %e, %Y')}" %></p> 
   </div>  
 <% end %>
