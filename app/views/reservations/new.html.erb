@@ -1,13 +1,13 @@
-<h2>Create Event</h2>
+<h2>Your Info</h2>
 
 <%= simple_form_for (@reservation) do |f| %>
   <%= f.error_notification %>
 
  <div class="form-inputs">
-    <%= f.input :reservation_id,
+    <%= f.input :reservation_number,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "reservation_id" }%>
+                input_html: { autocomplete: "reservation_number" }%>
     <%= f.input :check_in_date,
                 required: true,
                 input_html: { autocomplete: "check_in_date" }%>
