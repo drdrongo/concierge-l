@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <h1>Current Stay</h1>
   <%= image_tag 'SL_C_type.jpg', height:300 %>
-  <%= render 'shared/reservation_overview', reservation: @reservation %>
-  <%= render 'shared/article_cards', articles: @articles %>
-  <%= render 'shared/buddy.html.erb' %>
+  <%= render 'reservation_overview', reservation: @reservation %>
+  <%= render 'article_cards', articles: @articles %>
+  <%= render 'buddy.html.erb' %>
   <button class="btn btn-primary">Chat with L</button>
 </div>
 
