@@ -18,10 +18,11 @@
   <h1>Articles:</h1>
 </div>
 <div class="container-fluid">
-  <% @reservation.hotel.articles.where(title: 'house_manual').each do |article| %>
-    <p><%= article.title.capitalize.gsub('_', ' ') %></p>
-    <%= link_to article.title.gsub('_', ' ').capitalize, asset_path("/articles/house_manual.pdf")  %>
-
-    <%# <iframe src=<%= "/articles/#{article.title}.pdf" %> width="600" height="780" style="border: none;"> </iframe> %>
+  <% @articles.where(title: 'house_manual').each do |article| %>
+    <%= link_to  article_path(article.id), target: "_blank" do %>
+      <div class="card card-article w-25 align-items-center" style="height: 100px; border-radius: 5px; justify-content: center;">
+        <h5><%= article.title.gsub('_', ' ').capitalize %></h5>
+      </div>
+    <% end %>
   <% end %>
 </div>
