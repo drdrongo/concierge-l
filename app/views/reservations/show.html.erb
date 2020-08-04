@@ -14,14 +14,15 @@
   <button>Others</button>
   <button class="btn btn-primary">Chat with L</button>
 </div>
+
 <div class="container-fluid">
   <h1>Articles:</h1>
 </div>
-<div class="container-fluid">
-  <% @articles.where(title: 'house_manual').each do |article| %>
+<div class="container-fluid d-flex">
+  <% @articles.each do |article| %>
     <%= link_to  article_path(article.id), target: "_blank" do %>
-      <div class="card card-article w-25 align-items-center" style="height: 100px; border-radius: 5px; justify-content: center;">
-        <h5><%= article.title.gsub('_', ' ').capitalize %></h5>
+      <div class="card text-center card-article mr-2 flex-fill align-items-center" style="height: 100px; border-radius: 5px; justify-content: center;">
+        <h6><%= article.title.gsub('_', ' ').capitalize %></h6>
       </div>
     <% end %>
   <% end %>
