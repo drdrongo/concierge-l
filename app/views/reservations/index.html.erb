@@ -1,7 +1,15 @@
 <%= link_to root_path do %>
   <i class="fas fa-arrow-left"></i>
 <% end %>
-
-  <% @reservations.each do |reservation| %>
-    <%= render 'reservations/reservation_card', reservation: reservation %>
-  <% end %>
+  
+  <div class="container">
+    <h5>Upcoming Stays:</h5>
+    <% @upcoming_reservations.each do |reservation| %>
+      <%= render 'reservations/reservation_card', reservation: reservation %>
+    <% end %>
+    <h5>Where you've stayed:</h5>
+    <% @past_reservations.each do |reservation| %>
+      <%= render 'reservations/reservation_card', reservation: reservation %>
+    <% end %>
+  
+  </div>
