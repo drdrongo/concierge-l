@@ -7,3 +7,21 @@
   <button class="btn btn-primary">Chat with L</button>
 </div>
 
+<%= @booking['numAdult'] %>
+
+<h1>hello</h1>
+
+<% @booking.each do | key, value | %>
+  <% if value != '' %>
+    <p><strong><%= "#{key}" %></strong> : <%= "#{value}" %></p>
+  <% end %>
+<% end %>
+
+<% @bookings.each do |booking| %>
+  <p>##################################</p>
+  <% @booking.each do | key, value | %>
+    <% if value != '' %>
+      <p><strong><%= "#{key}" %></strong> : <%= "#{value}" %></p>
+    <% end %>
+  <% end %>
+<% end %>
