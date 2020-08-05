@@ -1,3 +1,4 @@
+<%= link_to 'Back', :back %>
 
 <div class="container-fluid p-0 d-flex flex-column" style="background-color: #F1EEE9; height: 100%">
 
@@ -19,7 +20,14 @@
 
   <div class="container-fluid h-50 justify-content-center">
       <button type="button" style="background-color: #B27C7E">Sign Up</button>
-      <button type="button" style="background-color: #00896A">Log In</button>
+      <button type="button" style="background-color: #00896A">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </button>
+
+      <% if user_signed_in? %>
+        <%= link_to "Index", reservations_path, class: "nav-link" %>
+      <% end %>
+
   </div>
 
 

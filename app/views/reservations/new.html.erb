@@ -3,11 +3,12 @@
 <%= simple_form_for (@reservation) do |f| %>
   <%= f.error_notification %>
 
- <div class="form-inputs">
+  <div class="form-inputs">
     <%= f.input :reservation_number,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "reservation_number" }%>
+                input_html: { autocomplete: "reservation_number" },
+                error: 'Reservation number is required'%>
     <%= f.input :check_in_date,
                 required: true,
                 input_html: { autocomplete: "check_in_date" }%>
