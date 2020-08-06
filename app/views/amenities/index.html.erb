@@ -1,0 +1,8 @@
+<%= link_to reservations_path do %>
+  <i class="fas fa-arrow-left"></i>
+<% end %>
+
+<h1>Amenities:</h1>
+<% @amenities.each do |amenity| %>
+  <p>  <%= amenity.name %></p>
+<% end %>
