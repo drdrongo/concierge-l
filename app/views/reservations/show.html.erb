@@ -1,3 +1,7 @@
+<%= link_to reservations_path do %>
+  <i class="fas fa-arrow-left" style="position: absolute; top: 10px; left: 10px;"></i>
+<% end %>
+
 <div class="container-fluid">
   <h1>Current Stay</h1>
   <%= image_tag 'SL_C_type.jpg', height:300 %>
@@ -5,4 +9,5 @@
   <%= render 'article_cards', articles: @articles %>
   <%= render 'buddy.html.erb' %>
   <button class="btn btn-primary">Chat with L</button>
+  <%= render 'change_times', reservation: @reservation %>
 </div>
