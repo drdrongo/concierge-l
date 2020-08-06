@@ -4,5 +4,5 @@
 
 <h1>Amenities:</h1>
 <% @amenities.each do |amenity| %>
-  <p>  <%= amenity.name %></p>
+  <p><%= image_tag "icons/#{amenity.name}.svg" %><%= amenity.name %></p>
 <% end %>

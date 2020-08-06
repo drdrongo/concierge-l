@@ -59,6 +59,7 @@ create_reservation(admin, hotel)
 
 
 puts 'Creating Amenities...'
+amenities = ['']
 5.times do 
   amenity = Amenity.new(
     name: Faker::Appliance.equipment,
