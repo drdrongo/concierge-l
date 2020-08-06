@@ -12,6 +12,16 @@ class ReservationsController < ApplicationController
     @articles = @reservation.hotel.articles
   end
 
+  def update
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(reservation_params)
+    if @reservation.save
+      redirect_to reservation_path(@reservation.id)
+    else
+      render :show
+    end
+  end
+
   def new
     @reservation = Reservation.new
   end
@@ -62,7 +72,7 @@ class ReservationsController < ApplicationController
   end
   
   def reservation_params
-    Params.require(:reservation).permit(
+    params.require(:reservation).permit(
       :user_id, :hotel_id, :check_in_date, :check_out_date, :arrival_time, :departure_time,
       :reservation_number, :number_of_guests, :purpose, :channel, :room_number, :past
     )
