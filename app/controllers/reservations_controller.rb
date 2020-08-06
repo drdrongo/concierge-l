@@ -22,6 +22,10 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def edit
+    @reservation
+  end
+
   def new
     @reservation = Reservation.new
   end
@@ -70,7 +74,7 @@ class ReservationsController < ApplicationController
   def sanitize_reservation
     params['reservation']['check_in_date'] = "#{params['reservation']['check_in_date(1i)']}-#{params['reservation']['check_in_date(2i)'].rjust(2, '0')}-#{params['reservation']['check_in_date(3i)'].rjust(2, '0')}"
   end
-  
+
   def reservation_params
     params.require(:reservation).permit(
       :user_id, :hotel_id, :check_in_date, :check_out_date, :arrival_time, :departure_time,
