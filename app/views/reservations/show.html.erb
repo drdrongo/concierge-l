@@ -11,3 +11,5 @@
   <button class="btn btn-primary">Chat with L</button>
   <%= render 'change_times', reservation: @reservation %>
 </div>
+
+<%= link_to 'Amenities', reservation_amenities_path(@reservation) %>

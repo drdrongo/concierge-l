@@ -59,12 +59,21 @@ create_reservation(admin, hotel)
 
 
 puts 'Creating Amenities...'
-5.times do 
-  amenity = Amenity.new(
-    name: Faker::Appliance.equipment,
-  )
-  amenity.save
-  HotelAmenity.create(amenity: amenity, hotel: hotel)
+amenities_hash = {
+  'Essentials' => %w[Wifi Heating A/C First\ Aid\ Kit],
+  'Bed & Bath' => %w[Washer Hairdryer Iron Towels\ &\ Linens Hangers],
+  'Kitchen'    => %w[Dishwasher Pots\ &\ Pans],
+  'Other'      => %w[TV Desk\ &\ Chair Lobby\ Coffee\ Bar]
+}           
+amenities_hash.each_pair do |category, amenities|
+  amenities.each do |amenity|
+    new_amenity = Amenity.new(
+      name: amenity,
+      category: category
+    )
+    new_amenity.save
+    HotelAmenity.create(amenity: new_amenity, hotel: hotel)
+  end
 end
 
 puts 'Creating several time requests..'
