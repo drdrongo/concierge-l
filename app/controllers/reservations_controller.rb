@@ -19,4 +19,8 @@ class ReservationsController < ApplicationController
       render :show
     end
   end
+
+  def new
+    @reservation = Reservation.new
+  end
 end
