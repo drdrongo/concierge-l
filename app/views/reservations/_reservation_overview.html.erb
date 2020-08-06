@@ -1,11 +1,13 @@
-<h3>Overview</h3>
 <p>Check in: <%= reservation.check_in_date.strftime("%b %d (%a) #{(reservation.arrival_time + 9.hours).strftime("%l%p")}~") %></p>
 <p>Check out: <%= reservation.check_out_date.strftime("%b %d (%a) ~#{(reservation.departure_time + 9.hours).strftime("%l%p")}") %></p>
+<button type="button" class="btn btn-primary button-full-width">Change Check-In/Out Time</button>
 <p>Address: <%= reservation.hotel.address %></p>
 <p> <%= reservation.hotel.name %> </p>
 <p>Room Number: <%= reservation.room_number %></p>
+<button type="button" class="btn btn-primary button-full-width">Open on Google Map</button>
 <p>Reservation Number: <%= reservation.reservation_number %></p>
 <p>Smartlock & Online Check-in: Please read before arrival</p>
+<button type="button" class="btn btn-primary button-full-width">Read Check-In Manual</button>
 <p>Amenities </p>
 <button>Essentials</button>
 <button>Bed and Bath</button>
