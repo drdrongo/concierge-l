@@ -9,4 +9,14 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @articles = @reservation.hotel.articles
   end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    @reservation.arrival_time = params['arrival_time']
+    if @reservation.save
+      redirect_to reservation_path(@reservation.id)
+    else
+      render :show
+    end
+  end
 end
