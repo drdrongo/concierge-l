@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    @reservation.arrival_time = params['arrival_time']
+    @reservation.update(reservation_params)
     if @reservation.save
       redirect_to reservation_path(@reservation.id)
     else
@@ -25,8 +25,6 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
   end
-<<<<<<< HEAD
-=======
 
   def create
     @reservation = Reservation.new
@@ -74,10 +72,9 @@ class ReservationsController < ApplicationController
   end
   
   def reservation_params
-    Params.require(:reservation).permit(
+    params.require(:reservation).permit(
       :user_id, :hotel_id, :check_in_date, :check_out_date, :arrival_time, :departure_time,
       :reservation_number, :number_of_guests, :purpose, :channel, :room_number, :past
     )
   end
->>>>>>> master
 end
