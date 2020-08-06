@@ -61,9 +61,9 @@ create_reservation(admin, hotel)
 puts 'Creating Amenities...'
 amenities_hash = {
   'Essentials' => %w[Wifi Heating A/C First\ Aid\ Kit],
-  'Bed & Bath' => %w[Washer Hairdryer Iron Towels\ & \ Linens Hangers],
+  'Bed & Bath' => %w[Washer Hairdryer Iron Towels\ &\ Linens Hangers],
   'Kitchen'    => %w[Dishwasher Pots\ &\ Pans],
-  'Other'      => %w[TV Desk\ & \ Chair Lobby\ Coffee\ Bar]
+  'Other'      => %w[TV Desk\ &\ Chair Lobby\ Coffee\ Bar]
 }           
 amenities_hash.each_pair do |category, amenities|
   amenities.each do |amenity|
