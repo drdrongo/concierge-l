@@ -4,7 +4,22 @@
 
 <div class="container">
   <h1>Amenities:</h1>
-  <% @amenities.each do |amenity| %>
-    <p><%= image_tag("icons/#{amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px;") %><%= amenity.name.capitalize %></p>
+  <% @hotel_amenities.each do |amenity| %>
+    <div class="d-flex w-50 justify-content-between">
+        <%= image_tag("icons/#{amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px;") %>
+        <p><%= amenity.name.capitalize %></p>
+
+
+
+
+
+        <%= form_with(model: [:reservation, :request], method: :post) do |f| %>
+          <% f.hidden :hotel_amenity, value: amenity %>
+          <%= f.submit 'Request' %>
+        <% end %>
+
+
+    </div>
   <% end %>
 </div>
+
