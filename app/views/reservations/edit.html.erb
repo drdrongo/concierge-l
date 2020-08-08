@@ -16,29 +16,23 @@
 <p><%= image_tag("icons/move-down.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %></p>
   </div>
 
+      <div class="container-fluid d-flex justify-content-around list-item-home">
+        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/bag.svg", height:50, class:"icon-white" %>BUSINESS</button>
 
-    <div class="container-fluid list-item-home-2 top-space-2" >
-  <%= image_tag("icons/bag.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>
-BUSINESS
-    </div>
+        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/surfboard.svg", height:50, class:"icon-white" %>LEISURE</button>
 
-      <div class="container-fluid list-item-home-2 top-space-2" >
-  <%= image_tag("icons/surfboard.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>
-  LEISURE
-    </div>
+      </div>
+      <div class="container-fluid d-flex justify-content-around list-item-home">
+        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/l-location.svg", height:50, class:"icon-white" %>BOTH</button>
 
-    <div class="container-fluid list-item-home-2 top-space-2" >
-  <%= image_tag("icons/l-location.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>
-  BOTH
-    </div>
-
-        <div class="container-fluid list-item-home-2 top-space-2" >
-  <%= image_tag("icons/glasses-2.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>
-  SOMETHING ELSE...
-    </div>
+        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/glasses-2.svg", height:50, class:"icon-white" %>SECRET</button>
+      </div>
 
 
-<%= link_to 'Next', reservations_path, class: "btn btn-primary w-100 top-space" %>
+
+
+
+<%= link_to 'Next', reservations_path, class: "btn btn-success w-100 top-space" %>
 <%= link_to 'Skip', reservations_path, class: "btn btn-secondary w-100 top-space-2" %>
 
 
