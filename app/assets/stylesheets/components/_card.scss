@@ -79,3 +79,21 @@
   border-right: 5px solid $font-grey;
   padding-right: 22px;
 }
+
+
+.card-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  background-color: $light-purple;
+  color: white;
+  padding-bottom: 0;
+  img {
+    width: 48px;
+    filter: invert(1);
+    margin-top: 8px;
+    padding-bottom: 16px;
+  }
+}
