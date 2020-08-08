@@ -1,23 +1,20 @@
 <%= link_to reservations_path do %>
-  <i class="fas fa-arrow-left"></i>
+  <i class="fas fa-arrow-left" style="position: absolute; top: 32px; left: 10px;"></i>
 <% end %>
 
-<div class="container">
+<div class="container w-75" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px;">
   <h1>Amenities:</h1>
   <% @hotel_amenities.each do |hotel_amenity| %>
-    <div class="d-flex w-50 justify-content-between">
-        <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px;") %>
-        <p><%= hotel_amenity.amenity.name.capitalize %></p>
-        
-        <%#= form_with(model: [:reservation, @request], method: :post) do |f| %>
-          <%#= f.submit 'Requesto' %>
-        <%# end %>
+    <div class="d-flex justify-content-between mb-1 border-bottom py-1 align-items-center">
+        <div class="d-flex align-items-center">
+          <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
+          <p class="mb-0"><%= hotel_amenity.amenity.name.capitalize %></p>
+        </div>
 
         <%= form_tag reservation_requests_path, method: :post do %>
           <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-          <%= submit_tag "Request" %>
+          <%= submit_tag "Request", class: "btn btn-primary" %>
         <% end %>
-
     </div>
   <% end %>
 </div>
