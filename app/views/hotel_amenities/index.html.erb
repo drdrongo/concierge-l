@@ -1,0 +1,28 @@
+<%= link_to reservations_path do %>
+  <i class="fas fa-arrow-left"></i>
+<% end %>
+
+<div class="container">
+  <h1>Amenities:</h1>
+  <% @hotel_amenities.each do |hotel_amenity| %>
+    <div class="d-flex w-50 justify-content-between">
+        <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px;") %>
+        <p><%= hotel_amenity.amenity.name.capitalize %></p>
+
+
+
+
+
+        <%#= form_with(model: [:reservation, @request], method: :post) do |f| %>
+          <%#= f.submit 'Requesto' %>
+        <%# end %>
+
+        <%= form_tag reservation_requests_path, method: :post do %>
+          <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+          <%= submit_tag "Request" %>
+        <% end %>
+
+    </div>
+  <% end %>
+</div>
+
