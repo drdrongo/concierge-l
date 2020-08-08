@@ -31,14 +31,19 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    floors = %w[100 90 80 70 60 50 40 30 20]
+    rooms = {
+      "254974" => '1',
+      "254975" => '2',
+      "254976" => '3'
+    }
     @reservation = Reservation.new
     bookings_json = request_api("https://www.beds24.com/api/json/getBookings")
     rsv_params = params["reservation"]
-
     booking = bookings_json.find { |b| b["apiReference"] == rsv_params["reservation_number"] }
     check_in_date = "#{rsv_params['check_in_date(1i)']}-#{rsv_params['check_in_date(2i)'].rjust(2, '0')}-#{rsv_params['check_in_date(3i)'].rjust(2, '0')}"
 
-    if booking != nil && booking["firstNight"] == check_in_date
+    if !booking.nil? && booking["firstNight"] == check_in_date
       @reservation = Reservation.new(
         check_in_date: Date.parse(booking['firstNight']),
         check_out_date: Date.parse(booking['lastNight']),
@@ -46,6 +51,13 @@ class ReservationsController < ApplicationController
         number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i,
         channel: booking['referer']
       )
+      if booking["roomId"] == '254977'
+        @reservation.room_number = 101
+      else
+        floor = floors[booking["unitId"].to_i - 1]
+        room = rooms[booking["roomId"]]
+        @reservation.room_number = (floor + room).to_i
+      end
       @reservation.user = current_user
       @reservation.hotel = Hotel.first
 
