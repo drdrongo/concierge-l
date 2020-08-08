@@ -16,7 +16,7 @@ def create_reservation(user, hotel)
     number_of_guests: rand(1..3),
     purpose: %w[travel work leisure].sample,
     channel: %w[website airbnb booking.com].sample,
-    room_number: "#{rand(1..4)}0#{rand(0..10)}".to_i
+    room_number: "#{rand(1..4)}0#{rand(1..3)}".to_i
   )
   reservation.check_out_date = reservation.check_in_date + rand(1..5)
   reservation.save
