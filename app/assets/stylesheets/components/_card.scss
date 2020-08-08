@@ -1,40 +1,67 @@
 .card-reservation {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 3px rgba(191, 191, 191, .5);
+  text-decoration: none;
+  &:active {
+    box-shadow: none;
+    text-decoration: none;
+    transform: translateY(1px)
+  }
 
+  img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  h5 {
+    color: $bright-pink;
+    margin-top: 6px;
+    margin-bottom: 3px;
+  }
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .card-question {
-    margin-left: -4px !important;
-    margin-right: -4px !important;
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
-    display: flex;
-    flex-wrap: wrap;
+  margin-left: -4px !important;
+  margin-right: -4px !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card-element-1 {
-  flex-basis: 50%;
-    text-align: inherit !important;
-    height: 100% !important;
-    background: transparent !important;
-    border-width: initial !important;
-    margin: 0px !important;
-    padding: 0px !important;
-    text-decoration: none !important;
+flex-basis: 50%;
+  text-align: inherit !important;
+  height: 100% !important;
+  background: transparent !important;
+  border-width: initial !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  text-decoration: none !important;
 }
 
 .card-element-2 {
-    text-align: center !important;
-    height: 144px !important;
-    padding: 24px 16px 16px !important;
-    border-style: solid !important;
-    border-radius: 4px !important;
-    border-color: #EA504E !important;
-    overflow: hidden !important;
+  text-align: center !important;
+  height: 144px !important;
+  padding: 24px 16px 16px !important;
+  border-style: solid !important;
+  border-radius: 4px !important;
+  border-color: #EA504E !important;
+  overflow: hidden !important;
 }
 
 .card-element-3 {
-    display: inline-block !important;
-    padding-bottom: 8px !important;
+  display: inline-block !important;
+  padding-bottom: 8px !important;
 }
 
 .card-show-page {

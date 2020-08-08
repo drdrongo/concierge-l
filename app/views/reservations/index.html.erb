@@ -1,18 +1,24 @@
 <%= link_to root_path do %>
   <i class="fas fa-arrow-left" style="position: absolute; top: 10px; left: 10px;"></i>
 <% end %>
-
-  
-  <div class="container">
-    <h5>Upcoming Stays:</h5>
+  <div class="logo-container">
+    <%= image_tag 'logo', class: 'logo-sm' %>
+  </div>
+  <h2 style="text-align: center;">Your Stays</h2>
+  <div class="container-reservation">
+    <h5>Upcoming:</h5>
     <% @upcoming_reservations.each do |reservation| %>
       <%= render 'reservations/reservation_card', reservation: reservation %>
     <% end %>
-    <h5>Where you've stayed:</h5>
-    <% @past_reservations.each do |reservation| %>
-      <%= render 'reservations/reservation_card', reservation: reservation %>
+    <% if @past_reservations.length > 0 %>
+      <h5>Where you've stayed:</h5>
+      <% @past_reservations.each do |reservation| %>
+        <%= render 'reservations/reservation_card', reservation: reservation %>
+      <% end %>
     <% end %>
-  
   </div>
 
-<%= link_to 'Add your Reservation info', new_reservation_path %>
+<div class="reservation-buttons">
+  <%= link_to 'Book new', new_reservation_path, class: "btn btn-success double-button"%>
+  <%= link_to 'Find your Booking', new_reservation_path, class: "btn btn-success double-button"%>
+</div>
