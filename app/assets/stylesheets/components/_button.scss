@@ -5,3 +5,17 @@
 .button-half-width {
   width: 50%;
 }
+
+.reservation-buttons {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  padding-bottom: 2px;  
+  bottom: 0;
+}
+
+.double-button {
+  flex-basis: 49%;
+  color: white !important;
+}
