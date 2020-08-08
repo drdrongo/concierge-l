@@ -61,7 +61,7 @@ class ReservationsController < ApplicationController
       @reservation.user = current_user
       @reservation.hotel = Hotel.first
 
-      redirect_to reservations_path if @reservation.save
+      redirect_to edit_reservation_path(@reservation) if @reservation.save
     else
       flash[:notice] = 'Details incorrect. Please try again'
       render :new
