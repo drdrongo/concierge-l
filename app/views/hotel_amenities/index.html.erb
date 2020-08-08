@@ -8,11 +8,7 @@
     <div class="d-flex w-50 justify-content-between">
         <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px;") %>
         <p><%= hotel_amenity.amenity.name.capitalize %></p>
-
-
-
-
-
+        
         <%#= form_with(model: [:reservation, @request], method: :post) do |f| %>
           <%#= f.submit 'Requesto' %>
         <%# end %>

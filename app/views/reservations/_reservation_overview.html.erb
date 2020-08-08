@@ -2,6 +2,7 @@
 <p>Check out: <%= reservation.check_out_date.strftime("%b %d (%a) ~#{(reservation.departure_time + 9.hours).strftime("%l%p")}") %></p>
 <button type="button" class="btn btn-primary button-full-width">Change Check-In/Out Time</button>
 <p>Address: <%= reservation.hotel.address %></p>
+<p>room number: <%= reservation.room_number %></p>
 <p> <%= reservation.hotel.name %> </p>
 <p>Room Number: <%= reservation.room_number %></p>
 <button type="button" class="btn btn-primary button-full-width">Open on Google Map</button>
