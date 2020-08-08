@@ -1,38 +1,47 @@
 <div class="font-grey">
+
   <div class="card-show-page card-reservation-time">
-    <div class="mr-3 ml-0 border-right">
+    <div class="ml-0 border-right">
       <p class="font-bright-pink mb-0">Check in: </p>
-      <div class="d-flex pr-3 mb-0">
-        <p class="mb-0" style="font-size:20px"><%= reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize} ")%></p> <p style="font-size:16px"><%= reservation.check_in_date.strftime("(%a)")%></p>
+      <div class="d-flex mb-0">
+        <p class="mb-0 mr-1" style="font-size:22px"><%= reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize} ")%></p> <p style="font-size:16px"><%= reservation.check_in_date.strftime("(%a)")%></p>
       </div>
-      <p><%= (reservation.arrival_time + 9.hours).strftime("%l%p~") %></p>
+      <p class="mb-0" style="font-size:22px"><%= (reservation.arrival_time + 9.hours).strftime("%l:%M%p~") %></p>
     </div>
     <div class="ml-3">
       <p class="font-bright-pink mb-0">Check out: </p>
       <div class="d-flex pr-3 mb-0">
-        <p class="mb-0" style="font-size:20px"><%= reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize} ")%></p> <p style="font-size:16px"><%= reservation.check_out_date.strftime("(%a)")%></p>
+        <p class="mb-0 mr-1" style="font-size:22px"><%= reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize} ")%></p> <p style="font-size:16px"><%= reservation.check_out_date.strftime("(%a)")%></p>
       </div>
-
-
-      <p class="mb-0" ><%= reservation.check_out_date.strftime("~#{(reservation.departure_time + 9.hours).strftime("%l%p")}") %></p>
+      <p class="mb-0 mr-0" style="font-size:22px" ><%= reservation.check_out_date.strftime("~#{(reservation.departure_time + 9.hours).strftime("%l:%M%p")}") %></p>
     </div>
-
   </div>
 
-  <button type="button" class="btn btn-primary button-full-width mt-1">Change Check-In/Out Time</button>
+  <button type="button" class="btn btn-primary button-full-width mt-1 mb-1">Change Check-In/Out Time</button>
 
-  <p>Address: <%= reservation.hotel.address %></p>
-  <p> <%= reservation.hotel.name %> </p>
-  <p>Room Number: <%= reservation.room_number %></p>
-  <a class="btn btn-primary button-full-width" target="_blank" href="https://goo.gl/maps/hD8UjpGJk3ppnxtUA">Open on Google Map</a>
+  <div class="card-show-page mt-3">
+    <p class="font-bright-pink mb-0">Address:</p>
+    <p class="mb-0 thick"> <%= reservation.hotel.name %> </p>
+    <p> <%= reservation.hotel.address %></p>
+    <p class="font-bright-pink mb-0">Room Number:</p>
+    <p class="mb-0"> <%= reservation.room_number %></p>
+  </div>
+  <a class="btn btn-primary button-full-width mt-1 mb-1" target="_blank" href="https://goo.gl/maps/hD8UjpGJk3ppnxtUA">Open on Google Map</a>
 
-  <p>Reservation Number: <%= reservation.reservation_number %></p>
-  <p>Smartlock & Online Check-in: Please read before arrival</p>
-  <button type="button" class="btn btn-primary button-full-width">Read Check-In Manual</button>
-  <p>Amenities </p>
-  <button>Essentials</button>
-  <button>Bed and Bath</button>
-  <button>Kitchen</button>
-  <button>Others</button>
-  <button class="btn btn-success button-full-width mt-3">Chat with L</button>
+  <div class="card-show-page  mt-3">
+    <p class="font-bright-pink mb-0">Reservation Number: </p>
+    <p><%= reservation.reservation_number %></p>
+    <p class="font-bright-pink mb-0">Smartlock & Online Check-in: </p>
+    <p class="mb-0">Please read before arrival</p>
+  </div>
+  <button type="button" class="btn btn-primary button-full-width mt-1 mb-1">Read Check-In Manual</button>
+
+  <div class="card-show-page mt-3 pb-3">
+    <p class="font-bright-pink mb-2">Amenities </p>
+    <button class="btn btn-primary mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
+    <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
+    <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
+    <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/phone-charging-3.svg", height:50, class:"icon-white" %> <br>Others</button>
+  </div>
+  <button class="btn btn-success button-full-width mt-3"><%= image_tag "icons/chat.svg", height:30, class:"icon-white mr-2" %>Chat with L</button>
 </div>
