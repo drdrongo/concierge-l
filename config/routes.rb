@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   namespace :staff do 
     root 'reservations#index'
-    resources :reservations, only: %i[ index ]
+    resources :reservations, only: %i[ index show ]
   end
 end

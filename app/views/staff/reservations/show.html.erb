@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card p-3">
+    <h5>ID: <%= @reservation.id %></h5>
+    <h5>Room Number: <%= @reservation.room_number %></h5>
+    <h5>Guest: <%= @reservation.user.first_name %> <%= @reservation.user.last_name %></h5>
+  </div>
+</div>
+
+<h5>Requests / Time requests:</h5>
+<% @all_requests.each do |request| %>
+  <p><%= request.id %></p>
+<% end %>
