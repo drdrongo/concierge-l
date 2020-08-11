@@ -17,7 +17,9 @@
     </div>
   </div>
 
+  <%=  %>
   <button type="button" class="btn btn-primary button-full-width mt-1 mb-1">Change Check-In/Out Time</button>
+    <%#= render 'change_times', reservation: @reservation %>
 
   <div class="card-show-page mt-3">
     <p class="font-bright-pink mb-0">Address:</p>
@@ -34,11 +36,14 @@
     <p class="font-bright-pink mb-0">Smartlock & Online Check-in: </p>
     <p class="mb-0">Please read before arrival</p>
   </div>
+
   <button type="button" class="btn btn-primary button-full-width mt-1 mb-1">Read Check-In Manual</button>
 
   <div class="card-show-page mt-3 pb-3">
     <p class="font-bright-pink mb-2">Amenities </p>
-    <button class="btn btn-primary mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br><%= link_to 'Essentials', reservation_hotel_amenities_path(@reservation), style: "color: white;"%></button>
+    <%= link_to reservation_hotel_amenities_path(@reservation), style: "color: white;" do %>
+      <button class="btn btn-primary mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
+    <% end %>
     <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
     <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
     <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/phone-charging-3.svg", height:50, class:"icon-white" %> <br>Others</button>

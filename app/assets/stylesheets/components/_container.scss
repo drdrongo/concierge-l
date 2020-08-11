@@ -6,7 +6,7 @@
   width: 80%;
   margin: 0 auto;
   h5 {
-    color: $green;
+    color: $font-grey;
     align-self: flex-start;
   }
 }
@@ -24,3 +24,15 @@
   grid-gap: 4px;
 }
 
+.container-title {
+  display: flex;
+  margin: 10px 5px 10px 30px;
+  align-self: center;
+}
+
+.container-arrows {
+  width:100%;
+  display:flex;
+  align-item: left;
+  margin-bottom: 5px;
+}
