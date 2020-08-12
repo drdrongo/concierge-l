@@ -6,11 +6,27 @@
   </div>
 </div>
 
-<h5>Requests / Time requests:</h5>
-<% @all_requests.each do |request| %>
-  <% if request.class == TimeRequest %>
-    <p><%= request.time %></p>
-  <% else %>
-    <p><%= request.hotel_amenity %></p>
+<div class="container p-3" style="background-color: beige;">
+  <h5>Requests / Time requests:</h5>
+  <% @all_requests.each do |request| %>
+    <% if request.class == TimeRequest %>
+      <div class="card w-75 p-3 mb-3">
+        <h6>Time Request: </h6>
+        <p><%= request.time %></p>
+      </div>
+    <% else %>
+      <div class="card w-75 p-3 mb-3">
+        <h6>Amenity Request:</h6>
+        <p><%= request.hotel_amenity %></p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+
+  <h5>Messages:</h5>
+  <% @messages.each do |message| %>
+    <div class="card w-75 p-3 mb-3">
+      <p>Time: <%= message.created_at %></p>
+      <p>Message: <%= message.content %></p>
+    </div>
+  <% end %>
+</div>
