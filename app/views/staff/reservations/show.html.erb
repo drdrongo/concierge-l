@@ -8,5 +8,9 @@
 
 <h5>Requests / Time requests:</h5>
 <% @all_requests.each do |request| %>
-  <p><%= request.id %></p>
+  <% if request.class == TimeRequest %>
+    <p><%= request.time %></p>
+  <% else %>
+    <p><%= request.hotel_amenity %></p>
+  <% end %>
 <% end %>

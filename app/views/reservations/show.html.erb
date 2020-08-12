@@ -1,7 +1,5 @@
 <div class="container mt-3">
-  <%= link_to reservations_path do %>
-    <i class="fas fa-arrow-left" style="position: absolute; top: 32px; left: 10px;"></i>
-  <% end %>
+  <%= render 'shared/back', path: "reservations_path" %>
 
   <div class="container-fluid">
     <h1 class="font-green">Current Stay</h1>

@@ -1,12 +1,12 @@
 <div class="container">
-  <% @reservations.each do |r| %>
+  <% @reservations_with_event.each do |reservation| %>
     <div class="card w-50 p-3">
-      <h5>Index: <%= link_to "#{r.id}", staff_reservation_path(r) %></h5>
+      <h5>Index: <%= link_to "#{reservation.first.id}", staff_reservation_path(reservation.first) %></h5>
       <h5>Guest:</h5>
-      <p><%= "#{r.user.first_name.capitalize} #{r.user.last_name.capitalize}"%></p>
+      <p><%= "#{reservation.first.user.first_name.capitalize} #{reservation.first.user.last_name.capitalize}"%></p>
       <h5>First Night:</h5>
-      <p><%= r.check_in_date.strftime("%b #{r.check_in_date.day.ordinalize}") %></p>
-      <p>Updated at: <%= r.updated_at %></p>
+      <p><%= reservation.first.check_in_date.strftime("%b #{reservation.first.check_in_date.day.ordinalize}") %></p>
+      <p>Updated at: <%= reservation.first.updated_at %></p>
     </div>
   <% end %>
 </div>

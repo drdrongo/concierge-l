@@ -1,6 +1,7 @@
-<%= link_to root_path do %>
-  <i class="fas fa-arrow-left" style="position: absolute; top: 10px; left: 10px;"></i>
-<% end %>
+
+
+<%= render 'shared/back', path: "root_path" %>
+
   <div class="logo-container">
     <%= image_tag 'logo.png', class: 'logo-sm' %>
   </div>
