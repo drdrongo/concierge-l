@@ -6,11 +6,14 @@ Rails.application.routes.draw do
   resources :reservations, except: :destroy do
     resources :requests, only: :create
     resources :hotel_amenities, only: :index
+    resources :messages, only: :create
   end
   resources :articles, only: %i[ show ]
 
   namespace :staff do 
     root 'reservations#index'
-    resources :reservations, only: %i[ index show ]
+    resources :reservations, only: %i[ index show ] do
+      resources :messages, only: :create
+    end
   end
 end

@@ -1,10 +1,5 @@
 class Staff::ReservationsController < ApplicationController
   def index
-    # @reservations = Reservation.joins(:messages)
-    # @reservations += Reservation.joins(:requests)
-    # @reservations += Reservation.joins(:time_requests)
-    # @reservations = @reservations.sort_by(&:updated_at).reverse.uniq
-
     @reservations = Reservation.order(updated_at: :DESC)
 
     @reservations_with_event = @reservations.map do |reservation|
@@ -19,6 +14,7 @@ class Staff::ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+    @message = Message.new reservation: @reservation
     requests = Request.where(reservation: @reservation)
     @all_requests = TimeRequest.where(reservation: @reservation) + requests
     @messages = Message.where(reservation: @reservation)
