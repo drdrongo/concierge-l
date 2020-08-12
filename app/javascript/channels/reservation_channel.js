@@ -5,8 +5,10 @@ $(function() {
         messageTemplate = $('[data-role="message-template"]');
 
     $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000)        
+    
+    console.log("I'm before...")
 
-    App.cable.subscriptions.create(
+    this.cable.subscriptions.create(
       {
         channel: "ReservationChannel",
         reservation: reservation_id
@@ -21,5 +23,8 @@ $(function() {
         }
       }
     );
+    
+    console.log("I'm after!")
+
   });
 });

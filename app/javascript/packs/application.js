@@ -41,4 +41,5 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   clearTextBox();
+  console.log("farts!");
 });
