@@ -1,4 +1,7 @@
 module ApplicationCable
+  class Channel < ActionCable::Channel::Base
+  end
+  
   class Connection < ActionCable::Connection::Base
     identified_by :current_user 
     # connection identifier used to find specific connection later.

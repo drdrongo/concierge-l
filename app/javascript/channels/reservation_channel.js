@@ -1,14 +1,19 @@
+
+import consumer from "./consumer"
+ 
+// consumer.subscriptions.create({ channel: "ReservationChannel" })
+
 $(function() {
   $('[data-channel-subscribe="reservation"]').each(function(index, element) {
     var $element = $(element),
-        reservation_id = $element.data('reservation-id')
-        messageTemplate = $('[data-role="message-template"]');
-
+      reservation_id = $element.data('reservation-id')
+      messageTemplate = $('[data-role="message-template"]');
+    
     $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000)        
     
     console.log("I'm before...")
 
-    this.cable.subscriptions.create(
+    consumer.subscriptions.create(
       {
         channel: "ReservationChannel",
         reservation: reservation_id

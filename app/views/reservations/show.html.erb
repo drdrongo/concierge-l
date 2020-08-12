@@ -13,36 +13,35 @@
           <p><%= message.content %></p>
         </div>
       <% end %>
-    </div>
-
-    <%= simple_form_for @message, url: reservation_messages_path(@reservation), remote: true do |form| %>
-      <div class="input-group mb-3">
-        <%= form.input :content, as: :string,
-                                  wrapper: false,
-                                  label: false,
-                                  input_html: {
-                                    class: 'chat-input'
-                                  } %>
-        <div class="input-group-append">
-          <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+      <div class="d-none" data-role="message-template">
+        <div class="reservation-message-container">
+          <div class="message-content">
+            <p class="mb-1" data-role="message-text"></p>
+            <div class="text-right">
+              <small data-role="message-date"></small>
+            </div>
+          </div>
         </div>
       </div>
-      <%= form.input :reservation_id, as: :hidden %>
-    <% end %>
-  </div>
-</div>
 
-
-<div class="d-none" data-role="message-template">
-  <div class="reservation-message-container">
-    <div class="message-content">
-      <p class="mb-1" data-role="message-text"></p>
-      <div class="text-right">
-        <small data-role="message-date"></small>
-      </div>
+      <%= simple_form_for @message, url: reservation_messages_path(@reservation), remote: true do |form| %>
+        <div class="input-group mb-3">
+          <%= form.input :content, as: :string,
+                                    wrapper: false,
+                                    label: false,
+                                    input_html: {
+                                      class: 'chat-input'
+                                    } %>
+          <div class="input-group-append">
+            <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+          </div>
+        </div>
+        <%= form.input :reservation_id, as: :hidden %>
+      <% end %>
     </div>
   </div>
 </div>
+
 
 
 
