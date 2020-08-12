@@ -1,14 +1,11 @@
 class Staff::MessagesController < ApplicationController
   def create
     @reservation = Reservation.find(params[:reservation_id])
-    @message = Message.new(message_params)
-    @message.reservation = @reservation
-    @message.user = current_user
-    if @message.save
-      redirect_to staff_reservation_path(@reservation, anchor: "message-#{@message.id}")
-    else
-      render "reservations/show"
-    end
+    @message = Message.create(
+      reservation: @reservation,
+      user: current_user,
+      content: message_params[:content]
+    )
   end
 
   def message_params 

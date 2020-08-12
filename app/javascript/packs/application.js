@@ -28,7 +28,17 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
+// Clears the text box after a message is successfully sent.
+function clearTextBox() {
+  $(function() {
+    $('#new_message').on('ajax:success', function(a, b,c ) {
+      $(this).find('input[type="text"]').val('');
+    });
+  });
+}
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  clearTextBox();
 });

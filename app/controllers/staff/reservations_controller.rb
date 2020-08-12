@@ -15,6 +15,7 @@ class Staff::ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find(params[:id])
     @message = Message.new reservation: @reservation
+    
     requests = Request.where(reservation: @reservation)
     @all_requests = TimeRequest.where(reservation: @reservation) + requests
     @messages = Message.where(reservation: @reservation)

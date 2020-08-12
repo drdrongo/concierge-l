@@ -23,46 +23,53 @@
   <% end %>
 
   <h5>Messages:</h5>
-  <% @messages.each do |message| %>
-    <div class="card w-75 p-3 mb-3">
-      <p>Time: <%= message.created_at %></p>
-      <p>Message: <%= message.content %></p>
+  <div class="container">
+    <div id="messages" data-channel-subscribe="reservation" data-reservation-id="<%= @reservation.id %>">
+      <% @reservation.messages.each do |message| %>
+        <div class="message-container card p-2 mb-1 w-50" id="message-<%= message.id %>">
+          <i class="author">
+            <span><%= message.user.first_name %></span>
+            <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+          </i>
+          <p><%= message.content %></p>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
 
-<div class="container">
-  <div id="messages" data-reservation-id="<%= @reservation.id %>">
-    <% @reservation.messages.each do |message| %>
-      <div class="message-container" id="message-<%= message.id %>">
-        <i class="author">
-          <span><%= message.user.first_name %></span>
-          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-        </i>
-        <p><%= message.content %></p>
+    <%= simple_form_for @message, url: staff_reservation_messages_path(@reservation), remote: true do |form| %>
+      <div class="input-group mb-3">
+        <%= form.input :content, as: :string,
+                                  wrapper: false,
+                                  label: false,
+                                  input_html: {
+                                    class: 'chat-input'
+                                  } %>
+        <div class="input-group-append">
+          <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+        </div>
       </div>
+      <%= form.input :reservation_id, as: :hidden %>
     <% end %>
   </div>
+</div>
 
-        <% if false %>
-          <%= simple_form_for [ @reservation, @message ] do |f| %>
-            <%= f.input :content, label: false, placeholder: "Message" %>
-            <%= f.submit %>
-          <% end %>
-        <% end %>
 
-  <%= simple_form_for @message, url: staff_reservation_messages_path(@reservation), remote: true do |form| %>
-    <div class="input-group mb-3">
-      <%= form.input :content, as: :string,
-                                wrapper: false,
-                                label: false,
-                                input_html: {
-                                  class: 'chat-input'
-                                } %>
-      <div class="input-group-append">
-        <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+<div class="d-none" data-role="message-template">
+  <div class="reservation-message-container">
+    <div class="row no-gutters">
+      <div class="col-auto text-center">
+        <img src="" class="avatar" alt="" data-role="user-avatar">
+      </div>
+
+      <div class="col">
+        <div class="message-content">
+          <p class="mb-1" data-role="message-text"></p>
+
+          <div class="text-right">
+            <small data-role="message-date"></small>
+          </div>
+        </div>
       </div>
     </div>
-    <%= form.input :reservation_id, as: :hidden %>
-  <% end %>
+  </div>
 </div>
