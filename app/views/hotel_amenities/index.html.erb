@@ -1,9 +1,9 @@
-<%= link_to reservations_path do %>
+<%= link_to reservation_path(@reservation) do %>
   <i class="fas fa-arrow-left" style="position: absolute; top: 32px; left: 10px;"></i>
 <% end %>
 
-<div class="container w-75" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px;">
-  <h1>Amenities:</h1>
+<div class="container w-75 font-grey" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px;">
+  <h1>Amenities</h1>
   <% @hotel_amenities.each do |hotel_amenity| %>
     <div class="d-flex justify-content-between mb-1 border-bottom py-1 align-items-center">
         <div class="d-flex align-items-center">

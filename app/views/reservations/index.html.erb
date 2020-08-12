@@ -1,18 +1,33 @@
-
-
 <%= render 'shared/back', path: "root_path" %>
 
+<div class="container-title">
+  <h1 class="font-green mb-0">Your Stays</h1>
   <div class="logo-container">
     <%= image_tag 'logo.png', class: 'logo-sm' %>
   </div>
-  <h2 style="text-align: center;">Your Stays</h2>
+
+  </div>
   <div class="container-reservation">
-    <h5>Upcoming:</h5>
+    <h5 class="mb-0">Upcoming</h5>
+    <div class="container-arrows">
+      <%= image_tag("icons/arrow-down.svg", height:20) %>
+      <%= image_tag("icons/arrow-down.svg", height:20) %>
+      <%= image_tag("icons/arrow-down.svg", height:20) %>
+      <%= image_tag("icons/arrow-down.svg", height:20) %>
+      <%= image_tag("icons/arrow-down.svg", height:20) %>
+    </div>
     <% @upcoming_reservations.each do |reservation| %>
       <%= render 'reservations/reservation_card', reservation: reservation %>
     <% end %>
     <% if @past_reservations.length > 0 %>
-      <h5>Where you've stayed:</h5>
+      <h5 class="mb-0">Where you've stayed</h5>
+      <div class="container-arrows">
+        <%= image_tag("icons/arrow-down.svg", height:20) %>
+        <%= image_tag("icons/arrow-down.svg", height:20) %>
+        <%= image_tag("icons/arrow-down.svg", height:20) %>
+        <%= image_tag("icons/arrow-down.svg", height:20) %>
+        <%= image_tag("icons/arrow-down.svg", height:20) %>
+      </div>
       <% @past_reservations.each do |reservation| %>
         <%= render 'reservations/reservation_card', reservation: reservation %>
       <% end %>
