@@ -2,60 +2,6 @@
 
 <%= render 'shared/chat', reservation: @reservation, message: @message %>
 
-<% if false %>
-            <div class="container p-3" style="background-color: beige;">
-              <h5>Messages:</h5>
-              <div class="container">
-                <div id="messages" data-channel-subscribe="reservation" data-reservation-id="<%= @reservation.id %>">
-                  <% @reservation.messages.each do |message| %>
-                    <div class="message-container card p-2 mb-1 w-50" id="message-<%= message.id %>">
-                      <div class="message-content">
-                        <p class="mb-1" <%= message.content %>></p>
-                        <div class="text-right">
-                          <small><%= message.updated_at.strftime("%a %b %e at %l:%M%p") %></small>
-                        </div>
-                      </div>
-                    </div>
-                  <% end %>
-
-                  <div class="d-none" data-role="message-template">
-                    <div class="message-container card p-2 mb-1 w-50" id="id">
-                      <div class="message-content">
-                        <p class="mb-1" data-role="message-text"></p>
-                        <div class="text-right">
-                          <small data-role="message-date"></small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <%= simple_form_for @message, url: reservation_messages_path(@reservation), remote: true do |form| %>
-                  <div class="input-group mb-3">
-                    <%= form.input :content, as: :string,
-                                              wrapper: false,
-                                              label: false,
-                                              input_html: {
-                                                class: 'chat-input'
-                                              } %>
-                    <div class="input-group-append">
-                      <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
-                    </div>
-                  </div>
-                  <%= form.input :reservation_id, as: :hidden %>
-                <% end %>
-              </div>
-            </div>
-<% end %>
-
-
-
-
-
-
-
-
-
 <div class="container mt-3">
   <div class="logo-container">
     <%= image_tag 'logo.png', class: 'logo-sm' %>
