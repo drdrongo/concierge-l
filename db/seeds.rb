@@ -60,11 +60,15 @@ create_reservation(admin, hotel)
 
 puts 'Creating Amenities...'
 amenities_hash = {
-  'Essentials' => %w[Wifi Heating A/C First\ Aid\ Kit],
-  'Bed & Bath' => %w[Washer Hairdryer Iron Towels\ &\ Linens Hangers],
-  'Kitchen'    => %w[Dishwasher Pots\ &\ Pans],
-  'Other'      => %w[TV Desk\ &\ Chair Lobby\ Coffee\ Bar]
-}           
+  'Essentials' => ["Wifi", "Heating", "A/C", "First Aid Kit"],
+  'Bed & Bath' => ["Tooth Brush", "Comb", "Razor", "Washer", "Hairdryer", "Iron", "Towels & Linens", "Hangers", "Additional Towels","Additional Linens", "Extra Bed"],
+  'Kitchen'    => ["Dishwasher", "Pots & Pans", "Plates & Glassware", "Cutlery", "Salt & Pepper"],
+  'Other'      => ["TV", "Desk & Chair", "Lobby Coffee Bar", "Slippers", "Vacuum Cleaner","Bluetooth Speaker", "Phone Charger",]
+}
+
+requestables = ["Additional Towels","Additional Linens", "Extra Bed", "Vacuum Cleaner", "Rice Cooker", "Bluetooth Speaker", "Phone Charger", "Salt & Pepper"]
+
+
 amenities_hash.each_pair do |category, amenities|
   amenities.each do |amenity|
     new_amenity = Amenity.new(
@@ -72,12 +76,23 @@ amenities_hash.each_pair do |category, amenities|
       category: category
     )
     new_amenity.save
-    HotelAmenity.create(amenity: new_amenity, hotel: hotel)
+
+    hotel_amenity = HotelAmenity.new(
+      amenity: new_amenity,
+      hotel: hotel
+    )
+    if requestables.include?(new_amenity.name)
+      hotel_amenity.requestable = true
+    else
+      hotel_amenity.requestable = false
+    end
+    hotel_amenity.save
+
   end
 end
 
 puts 'Creating several time requests..'
-3.times do 
+3.times do
   time_request = TimeRequest.new(
     time: Time.now,
     reservation: Reservation.all.sample,
