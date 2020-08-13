@@ -31,6 +31,11 @@ class TimeRequestsController < ApplicationController
     end
   end
 
+  def update
+    @reservation = Reservation.find(params[:reservation_id])
+    raise
+  end
+
   private
 
   def create_arrival_request(reservation, prms)

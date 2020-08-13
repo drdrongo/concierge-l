@@ -3,6 +3,8 @@
     <h5>ID: <%= @reservation.id %></h5>
     <h5>Room Number: <%= @reservation.room_number %></h5>
     <h5>Guest: <%= @reservation.user.first_name %> <%= @reservation.user.last_name %></h5>
+    <h1>Arrival: <%= @reservation.arrival_time %></h1>
+    <h1>Arrival: <%= @reservation.arrival_time %></h1>
   </div>
 </div>
 
@@ -13,6 +15,51 @@
       <div class="card w-75 p-3 mb-3">
         <h6>Time Request: </h6>
         <p><%= request.time %></p>
+        <p><%= request.status %></p>
+
+          <% if request.status == "pending" %>
+            <%= form_for @reservation, url: staff_reservation_path(@reservation), method: :patch do |f| %>
+              <%= f.hidden_field :arrival_time, :value => request.time %>
+              
+              <%= fields_for request, url: reservation_time_requests_path(request), method: :patch do |status_fields| %>
+                <%= status_fields.hidden_field :status, value: "accepted" %>
+              <% end %>
+
+              <%= f.submit %>
+            <% end %>
+          <% else %>
+            <%#= simple_form_for @reservation, url: staff_reservation_path(@reservation), method: :patch, remote: true do |f| %>
+              <%#= f.input (request.check_in ? :arrival_time : :departure_time), :as => :hidden, :input_html => { :value => request.time } %>%
+              <%#= f.button :submit %>
+            <%# end %>
+
+            <%= form_for @reservation, url: staff_reservation_path(@reservation), method: :patch do |f| %>
+              <%= f.hidden_field :arrival_time, :value => request.time %>
+              
+              <%= fields_for request.status do |status_fields| %>
+                <%= status_fields.hidden_field :status, value: "accepted" %>
+              <% end %>
+
+              <%= f.submit %>
+            <% end %>
+            <button>Hold</button>
+            <button>Hold</button>
+          <% end %>
+
+
+<%#= form_for @reservation, url: staff_reservation_path(@reservation), method: :patch do |f| %>
+  <%# Arrival Time: <%= f.hidden :arrival_time %> %>
+
+  <%#= fields_for :permission, @person.permission do |permission_fields| %>
+    <%# Admin?  : <%= permission_fields.check_box :admin %> %>
+  <%# end %>
+
+  <%#= f.submit %>
+<%# end %>
+
+
+
+
       </div>
     <% else %>
       <div class="card w-75 p-3 mb-3">
