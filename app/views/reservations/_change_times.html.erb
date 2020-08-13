@@ -1,17 +1,22 @@
 <style>
-	.was-validated .form-check-input:valid~.form-check-label, .form-check-input.is-valid~.form-check-label {
-		border: 1px solid red;
-		border-radius: 5px;
-		color: red;
+	input[type=radio] + label {
+		transition: background-color 0.2s, color: 0.2s;
 	}
 
-	.was-validated .form-check-input:valid~.form-check-label, .form-check-input.is-valid:checked~.form-check-label {
-		color: white;
-		background-color: #D43B3B;
+	input[type=radio]:hover + label {
+		background-color: lightgrey;
+		transition: background-color 0.2s;
+		transition-timing-function: ease-out;
 	}
-	
+
+	input[type=radio]:checked + label {
+		background-color: #D43B3B;
+		color: white;
+		transition: background-color 0.2s, color: 0.2s;
+	}
+
 	input[type=radio] {
-		display:none;
+		opacity: 0.01;
 	}
 
 	input[type=radio] + label {
@@ -39,35 +44,35 @@
 <p><%= reservation.check_in_date.strftime('%b %e') %></p>
 
 <div class="container-fluid d-flex w-100">
-	<%= simple_form_for reservation, html: { class: "d-flex", style: "flex-wrap: wrap;"} do |f| %>
+	<%= simple_form_for :request, url: reservation_time_requests_path(@reservation),  html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :post do |f| %>
 
-		<div class="d-flex text-center border-right" style="flex-direction: column; flex-basis: 50%;">
-			<p>Check-in</p>
-			<p><%= reservation.check_in_date.strftime('%b %e') %></p>
+		<div class="d-flex text-center border-right pr-0" style="flex-direction: column; flex-basis: 50%;">
+			<p class="mb-0">Check-in</p>
+			<p class="mb-0"><%= reservation.check_in_date.strftime('%b %e') %></p>
 			<% in_time = Time.find_zone('Tokyo').local(2000, 1, 1, 15) %>
 			<% out_time = Time.find_zone('Tokyo').local(2000, 1, 1, 10) %>
 			<% arrivals = ['3:00PM~ (¥0)', '2:00PM (¥1,000)', '1:00PM (¥2,000)', '12:00PM (¥3,000)', '11:00AM (¥4,000)', '11:00AM (¥4,000)'] %>
-			<%= f.input :arrival_time, as: :radio_buttons, collection: [
+			<%= f.input :arrival_time, as: :radio_buttons, required: false, collection: [
 				[in_time, 				 '3:00PM~ (¥0)'			],
 				[in_time - 1.hour, '2:00PM (¥1,000)'	],
 				[in_time - 2.hour, '1:00PM (¥2,000)'	],
 				[in_time - 3.hour, '12:00PM (¥3,000)'	],
 				[in_time - 4.hour, '11:00AM (¥4,000)'	],
 				[in_time - 5.hour, '10:00AM (¥5,000)'	]
-			], checked: [reservation.arrival_time, ], label_method: :second, value_method: :first %>
+			], label_method: :second, value_method: :first %>
 		</div>
 
 		<div class="d-flex text-center" style="flex-direction: column; flex-basis: 50%;">
-			<p>Check-out</p>
-			<p><%= reservation.check_out_date.strftime('%b %e') %></p>
-			<%= f.input :departure_time, as: :radio_buttons, collection: [
+			<p class="mb-0">Check-out</p>
+			<p class="mb-0"><%= reservation.check_out_date.strftime('%b %e') %></p>
+			<%= f.input :departure_time, as: :radio_buttons, required: false, collection: [
 				[out_time, '~10:00AM (¥0)'],
 				[out_time - 1.hour, '~11:00AM (¥1,000)'],
 				[out_time - 2.hour, '~12:00PM (¥2,000)'],
 				[out_time - 3.hour, '~1:00PM (¥3,000)'],
 				[out_time - 4.hour, '~2:00PM (¥4,000)'],
 				[out_time - 5.hour, '~3:00PM (¥5,000)']
-			], checked: reservation.departure_time, label_method: :second, value_method: :first %>
+			], label_method: :second, value_method: :first %>
 		</div>
 
 		<%= f.button :submit, class: "btn btn-primary w-100" %>
