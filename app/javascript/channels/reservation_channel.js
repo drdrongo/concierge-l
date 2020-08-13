@@ -6,12 +6,10 @@ import consumer from "./consumer"
 $(function() {
   $('[data-channel-subscribe="reservation"]').each(function(index, element) {
     var $element = $(element),
-      reservation_id = $element.data('reservation-id')
-      messageTemplate = $('[data-role="message-template"]');
-    
+        reservation_id = $element.data('reservation-id'),
+        messageTemplate = $('[data-role="message-template"]');
+
     $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000)        
-    
-    console.log("I'm before...")
 
     consumer.subscriptions.create(
       {
@@ -23,13 +21,12 @@ $(function() {
           var content = messageTemplate.children().clone(true, true);
           content.find('[data-role="message-text"]').text(data.content);
           content.find('[data-role="message-date"]').text(data.updated_at);
+          content[0].setAttribute("id", data.id);
+
           $element.append(content);
           $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000);
         }
       }
     );
-    
-    console.log("I'm after!")
-
   });
 });
