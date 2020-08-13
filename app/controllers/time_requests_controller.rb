@@ -1,7 +1,7 @@
 class TimeRequestsController < ApplicationController
   def create
     @reservation = Reservation.find(params[:reservation_id])
-    prms = params[:time_request]
+    prms = params[:request]
     @arrival_time_request = create_arrival_request(@reservation, prms)
     @departure_time_request = create_departure_request(@reservation, prms)
 
@@ -29,8 +29,6 @@ class TimeRequestsController < ApplicationController
     else
       puts "Do nothing"
     end
-
-    raise
   end
 
   private
