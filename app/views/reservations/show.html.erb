@@ -1,5 +1,7 @@
 <%= render 'shared/back', path: "reservations_path" %>
 
+<%= render 'shared/chat', reservation: @reservation, message: @message %>
+
 <div class="container mt-3">
   <div class="logo-container">
     <%= image_tag 'logo.png', class: 'logo-sm' %>
@@ -37,9 +39,6 @@
       <%= render 'buddy.html.erb' %>
     </div>
   </div>
-
-  </div>
+ </div>
 
   <%= render 'change_times', reservation: @reservation %>
-
-</div>

@@ -7,11 +7,14 @@ Rails.application.routes.draw do
     resources :time_requests, only: :create
     resources :requests, only: :create
     resources :hotel_amenities, only: :index
+    resources :messages, only: :create
   end
   resources :articles, only: %i[ show ]
 
   namespace :staff do 
     root 'reservations#index'
-    resources :reservations, only: %i[ index show ]
+    resources :reservations, only: %i[ index show ] do
+      resources :messages, only: :create
+    end
   end
 end
