@@ -4,7 +4,7 @@
   <div class="logo-container">
     <%= image_tag 'logo.png', class: 'logo-sm' %>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid px-0">
     <h1 class="font-green mb-0">Current Stay</h1>
     <%= image_tag("icons/arrow-down.svg", height:25) %>
     <%= image_tag("icons/arrow-down.svg", height:25) %>
@@ -38,7 +38,8 @@
     </div>
   </div>
 
-    <%#= render 'change_times', reservation: @reservation %>
   </div>
+
+  <%= render 'change_times', reservation: @reservation %>
 
 </div>

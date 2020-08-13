@@ -39,7 +39,7 @@
 <p><%= reservation.check_in_date.strftime('%b %e') %></p>
 
 <div class="container-fluid d-flex w-100">
-	<%= simple_form_for reservation, html: { class: "d-flex", style: "flex-wrap: wrap;"} do |f| %>
+	<%= simple_form_for TimeRequest.new, url: reservation_time_requests_path(@reservation),  html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :post do |f| %>
 
 		<div class="d-flex text-center border-right" style="flex-direction: column; flex-basis: 50%;">
 			<p>Check-in</p>
