@@ -22,7 +22,7 @@ const createMessage = () => {
             content.find('[data-role="message-text"]').text(data.content);
             content.find('[data-role="message-date"]').text(data.updated_at);
             content[0].setAttribute("id", data.id);
-
+            console.log(content)
             $element.append(content);
             $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000);
           }
