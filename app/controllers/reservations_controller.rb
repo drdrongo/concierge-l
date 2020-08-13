@@ -9,6 +9,7 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+    @message = Message.new reservation: @reservation
     @articles = @reservation.hotel.articles
   end
 
@@ -84,7 +85,8 @@ class ReservationsController < ApplicationController
   private
 
   def sanitize_reservation
-    params['reservation']['check_in_date'] = "#{params['reservation']['check_in_date(1i)']}-#{params['reservation']['check_in_date(2i)'].rjust(2, '0')}-#{params['reservation']['check_in_date(3i)'].rjust(2, '0')}"
+    reservation = params['reservation']
+    reservation['check_in_date'] = "#{reservation['check_in_date(1i)']}-#{reservation['check_in_date(2i)'].rjust(2, '0')}-#{reservation['check_in_date(3i)'].rjust(2, '0')}"
   end
 
   def reservation_params

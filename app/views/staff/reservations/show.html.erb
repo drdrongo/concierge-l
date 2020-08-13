@@ -22,11 +22,4 @@
     <% end %>
   <% end %>
 
-  <h5>Messages:</h5>
-  <% @messages.each do |message| %>
-    <div class="card w-75 p-3 mb-3">
-      <p>Time: <%= message.created_at %></p>
-      <p>Message: <%= message.content %></p>
-    </div>
-  <% end %>
-</div>
+  <%= render 'shared/chat', reservation: @reservation, message: @message %>

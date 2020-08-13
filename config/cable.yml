@@ -1,10 +1,15 @@
+# A channel_prefix may be provided to avoid channel name collisions when using the same Redis server
+# for multiple applications (-Action Cable Overview)
+
 development:
-  adapter: async
+  adapter: redis
+  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  channel_prefix: section-chat_development 
 
 test:
-  adapter: test
+  adapter: async
 
 production:
   adapter: redis
   url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: concierge_l_production
+  channel_prefix: section-chat_production
