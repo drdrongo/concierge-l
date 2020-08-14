@@ -4,7 +4,7 @@
     <h5>Room Number: <%= @reservation.room_number %></h5>
     <h5>Guest: <%= @reservation.user.first_name %> <%= @reservation.user.last_name %></h5>
     <h1>Arrival: <%= @reservation.arrival_time %></h1>
-    <h1>Arrival: <%= @reservation.arrival_time %></h1>
+    <h1>Departure: <%= @reservation.departure_time %></h1>
   </div>
 </div>
 
@@ -15,63 +15,54 @@
       <div class="card w-75 p-3 mb-3">
         <h6>Time Request: </h6>
         <p><%= request.time %></p>
-        <p><%= request.status %></p>
+        <%= request.status %>
 
-          <% if request.status == "pending" || request.status == "hold" %>
-            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch do |f| %>
-              <%= f.hidden_field :status, value: "accepted" %>
-              
-                <%= f.fields_for @reservation do |a| %>
-                  <%= a.hidden_field :line_1, value: request.time %>
+        <% if request.status == "pending" || request.status == "hold" %>
+
+          <div class="d-flex w-100">
+            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+              <%= f.hidden_field :status, value: 'accepted' %>
+                <% if request.check_in == true %>
+                  <%= f.fields_for @reservation do |a| %>
+                    <%= a.hidden_field :arrival_time, value: request.time %>
+                  <% end %>
+                <% else %>
+                  <%= f.fields_for @reservation do |a| %>
+                    <%= a.hidden_field :departure_time, value: request.time %>
+                  <% end %>
                 <% end %>
-
-              <%= f.submit %>
+              <%= f.submit 'Accept', class: 'btn btn-success flex-grow-1' %>
             <% end %>
 
-            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch do |f| %>
-              <%= f.hidden_field :status, value: "declined" %>
-              
-                <%= f.fields_for @reservation do |a| %>
-                  <%= a.hidden_field :line_1, value: request.time %>
-                <% end %>
-
-              <%= f.submit %>
+            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+              <%= f.hidden_field :status, value: 'declined' %>
+              <%= f.submit 'Decline', class: 'btn btn-primary flex-grow-1' %>
             <% end %>
 
-            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch do |f| %>
-              <%= f.hidden_field :status, value: "hold" %>
-              
-                <%= f.fields_for @reservation do |a| %>
-                  <%= a.hidden_field :line_1, value: request.time %>
-                <% end %>
-
-              <%= f.submit %>
+            <% unless request.status == "pending" %>
+              <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+                <%= f.hidden_field :status, value: 'hold' %>
+                <%= f.submit 'Hold', class: 'btn btn-secondary flex-grow-1' %>
+              <%end %>
             <% end %>
+          </div>
 
-          <% else %>
-
-          <% end %>
-
-
-<%#= form_for @reservation, url: staff_reservation_path(@reservation), method: :patch do |f| %>
-  <%# Arrival Time: <%= f.hidden :arrival_time %> %>
-
-  <%#= fields_for :permission, @person.permission do |permission_fields| %>
-    <%# Admin?  : <%= permission_fields.check_box :admin %> %>
-  <%# end %>
-
-  <%#= f.submit %>
-<%# end %>
-
-
-
+        <% else %>
+          <div class="w-100 text-align-center btn disabled btn-<%= request.status == 'accepted' ? 'success' : 'primary' %>">
+            <%= request.status == 'accepted' ? 'Accepted' : 'Declined' %>
+          </div>
+        <% end %>
 
       </div>
+
     <% else %>
+
       <div class="card w-75 p-3 mb-3">
         <h6>Amenity Request:</h6>
         <p><%= request.hotel_amenity %></p>
+        <p><%= request.status %></p>
       </div>
+
     <% end %>
   <% end %>
 

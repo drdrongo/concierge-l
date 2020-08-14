@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :reservations, except: :destroy do
     resources :time_requests, only: %i[ create update ]
+    patch 'reservations/:reservation_id/time_requests/:id', to: 'time_requests#update_with_reservation', as: :time_request_full_update
     resources :requests, only: :create
     resources :hotel_amenities, only: :index
     resources :messages, only: :create
