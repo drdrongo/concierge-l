@@ -16,14 +16,16 @@ class Staff::ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @message = Message.new reservation: @reservation
 
+    # Gets all requests (amenity + time requests) and sorts them by created_at, descending.
     requests = Request.where(reservation: @reservation)
-    @all_requests = TimeRequest.where(reservation: @reservation) + requests
+    @all_requests = (TimeRequest.where(reservation: @reservation) + requests).sort_by(&:created_at).reverse!
     @messages = Message.where(reservation: @reservation)
   end
 
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update(reservation_params)
+    # This part here: I'm not sure how to handle this; do I need an if statement here? If so, what's needed?
     if @reservation.save
       redirect_to staff_reservation_path(@reservation.id)
     else
