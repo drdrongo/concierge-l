@@ -33,7 +33,11 @@ class TimeRequestsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:reservation_id])
-    raise
+    @time_request = TimeRequest.find(params[:id])
+    
+    if @time_request.update(status: params[:time_request][:status])
+      redirect_to staff_reservation_path(@reservation)
+    end
   end
 
   private

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :reservations, except: :destroy do
-    resources :time_requests, only: :create
+    resources :time_requests, only: %i[ create update ]
     resources :requests, only: :create
     resources :hotel_amenities, only: :index
     resources :messages, only: :create

@@ -17,33 +17,39 @@
         <p><%= request.time %></p>
         <p><%= request.status %></p>
 
-          <% if request.status == "pending" %>
-            <%= form_for @reservation, url: staff_reservation_path(@reservation), method: :patch do |f| %>
-              <%= f.hidden_field :arrival_time, :value => request.time %>
+          <% if request.status == "pending" || request.status == "hold" %>
+            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch do |f| %>
+              <%= f.hidden_field :status, value: "accepted" %>
               
-              <%= fields_for request, url: reservation_time_requests_path(request), method: :patch do |status_fields| %>
-                <%= status_fields.hidden_field :status, value: "accepted" %>
-              <% end %>
+                <%= f.fields_for @reservation do |a| %>
+                  <%= a.hidden_field :line_1, value: request.time %>
+                <% end %>
 
               <%= f.submit %>
             <% end %>
+
+            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch do |f| %>
+              <%= f.hidden_field :status, value: "declined" %>
+              
+                <%= f.fields_for @reservation do |a| %>
+                  <%= a.hidden_field :line_1, value: request.time %>
+                <% end %>
+
+              <%= f.submit %>
+            <% end %>
+
+            <%= form_for request, url: reservation_time_request_path(@reservation, request), method: :patch do |f| %>
+              <%= f.hidden_field :status, value: "hold" %>
+              
+                <%= f.fields_for @reservation do |a| %>
+                  <%= a.hidden_field :line_1, value: request.time %>
+                <% end %>
+
+              <%= f.submit %>
+            <% end %>
+
           <% else %>
-            <%#= simple_form_for @reservation, url: staff_reservation_path(@reservation), method: :patch, remote: true do |f| %>
-              <%#= f.input (request.check_in ? :arrival_time : :departure_time), :as => :hidden, :input_html => { :value => request.time } %>%
-              <%#= f.button :submit %>
-            <%# end %>
 
-            <%= form_for @reservation, url: staff_reservation_path(@reservation), method: :patch do |f| %>
-              <%= f.hidden_field :arrival_time, :value => request.time %>
-              
-              <%= fields_for request.status do |status_fields| %>
-                <%= status_fields.hidden_field :status, value: "accepted" %>
-              <% end %>
-
-              <%= f.submit %>
-            <% end %>
-            <button>Hold</button>
-            <button>Hold</button>
           <% end %>
 
 
