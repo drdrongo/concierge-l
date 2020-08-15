@@ -2,17 +2,16 @@
   <i class="fas fa-arrow-left" style="position: absolute; top: 32px; left: 10px;"></i>
 <% end %>
 
-<div class="container w-75 font-grey" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px;">
-  <h1>Amenities</h1>
+<div class="container font-grey" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px; width:85%">
+  <h3 class='font-bright-pink'>Amenities</h3>
   <% @hotel_amenities.each do |hotel_amenity| %>
     <div class="d-flex justify-content-between mb-1 border-bottom py-1 align-items-center">
-        <div class="d-flex align-items-center">
-          <%= image_tag("icons/fridge.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
-          <%#= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
+        <div class="d-flex align-items-center" style="height: 38px">
+          <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
           <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
         </div>
 
-        <% if hotel_amenity.requestable = true%>
+        <% if hotel_amenity.requestable == true%>
           <%= form_tag reservation_requests_path, method: :post do %>
             <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
             <%= submit_tag "Request", class: "btn btn-primary" %>
@@ -20,5 +19,19 @@
         <% end %>
     </div>
   <% end %>
+    <div class="container-flex-amenities">
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
+      <button class="btn btn-primary mb-1" style="width:140px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
+    <% end %>
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
+    <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
+    <% end %>
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
+    <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
+    <% end %>
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
+    <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
+    <% end %>
+  </div>
 </div>
 

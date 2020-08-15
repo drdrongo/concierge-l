@@ -35,3 +35,9 @@
   display: flex;
   margin-bottom: 5px;
 }
+
+.container-flex-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
