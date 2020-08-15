@@ -35,12 +35,18 @@
 
   <div class="card-show-page mt-3 pb-3">
     <p class="font-bright-pink mb-2">Amenities </p>
-    <%= link_to reservation_hotel_amenities_path(@reservation), style: "color: white;" do %>
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
       <button class="btn btn-primary mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
     <% end %>
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
     <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
+    <% end %>
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
     <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
+    <% end %>
+    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
     <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/phone-charging-3.svg", height:50, class:"icon-white" %> <br>Others</button>
+    <% end %>
   </div>
   <button class="btn btn-success button-full-width mt-3"><%= image_tag "icons/chat.svg", height:30, class:"icon-white mr-2" %>Chat with L</button>
 </div>

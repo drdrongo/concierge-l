@@ -7,13 +7,16 @@
   <% @hotel_amenities.each do |hotel_amenity| %>
     <div class="d-flex justify-content-between mb-1 border-bottom py-1 align-items-center">
         <div class="d-flex align-items-center">
-          <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
-          <p class="mb-0"><%= hotel_amenity.amenity.name.capitalize %></p>
+          <%= image_tag("icons/fridge.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
+          <%#= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
+          <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
         </div>
 
-        <%= form_tag reservation_requests_path, method: :post do %>
-          <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-          <%= submit_tag "Request", class: "btn btn-primary" %>
+        <% if hotel_amenity.requestable = true%>
+          <%= form_tag reservation_requests_path, method: :post do %>
+            <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+            <%= submit_tag "Request", class: "btn btn-primary" %>
+          <% end %>
         <% end %>
     </div>
   <% end %>
