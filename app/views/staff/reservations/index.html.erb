@@ -2,9 +2,15 @@
   <h1>Say Hello</h1>
   <% @reservations_with_event.each do |reservation, latest_event| %>
     <%= link_to staff_reservation_path(reservation) do %>
-      <div class="card w-100 p-3 mb-2 d-flex">
-        <h3><%= "#{reservation.user.first_name.capitalize} #{reservation.user.last_name.capitalize}" %></h3>
-        <p><%= reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}") %></p>
+      <div class="card w-100 py-2 px-2 mb-2 d-flex flex-row align-items-center justify-content-center">
+        <h5 class="mb-0 mr-3 font-green" style="flex-basis: 40%;"><%= "#{reservation.user.first_name.capitalize} #{reservation.user.last_name.capitalize}" %></h5>
+        <div class="d-flex flex-column flex-grow-1">
+          <div class="d-flex flex-row justify-content-around">
+            <small><p class="mb-0">Current</p></small>
+            <small><p class="mb-0"><%= reservation.hotel.name.gsub('Section L ', '@') %></p></small>
+          </div>
+          <p class="mb-0"><%= "#{reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")} - #{reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")}" %></p>
+        </div>
       </div>
     <% end %>
   <% end %>
