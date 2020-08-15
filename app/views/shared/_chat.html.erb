@@ -1,7 +1,7 @@
-<div class="container p-3" style="background-color: beige;">
-  <h5>Messages:</h5>
+<div class="container p-3 font-grey rounded" style="background-color: white;">
+
   <div class="container">
-    <div id="messages" class="d-flex flex-column" style="overflow-y: scroll; max-height: 400px;" data-channel-subscribe="reservation" data-reservation-id="<%= reservation.id %>">
+    <div id="messages" class="d-flex flex-column" style="overflow-y: scroll; max-height: 40vh; min-height: 40vh;" data-channel-subscribe="reservation" data-reservation-id="<%= reservation.id %>">
       <% reservation.messages.each do |message| %>
         <div class="message-container card rounded p-2 mb-1 w-50 <%= 'align-self-end' if message.user == current_user %>" id="message-<%= message.id %>">
           <div class="message-content">
