@@ -15,17 +15,12 @@ class TimeRequestsController < ApplicationController
   end
 
   def update
-    @time_request = TimeRequest.find(params[:id])
-    @time_request.update(status: params[:time_request][:status])
-    redirect_to staff_reservation_path(Reservation.find(params[:reservation_id]))
-  end
-
-  def update_with_reservation
     @reservation = Reservation.find(params[:reservation_id])
     @time_request = TimeRequest.find(params[:id])
     @time_request.update(status: params[:time_request][:status])
-
-    update_reservation(@time_request, @reservation, params[:time_request][:reservation][:arrival_time])
+    if params[:time_request][:reservation]
+      update_reservation(@time_request, @reservation, params[:time_request][:reservation])
+    end
     redirect_to staff_reservation_path(@reservation)
   end
 
@@ -33,9 +28,9 @@ class TimeRequestsController < ApplicationController
 
   def update_reservation(request, reservation, prms)
     if request.check_in
-      reservation.update(arrival_time: prms)
+      reservation.update(arrival_time: prms[:arrival_time])
     else
-      reservation.update(departure_time: prms)
+      reservation.update(departure_time: prms[:departure_time])
     end
   end
 
