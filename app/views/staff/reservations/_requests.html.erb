@@ -1,4 +1,10 @@
 <%# Requests / Time Requests, ordered by :updated_at (i think) %>
+<% if all_requests.length.zero? %>
+  <div class="w-100 d-flex align-items-center justify-content-center" style="height: 200px;">
+    <p style="font-color: grey">No Requests!</p>
+  </div>
+<% end %>
+
 <% all_requests.each do |request| %>
   
   <%# TIME REQUEST CARD: %>
@@ -79,7 +85,7 @@
 
         <div class="amenity-details">
           <%= image_tag("icons/#{request.hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
-          <p class="mb-0"><%= request.hotel_amenity.amenity.name.capitalize %></p>
+          <p class="mb-0"><%= request.hotel_amenity.amenity.name %></p>
         </div>
       </div>
 

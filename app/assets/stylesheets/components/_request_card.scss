@@ -3,7 +3,7 @@
   border-radius: 5px;
   width: 100%;
   margin-bottom: 8px;
-  box-shadow: 0 8px 6px -6px grey;
+  // box-shadow: 0 8px 6px -6px grey;
 }
 
 .request-card-content {
@@ -11,6 +11,7 @@
   flex-direction: column;
   width: 100%;
   padding: 8px 16px 0 16px;
+  color: $font-grey;
 }
 
 .request-card-date {

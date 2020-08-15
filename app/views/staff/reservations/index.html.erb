@@ -1,13 +1,31 @@
-<div class="container">
-  <% @reservations_with_event.each do |reservation| %>
-    <div class="card w-100 p-3 mb-3">
-      <h5>Index: <%= link_to "#{reservation.first.id}", staff_reservation_path(reservation.first) %></h5>
-      <h5>Guest:</h5>
-      <p><%= "#{reservation.first.user.first_name.capitalize} #{reservation.first.user.last_name.capitalize}"%></p>
-      <h5>First Night:</h5>
-      <p><%= reservation.first.check_in_date.strftime("%b #{reservation.first.check_in_date.day.ordinalize}") %></p>
-      <p>Updated at: <%= reservation.first.updated_at %></p>
-    </div>
+<div class="container-fluid py-3">
+  <h1 class="font-green">Say Hello to...</h1>
+  <% @reservations_with_event.each do |reservation, latest_event| %>
+
+    <%# Checks if a reservation is current past or upcoming. %>
+    <% if Date.today.between?(reservation.check_in_date, reservation.check_out_date)%>
+      <% now = 'Current' %>
+    <% elsif reservation.check_out_date < Date.today %>
+      <% now = 'Past' %>
+    <% else %>
+      <% now = 'Upcoming' %>
+    <% end %>
+
+    <%= link_to staff_reservation_path(reservation) do %>
+      <div class="staff-reservation-card">
+        <h5 class="mb-0 mr-3 pl-2 font-green" style="flex-basis: 40%;"><%= "#{reservation.user.first_name.capitalize} #{reservation.user.last_name.capitalize}" %></h5>
+        <div class="d-flex flex-column flex-grow-1">
+          <div class="d-flex flex-row justify-content-between">
+            <small><p class="mb-0">
+              <%= now %>
+            </p></small>
+            <small><p class="mb-0"><%= reservation.hotel.name.gsub('Section L ', '@') %></p></small>
+          </div>
+          <strong>
+            <p class="staff-reservation-card-date"><%= "#{reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")}  -  #{reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")}" %></p>
+          </strong>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
-
