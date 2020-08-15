@@ -7,6 +7,11 @@
         <div class="d-flex flex-column flex-grow-1">
           <div class="d-flex flex-row justify-content-around">
             <small><p class="mb-0">Current</p></small>
+            <% if Date.now.between?(reservation.check_in_date, reservation.check_out_date%>
+              <p>CURRENT</p>
+            <% elsif truevalue %>
+            <% else %>
+            <% end %>
             <small><p class="mb-0"><%= reservation.hotel.name.gsub('Section L ', '@') %></p></small>
           </div>
           <p class="mb-0"><%= "#{reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")} - #{reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")}" %></p>
