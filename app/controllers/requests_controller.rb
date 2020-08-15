@@ -12,7 +12,9 @@ class RequestsController < ApplicationController
   end
 
   def update
+    reservation = Reservation.find(params[:reservation_id])
     @request = Request.find(params[:id])
     @request.update(status: params[:request][:status])
+    redirect_to staff_reservation_path(reservation)
   end
 end

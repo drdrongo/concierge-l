@@ -73,7 +73,7 @@
     <% else %>
       <div class="request-card">
         <%# If it's an AMENITY request, this is displayed: %>
-        <div class="request-card-content">
+        <div class="request-card-content" style="<%= 'border: 2px dotted red;' if request.status == 'hold' %>">
           <strong><p class="mb-0">Requested:</p></strong>
 
           <div class="amenity-details">
@@ -94,10 +94,12 @@
               <%= f.hidden_field :status, value: 'declined' %>
               <%= f.submit 'Decline', class: 'btn btn-primary flex-grow-1' %>
             <% end %>
-
-            <%= form_for request, url: reservation_request_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
-              <%= f.hidden_field :status, value: 'hold' %>
-              <%= f.submit 'Hold', class: 'btn btn-secondary flex-grow-1' %>
+            
+            <% unless request.status == "hold" %>
+              <%= form_for request, url: reservation_request_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+                <%= f.hidden_field :status, value: 'hold' %>
+                <%= f.submit 'Hold', class: 'btn btn-secondary flex-grow-1' %>
+              <% end %>
             <% end %>
 
           <% else %>
