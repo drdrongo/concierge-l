@@ -62,7 +62,7 @@ puts 'Creating Amenities...'
 amenities_hash = {
   'Essentials' => ["Wifi", "Heating", "A/C", "First Aid Kit"],
   'Bed & Bath' => ["Tooth Brush", "Comb", "Razor", "Washer", "Hairdryer", "Iron", "Towels & Linens", "Hangers", "Additional Towels","Additional Linens", "Extra Bed"],
-  'Kitchen'    => ["Dishwasher", "Pots & Pans", "Plates & Glassware", "Cutlery", "Salt & Pepper"],
+  'Kitchen'    => ["Dishwasher", "Pots & Pans", "Plates & Glassware", "Cutlery", "Rice Cooker", "Salt & Pepper"],
   'Other'      => ["TV", "Desk & Chair", "Lobby Coffee Bar", "Slippers", "Vacuum Cleaner","Bluetooth Speaker", "Phone Charger",]
 }
 
