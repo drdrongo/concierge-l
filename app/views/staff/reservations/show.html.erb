@@ -41,7 +41,7 @@
 
           <div class="d-flex w-100">
             <%# button for accepting a request. Updates both reservation & request. %>
-            <%= form_for request, url: reservation_time_request_full_update_path(request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+            <%= form_for request, url: reservation_time_request_full_update_path(@reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
               <%= f.hidden_field :status, value: 'accepted' %>
                 <% if request.check_in == true %>
                   <%= f.fields_for @reservation do |a| %>
