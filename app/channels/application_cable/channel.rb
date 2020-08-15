@@ -1,9 +1,9 @@
 module ApplicationCable
   class Channel < ActionCable::Channel::Base
   end
-  
+
   class Connection < ActionCable::Connection::Base
-    identified_by :current_user 
+    identified_by :current_user
     # connection identifier used to find specific connection later.
     # Note: Anything marked as an identifier will automatically create a delegate by the same 
     #       name on any channel instances created off the connection.

@@ -1,0 +1,36 @@
+.request-card {
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 8px;
+  box-shadow: 0 8px 6px -6px grey;
+}
+
+.request-card-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 16px 0 16px;
+}
+
+.request-card-date {
+  margin-bottom: 8px;
+  vertical-align: middle;
+  font-size: 5.5vw;
+}
+
+.request-card-buttons {
+  display: flex;
+  width: 100%;
+}
+
+.amenity-details {
+  display: flex;
+  margin-bottom: 8px;
+  font-size: 8vw;
+  align-items: center;
+  img {
+    height: 32px;
+    margin-right: 16px;
+  }
+}

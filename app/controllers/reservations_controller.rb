@@ -24,7 +24,7 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    @reservation
+    @reservation = Reservation.find(params[:id])
   end
 
   def new
@@ -41,16 +41,22 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     bookings_json = request_api("https://www.beds24.com/api/json/getBookings")
     rsv_params = params["reservation"]
-    booking = bookings_json.find { |b| b["apiReference"] == rsv_params["reservation_number"] }
+    # booking = bookings_json.find { |b| b["apiReference"] == rsv_params["reservation_number"] }
+    booking = bookings_json.find do |b|
+      if b['referer'] == 'direct'
+        b['bookId'] == rsv_params["reservation_number"]
+      else
+        b["apiReference"] == rsv_params["reservation_number"]
+      end
+    end
     check_in_date = "#{rsv_params['check_in_date(1i)']}-#{rsv_params['check_in_date(2i)'].rjust(2, '0')}-#{rsv_params['check_in_date(3i)'].rjust(2, '0')}"
-
     if !booking.nil? && booking["firstNight"] == check_in_date
       @reservation = Reservation.new(
         check_in_date: Date.parse(booking['firstNight']),
-        check_out_date: Date.parse(booking['lastNight']),
-        reservation_number: booking['apiReference'],
-        number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i,
-        channel: booking['referer']
+        check_out_date: Date.parse(booking['lastNight']) + 1.day,
+        channel: booking['referer'],
+        reservation_number: booking['referer'] == 'direct' ? booking['bookId'] : booking['apiReference'],
+        number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i
       )
       if booking["roomId"] == '254977'
         @reservation.room_number = 101
@@ -59,6 +65,9 @@ class ReservationsController < ApplicationController
         room = rooms[booking["roomId"]]
         @reservation.room_number = (floor + room).to_i
       end
+      current_user.first_name = booking['guestFirstName']
+      current_user.last_name = booking['guestName']
+      current_user.save
       @reservation.user = current_user
       @reservation.hotel = Hotel.first
 
