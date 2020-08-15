@@ -26,6 +26,7 @@ class TimeRequestsController < ApplicationController
     @time_request.update(status: params[:time_request][:status])
 
     update_reservation(@time_request, @reservation, params[:time_request][:reservation][:time])
+    raise
     redirect_to staff_reservation_path(@reservation)
   end
 
