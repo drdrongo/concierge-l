@@ -15,11 +15,30 @@ class Staff::ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find(params[:id])
     @message = Message.new reservation: @reservation
-    
+
+    # Gets all requests (amenity + time requests) and sorts them by created_at, descending.
     requests = Request.where(reservation: @reservation)
-    @all_requests = TimeRequest.where(reservation: @reservation) + requests
+    @all_requests = (TimeRequest.where(reservation: @reservation) + requests).sort_by(&:created_at).reverse!
     @messages = Message.where(reservation: @reservation)
   end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(reservation_params)
+    # This part here: I'm not sure how to handle this; do I need an if statement here? If so, what's needed?
+    if @reservation.save
+      redirect_to staff_reservation_path(@reservation.id)
+    else
+      render :show
+    end
+  end
+
+  private
+
+  def reservation_params
+    params.require(:reservation).permit(
+      :user_id, :hotel_id, :check_in_date, :check_out_date, :arrival_time, :departure_time,
+      :reservation_number, :number_of_guests, :purpose, :channel, :room_number, :past
+    )
+  end
 end
-
-

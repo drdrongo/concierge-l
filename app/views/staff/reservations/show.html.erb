@@ -27,7 +27,7 @@
 
     <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-      <%= render 'detail_overview', reservation: @reservation %>
+      <%= render 'requests', reservation: @reservation, all_requests: @all_requests %>
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <%= render 'shared/chat', reservation: @reservation, message: @message %>
