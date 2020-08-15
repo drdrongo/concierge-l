@@ -11,7 +11,7 @@ class TimeRequestsController < ApplicationController
     elsif @reservation.departure_time != prms[:departure_time]
       create_departure_request(@reservation, prms).save
     end
-    redirect_to staff_reservation_path(@reservation)
+    redirect_to reservation_path(@reservation)
   end
 
   def update
