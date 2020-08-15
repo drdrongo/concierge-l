@@ -32,11 +32,30 @@
     background-color: #B27C7E;
     border: 1px solid #B27C7E;
     margin-bottom: 4px;
-    min-width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 16px;
+  }
+
+  .form-check {
+    flex-basis: 40%;
+
+  }
+
+  .radio_buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: 100%;
   }
 
   .form-check {
     padding-left: 0;
+  }
+
+  legend.col-form-label {
+    visibility: hidden;
   }
 </style>
 
@@ -53,12 +72,12 @@
 
    <div class="container-fluid d-flex justify-content-start">
       <%= simple_form_for @reservation, html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :patch do |f| %>
-        <div class="container-fluid d-flex justify-content-around" style="flex-direction: column; flex-basis: 50%;">
+        <div class="container-fluid">
           <%= f.input :purpose, as: :radio_buttons, required: false, collection: [
-            ['Business', image_tag("icons/bag.svg", height:50, class:"icon-white")],
-            ['Leisure', image_tag("icons/surfboard.svg", height:50, class:"icon-white")],
-            ['Workation', image_tag("icons/l-location.svg", height:50, class:"icon-white")],
-            ['TemporaryHome', image_tag("icons/bed-side.svg", height:50, class:"icon-white")]
+            ['Business', image_tag("icons/business.svg", height:80, class:"icon-white")],
+            ['Leisure', image_tag("icons/leisure.svg", height:80, class:"icon-white")],
+            ['Workation', image_tag("icons/workation.svg", height:80, class:"icon-white")],
+            ['TemporaryHome', image_tag("icons/temp-home.svg", height:80, class:"icon-white")]
           ], label_method: :second, value_method: :first %>
         </div>
         <%= f.button :submit, class: "btn btn-success w-100" %>
