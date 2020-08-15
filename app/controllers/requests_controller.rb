@@ -9,9 +9,10 @@ class RequestsController < ApplicationController
       flash[:success] = "Post submitted!"
       redirect_to reservation_hotel_amenities_path(reservation)
     end
+  end
 
-    # if @request.save
-    #   redirect_to reservation_amenities_path(reservation)      
-    # end
+  def update
+    @request = Request.find(params[:id])
+    @request.update(status: params[:request][:status])
   end
 end

@@ -1,0 +1,114 @@
+<%# Container for Requests / Time Requests, ordered by :updated_at (i think) %>
+<div class="container p-3" style="background-color: beige;">
+  <h5>Requests / Time requests:</h5>
+  <% all_requests.each do |request| %>
+    <%# If it's a TIME request, this is displayed: %>
+    <% if request.class == TimeRequest %>
+      
+      <div class="request-card">
+        
+        <%# Red border for if the card is on hold (styling is up to your disgression) %>
+        <div class="request-card-content"  style="<%= 'border: 2px dotted red;' if request.status == 'hold' %>">
+          <%# If request is check-in, displays "early check in" otherwise "late check out" %>
+          <strong><p class="mb-0"><%= request.check_in ? 'Early Check-In:' : 'Late Check-Out:' %></p></strong>
+          
+          <%# Checks if a request is a check-in request: If so, displays check-in date. %>
+          <p class="request-card-date">
+            <% if request.check_in %>
+              <%= reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")%>
+              <small><%= reservation.check_in_date.strftime("(%a)")%> - </small>
+              <%= request.time.strftime("%l:%M %p") %>
+            <% else %>
+              <%= reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")%>
+              <small><%= reservation.check_out_date.strftime("(%a)")%></small>
+              <%= request.time.strftime("%l:%M %p") %>
+            <% end %>
+          </p>
+        </div>
+
+        <%# BUTTONS: If a request is 'pending/hold', usable buttons are displayed. If 'accepted/declined', they are disabled. %>
+        <% if request.status == "pending" || request.status == "hold" %>
+
+          <div class="request-card-buttons">
+            <%# button for accepting a request. Updates both reservation & request. %>
+            <%= form_for request, url: reservation_time_request_full_update_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+              <%= f.hidden_field :status, value: 'accepted' %>
+                <% if request.check_in == true %>
+                  <%= f.fields_for reservation do |a| %>
+                    <%= a.hidden_field :arrival_time, value: request.time %>
+                  <% end %>
+                <% else %>
+                  <%= f.fields_for reservation do |a| %>
+                    <%= a.hidden_field :departure_time, value: request.time %>
+                  <% end %>
+                <% end %>
+              <%= f.submit 'Accept', class: 'btn btn-success flex-grow-1' %>
+            <% end %>
+            
+            <%# time request decline button %>
+            <%= form_for request, url: reservation_time_request_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+              <%= f.hidden_field :status, value: 'declined' %>
+              <%= f.submit 'Decline', class: 'btn btn-primary flex-grow-1' %>
+            <% end %>
+
+            <%# time request hold button: Disappears after you've clicked "hold" %>
+            <% unless request.status == "hold" %>
+              <%= form_for request, url: reservation_time_request_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+                <%= f.hidden_field :status, value: 'hold' %>
+                <%= f.submit 'Hold', class: 'btn btn-secondary flex-grow-1' %>
+              <%end %>
+            <% end %>
+          </div>
+
+        <% else %>
+
+          <%# Displays a Disabled button once a choice is made (time request is 'accepted/declined') %>
+          <div class="w-100 disabled btn btn-<%= request.status == 'accepted' ? 'success' : 'primary' %>">
+            <%= request.status == 'accepted' ? 'Accepted' : 'Declined' %>
+          </div>
+        <% end %>
+
+      </div>
+
+    <% else %>
+      <div class="request-card">
+        <%# If it's an AMENITY request, this is displayed: %>
+        <div class="request-card-content">
+          <strong><p class="mb-0">Requested:</p></strong>
+
+          <div class="amenity-details">
+            <%= image_tag("icons/#{request.hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
+            <p class="mb-0"><%= request.hotel_amenity.amenity.name.capitalize %></p>
+          </div>
+        </div>
+
+        <div class="request-card-buttons">
+        
+          <% if request.status == "pending" || request.status == "hold" %>
+            <%= form_for request, url: reservation_request_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+              <%= f.hidden_field :status, value: 'accepted' %>
+              <%= f.submit 'Accept', class: 'btn btn-success flex-grow-1' %>
+            <% end %>
+
+            <%= form_for request, url: reservation_request_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+              <%= f.hidden_field :status, value: 'declined' %>
+              <%= f.submit 'Decline', class: 'btn btn-primary flex-grow-1' %>
+            <% end %>
+
+            <%= form_for request, url: reservation_request_path(reservation, request), method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
+              <%= f.hidden_field :status, value: 'hold' %>
+              <%= f.submit 'Hold', class: 'btn btn-secondary flex-grow-1' %>
+            <% end %>
+
+          <% else %>
+
+            <div class="w-100 disabled btn btn-<%= request.status == 'accepted' ? 'success' : 'primary' %>">
+              <%= request.status == 'accepted' ? 'Accepted' : 'Declined' %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
+  <% end %>
