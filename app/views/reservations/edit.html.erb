@@ -1,38 +1,71 @@
-  <div class="container-fluid p-0 d-flex flex-column" style="background-color: #F1EEE9; height: 100%">
+<style>
+  input[type=radio] + label {
+    transition: background-color 0.2s, color: 0.2s;
+  }
 
-  <div class="container-fluid d-flex h-50" style="background-color: #F1EEE9;">
-     </div>
-  <div class="container-fluid d-flex h-50 justify-content-center top-space">
-    <%= image_tag("CONCIERGE_L.png", style: "width: 230px; height: 50px;") %>
-     </div>
+  input[type=radio]:hover + label {
+    background-color: lightgrey;
+    transition: background-color 0.2s;
+    transition-timing-function: ease-out;
+  }
 
-  <div class="container font-green top-space">
-  <h4>What Brings You to Tokyo?</h4>
-   </div>
+  input[type=radio]:checked + label {
+    background-color: ##FDF5F6;
+    color: white;
+    transition: background-color 0.2s, color: 0.2s;
+  }
+
+  input[type=radio] {
+    opacity: 0.01;
+  }
+
+  input[type=radio] + label {
+    margin: -2px;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: ##E67E22;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #B27C7E;
+    border: 1px solid #B27C7E;
+    margin-bottom: 4px;
+    min-width: 150px;
+  }
+
+  .form-check {
+    padding-left: 0;
+  }
+</style>
+
+
+<div class="container mt-3">
+  <div class="container-fluid px-0">
+    <h3 class="font-green mb-0">What Brings You to Tokyo?</h3>
+    <%= image_tag("icons/arrow-down.svg", height:25) %>
+    <%= image_tag("icons/arrow-down.svg", height:25) %>
+    <%= image_tag("icons/arrow-down.svg", height:25) %>
+    <%= image_tag("icons/arrow-down.svg", height:25) %>
+    <%= image_tag("icons/arrow-down.svg", height:25) %>
+
 
    <div class="container-fluid d-flex justify-content-start">
-<p><%= image_tag("icons/move-down.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %></p>
-<p><%= image_tag("icons/move-down.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %></p>
-<p><%= image_tag("icons/move-down.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %></p>
-  </div>
-
-      <div class="container-fluid d-flex justify-content-around list-item-home">
-        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/bag.svg", height:50, class:"icon-white" %>BUSINESS</button>
-
-        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/surfboard.svg", height:50, class:"icon-white" %>LEISURE</button>
-
-      </div>
-      <div class="container-fluid d-flex justify-content-around list-item-home">
-        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/l-location.svg", height:50, class:"icon-white" %>BOTH</button>
-
-        <button class= "btn btn-primary mb-1" style="width:150px; height: 150px;"><%= image_tag "icons/glasses-2.svg", height:50, class:"icon-white" %>SECRET</button>
-      </div>
+      <%= simple_form_for @reservation, html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :patch do |f| %>
+        <div class="container-fluid d-flex justify-content-around" style="flex-direction: column; flex-basis: 50%;">
+          <%= f.input :purpose, as: :radio_buttons, required: false, collection: [
+            ['Business', image_tag("icons/bag.svg", height:50, class:"icon-white")],
+            ['Leisure', image_tag("icons/surfboard.svg", height:50, class:"icon-white")],
+            ['Workation', image_tag("icons/l-location.svg", height:50, class:"icon-white")],
+            ['TemporaryHome', image_tag("icons/bed-side.svg", height:50, class:"icon-white")]
+          ], label_method: :second, value_method: :first %>
+        </div>
+        <%= f.button :submit, class: "btn btn-success w-100" %>
+      <% end %>
+    </div>
 
 
-
-
-
-<%= link_to 'Next', reservations_path, class: "btn btn-success w-100 top-space" %>
-<%= link_to 'Skip', reservations_path, class: "btn btn-secondary w-100 top-space-2" %>
+<%= link_to 'Skip', reservations_path, class: "left-text-2" %>
 
 
