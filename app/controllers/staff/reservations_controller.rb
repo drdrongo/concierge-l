@@ -2,7 +2,7 @@ class Staff::ReservationsController < ApplicationController
   def index
     @reservations = Reservation.order(updated_at: :DESC)
 
-    @reservations_with_event = @reservations.map do |reservation|
+    @reservations_with_event = @reservations.includes(:user).map do |reservation|
       latest_event = [
         reservation.messages.order(updated_at: :DESC).limit(1).first,
         reservation.requests.order(updated_at: :DESC).limit(1).first,
