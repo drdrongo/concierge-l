@@ -37,10 +37,10 @@ const clearTextBox = () => {
   });
 }
 
-
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
   clearTextBox();
   createMessage();
+  // let date = new Date(Date.UTC(2015, 5, 27, 12, 0, 0))
+  // , options = {weekday: 'short', month: 'short', day: 'numeric' };
+  // console.log(date.toLocaleString('en-GB', options));  
 });
