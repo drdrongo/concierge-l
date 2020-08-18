@@ -1,5 +1,5 @@
-<div class="container">
-  <h2>Your Info</h2>
+<div class="container font-grey">
+  <h2 class="font-green">Your Info</h2>
 
   <%= simple_form_for (@reservation) do |f| %>
     <%= f.error_notification %>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="mt-3">
-      <%= f.submit class: 'btn btn-primary button-green' %>
+      <%= f.submit "Find Your Booking", class: 'btn btn-primary button-green' %>
       <%= link_to 'Cancel', reservations_path, class: 'btn btn-secondary ml-2' %>
     </div>
   <% end %>

@@ -67,7 +67,7 @@
 			<!-- <p class="mb-0"><%= reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")%> <small><%= reservation.check_out_date.strftime("(%a)")%></small></p> -->
 			<%= f.input :departure_time, as: :radio_buttons, required: false, collection: [
 				[out_time, '~11:00AM (¥0)'],
-				[out_time - 1.hour, '~12:00AM (¥1,000)'],
+				[out_time - 1.hour, '~12:00PM (¥1,000)'],
 				[out_time - 2.hour, '~1:00PM (¥2,000)'],
 				[out_time - 3.hour, '~2:00PM (¥3,000)'],
 				[out_time - 4.hour, '~3:00PM (¥4,000)'],

@@ -23,12 +23,14 @@
 
 .nav-pills .nav-link {
   color: white;
-  background-color: $light-purple;
+  background-color: $orange;
+  border: 1px solid $orange;
 }
 
 .nav-pills .nav-link.active {
-  color: $green;
-  background-color: $pale-pink;
+  color: $orange;
+  background-color: white;
+  border: 1px solid $orange;
 }
 
 .back-button {
