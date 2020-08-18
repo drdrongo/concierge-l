@@ -1,3 +1,11 @@
-<%= link_to send(path) do %>
-  <i class="fas fa-arrow-left" style="position: absolute; top: 10px; left: 10px;"></i>
+
+<% if controller_name == 'hotel_amenities' %>
+  <%= link_to path do %>
+    <%= image_tag 'icons/back-arrow.svg', class: 'back-button' %>
+  <% end %>
+<% else %>
+  <%= link_to send(path) do %>
+    <%= image_tag 'icons/back-arrow.svg', class: 'back-button' %>
+  <% end %>
 <% end %>
+
