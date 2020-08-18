@@ -2,22 +2,25 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 12px;
+  margin: 0 auto;
   margin-bottom: 20px;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px 3px rgba(191, 191, 191, .5);
   text-decoration: none;
+  width: 95%;
   &:active {
     box-shadow: none;
     text-decoration: none;
     transform: translateY(1px)
   }
 
+  .card-reservation-content {
+    padding: 8px 16px;
+  }
+
   img {
     width: 100%;
     height: 150px;
     object-fit: cover;
-    border-radius: 8px;
   }
   h5 {
     color: $bright-pink;
