@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <a data-toggle="collapse" href="#time-request" class="btn btn-primary button-full-width mt-1 mb-1">Change Check-In/Out Time</a>
+  <a data-toggle="collapse" href="#time-request" class="btn btn-dark button-full-width mt-1 mb-1">Change Check-In/Out Time</a>
   <div class="collapse" id='time-request'> <%= render 'change_times', reservation: @reservation %> </div>
 
   <div class="card-show-page mt-3">
@@ -23,31 +23,33 @@
     <p class="font-bright-pink mb-0">Room Number:</p>
     <p class="mb-0"> <%= reservation.room_number %></p>
   </div>
-  <a class="btn btn-primary button-full-width mt-1 mb-1" target="_blank" href="https://goo.gl/maps/hD8UjpGJk3ppnxtUA">Open on Google Map</a>
+  <a class="btn btn-dark button-full-width mt-1 mb-1" target="_blank" href="https://goo.gl/maps/hD8UjpGJk3ppnxtUA">Open on Google Map</a>
 
-  <div class="card-show-page  mt-3">
+  <div class="card-show-page mt-3">
     <p class="font-bright-pink mb-0">Reservation Number: </p>
     <p><%= reservation.reservation_number %></p>
+  </div>
+  <div class="card-show-page  mt-3">
     <p class="font-bright-pink mb-0">Smartlock & Online Check-in: </p>
     <p class="mb-0">Please read before arrival</p>
   </div>
 
-  <button type="button" class="btn btn-primary button-full-width mt-1 mb-1">Read Check-In Manual</button>
+  <button type="button" class="btn btn-dark button-full-width mt-1 mb-1">Read Check-In Manual</button>
 
   <div class="card-show-page mt-3 pb-3">
     <p class="font-bright-pink mb-2">Amenities </p>
     <div class="container-flex-amenities">
       <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
-        <button class="btn btn-primary mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
+        <button class="btn btn-dark mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
       <% end %>
       <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
+      <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
       <% end %>
       <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
+      <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
       <% end %>
       <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:150px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
+      <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
       <% end %>
     </div>
   </div>
