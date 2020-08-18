@@ -1,10 +1,18 @@
 .container-reservation {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+    &:active {
+      text-decoration: none;
+    }
+  }
   h5 {
     color: $font-grey;
     align-self: flex-start;

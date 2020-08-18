@@ -11,8 +11,8 @@
   display: flex;
   justify-content: space-between;
   padding: 8px;
-  padding-bottom: 2px;
   bottom: 0;
+  background-color: white;
 }
 
 .double-button {
@@ -29,5 +29,13 @@
 .nav-pills .nav-link.active {
   color: $green;
   background-color: $pale-pink;
+}
+
+.back-button {
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3)
 }
 

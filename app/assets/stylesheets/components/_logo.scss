@@ -1,11 +1,8 @@
-.logo-container {
-  position: absolute;
-  right: 0;
-  padding-right: 20px;
+.logo-sm {
+  height: 40px;
+  object-fit: cover;
 }
 
-.logo-sm {
-  height: 32px;
-  object-fit: cover;
-  margin-top: 8px;
+.down-arrow img {
+  stroke: black;
 }

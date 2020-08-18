@@ -11,3 +11,35 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+html,
+body {
+  height: 100%;
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  margin: 0;
+}
+
+.row {
+  margin: 0;
+}
+
+.box .row.content {
+  flex: 1 1 auto;
+}
+
+.box .row.footer {
+  flex: 0 1 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  ul {
+    list-style: none;
+    display: flex;
+  }
+}
