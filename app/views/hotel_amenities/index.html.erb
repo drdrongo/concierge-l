@@ -42,131 +42,15 @@
     <div class="swiper-wrapper">
         <!-- Slides -->
         
-        <%= render 'hotel_amenities/swiper_slide', { text: @essentials.first.amenity.category, description: 'Things you couldn\'t go without. Find them in your room or request extra.', hotel_amenities: @essentials } %>
+        <%= render 'hotel_amenities/swiper_slide', { text: @essentials.first.amenity.category, hotel_amenities: @essentials, description: 'Things you couldn\'t go without. Find them in your room or request extra.' } %>
 
-        <% if false %>
-          <div class="swiper-slide">
-            <%= render 'reservations/title_down_arrows', text: @essentials.first.amenity.category %>
-            <div class="d-flex flex-column align-items-center text-align-center w-100">
-              <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
-            </div>
+        <%= render 'hotel_amenities/swiper_slide', { text: @requestables.first.amenity.category, hotel_amenities: @requestables, description: 'Order additional items for your stay. (Charges may apply)' } %>
 
-            <% @essentials.each do |hotel_amenity| %>
-              <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
-                <div class="d-flex align-items-center" style="height: 38px">
-                  <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
-                  <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
-                </div>
+        <%= render 'hotel_amenities/swiper_slide', { text: @bed_bath.first.amenity.category, hotel_amenities: @bed_bath, description: 'Stay squeaky clean during your stay.' } %>
 
-                <% if hotel_amenity.requestable == true%>
-                  <%= form_tag reservation_requests_path, method: :post do %>
-                    <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-                    <%= submit_tag "Request", class: "btn btn-primary" %>
-                  <% end %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+        <%= render 'hotel_amenities/swiper_slide', { text: @kitchen.first.amenity.category, hotel_amenities: @kitchen, description: 'Pots, pans, appliances, we have what you need to whip up a feast.' } %>
 
-        <div class="swiper-slide">
-          <%= render 'reservations/title_down_arrows', text: @requestables.first.amenity.category %>
-          <div class="d-flex flex-column align-items-center text-align-center w-100">
-            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
-          </div>
-
-          <% @requestables.each do |hotel_amenity| %>
-            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
-              <div class="d-flex align-items-center" style="height: 38px">
-                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
-                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
-              </div>
-
-              <% if hotel_amenity.requestable == true%>
-                <%= form_tag reservation_requests_path, method: :post do %>
-                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-                  <%= submit_tag "Request", class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="swiper-slide">
-          <%= render 'reservations/title_down_arrows', text: @bed_bath.first.amenity.category %>
-          <div class="d-flex flex-column align-items-center text-align-center w-100">
-            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
-          </div>
-
-          <% @bed_bath.each do |hotel_amenity| %>
-            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
-              <div class="d-flex align-items-center" style="height: 38px">
-                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
-                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
-              </div>
-
-              <% if hotel_amenity.requestable == true%>
-                <%= form_tag reservation_requests_path, method: :post do %>
-                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-                  <%= submit_tag "Request", class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="swiper-slide">
-          <%= render 'reservations/title_down_arrows', text: @kitchen.first.amenity.category %>
-          <div class="d-flex flex-column align-items-center text-align-center w-100">
-            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
-          </div>
-
-          <% @kitchen.each do |hotel_amenity| %>
-            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
-              <div class="d-flex align-items-center" style="height: 38px">
-                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
-                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
-              </div>
-
-              <% if hotel_amenity.requestable == true%>
-                <%= form_tag reservation_requests_path, method: :post do %>
-                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-                  <%= submit_tag "Request", class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="swiper-slide">
-          <%= render 'reservations/title_down_arrows', text: @other.first.amenity.category %>
-          <div class="d-flex flex-column align-items-center text-align-center w-100">
-            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
-          </div>
-
-          <% @other.each do |hotel_amenity| %>
-            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
-              <div class="d-flex align-items-center" style="height: 38px">
-                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
-                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
-              </div>
-
-              <% if hotel_amenity.requestable == true%>
-                <%= form_tag reservation_requests_path, method: :post do %>
-                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-                  <%= submit_tag "Request", class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-
-        
-
-        <%# <div class="swiper-slide" style="background-color: blue;">Slide 1</div>
-        <div class="swiper-slide" style="background-color: red;">Slide 2</div>
-        <div class="swiper-slide" style="background-color: yellow;">Slide 3</div>
-        ... %>
+        <%= render 'hotel_amenities/swiper_slide', { text: @other.first.amenity.category, hotel_amenities: @other, description: 'Things to make your life a bit easier.' } %>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination">
@@ -183,47 +67,51 @@
     <div class="swiper-button-next"></div>
 </div>
 
-<%= render 'reservations/title_down_arrows', text: "Amenities" %>
-<div class="d-flex flex-column align-items-center text-align-center w-100">
-  <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
-</div>
 
-<div class="container font-grey px-3 py-1 rounded" style="background-color: white; width: 85%;">
-  <% @hotel_amenities.each do |hotel_amenity| %>
-    <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
-        <div class="d-flex align-items-center" style="height: 38px">
-          <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
-          <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
-        </div>
-
-        <% if hotel_amenity.requestable == true%>
-          <%= form_tag reservation_requests_path, method: :post do %>
-            <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-            <%= submit_tag "Request", class: "btn btn-primary" %>
-          <% end %>
-        <% end %>
-    </div>
-  <% end %>
-
-  <div class="container-flex-amenities">
-    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:140px">
-        <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %>
-        <br>Essentials
-      </button>
-    <% end %>
-
-    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
-    <% end %>
-    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
-    <% end %>
-    <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
-    <% end %>
+<% if false %>
+  
+  <%= render 'reservations/title_down_arrows', text: "Amenities" %>
+  <div class="d-flex flex-column align-items-center text-align-center w-100">
+    <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
   </div>
-</div>
+
+  <div class="container font-grey px-3 py-1 rounded" style="background-color: white; width: 85%;">
+    <% @hotel_amenities.each do |hotel_amenity| %>
+      <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
+          <div class="d-flex align-items-center" style="height: 38px">
+            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
+            <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
+          </div>
+
+          <% if hotel_amenity.requestable == true%>
+            <%= form_tag reservation_requests_path, method: :post do %>
+              <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+              <%= submit_tag "Request", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+      </div>
+    <% end %>
+
+    <div class="container-flex-amenities">
+      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
+        <button class="btn btn-primary mb-1" style="width:140px">
+          <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %>
+          <br>Essentials
+        </button>
+      <% end %>
+
+      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
+        <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
+      <% end %>
+      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
+        <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
+      <% end %>
+      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
+        <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
