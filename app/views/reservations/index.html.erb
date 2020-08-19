@@ -1,28 +1,14 @@
 
-<div class="container-fluid d-flex flex-column align-items-center">
-  <h1 class="mb-0 ">Your Stays</h1>
-  <div class="d-flex align-items-center justify-content-center arrows">
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-  </div>
-</div>
+<%= render 'reservations/title_down_arrows', text: "Your Stays" %>
+
 
 <div class="container-reservation">
   <% @upcoming_reservations.each do |reservation| %>
     <%= render 'reservations/reservation_card', reservation: reservation %>
   <% end %>
   <% if @past_reservations.length > 0 %>
-    <h5 class="mb-0">Where you've stayed</h5>
-    <div class="container-arrows">
-      <%= image_tag("icons/arrow-down.svg", height:20) %>
-      <%= image_tag("icons/arrow-down.svg", height:20) %>
-      <%= image_tag("icons/arrow-down.svg", height:20) %>
-      <%= image_tag("icons/arrow-down.svg", height:20) %>
-      <%= image_tag("icons/arrow-down.svg", height:20) %>
-    </div>
+      <%= render 'reservations/title_down_arrows', text: "Where You've Stayed" %>
+
     <% @past_reservations.each do |reservation| %>
       <%= render 'reservations/reservation_card', reservation: reservation %>
     <% end %>

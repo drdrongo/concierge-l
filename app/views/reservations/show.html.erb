@@ -1,14 +1,6 @@
 <div class="container">
-  <div class="container-fluid d-flex flex-column align-items-center">
-    <h1 class="mb-0 ">Current Stay</h1>
-    <div class="d-flex align-items-center justify-content-center arrows">
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-    </div>
-  </div>
+
+  <%= render 'reservations/title_down_arrows', text: "Current Stay" %>
 
   <% room_type = (@reservation.room_number % 10).to_s %>
   <%= image_tag("room_#{room_type + (@reservation.room_number == 101 ? 'a' : '')}.jpg", class: "w-100 mt-1")  %>
