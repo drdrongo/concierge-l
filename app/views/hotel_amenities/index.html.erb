@@ -1,13 +1,199 @@
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<style>
+  .swiper-container {
+      width: 600px;
+      height: 100%%;
+  }
+
+  .swiper-pagination-bullet {
+    width: auto;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    word-wrap: nowrap;
+    font-size: 12px;
+    color: black;
+    opacity: 1;
+    background: none;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: none;
+    color: orangered;
+    font-size: 13px;
+    transform: translateY(-3px);
+    transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out;
+  }
+
+  .swiper-pagination-bullet-active:focus {
+    outline: 0 !important;
+  }
+
+  .swiper-pagination-bullet:focus {
+    outline: 0 !important;
+  }
+</style>
 <%= render 'shared/back', path: reservation_path(@reservation) %>
 
-<%= render 'reservations/title_down_arrows', text: "Amenities" %>
+<!-- Slider main container -->
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        
+        <%= render 'hotel_amenities/swiper_slide', { text: @essentials.first.amenity.category, description: 'Things you couldn\'t go without. Find them in your room or request extra.', hotel_amenities: @essentials } %>
 
-<div class="container font-grey h-100" style="background-color: white; padding: 16px; border-radius: 8px;">
+        <% if false %>
+          <div class="swiper-slide">
+            <%= render 'reservations/title_down_arrows', text: @essentials.first.amenity.category %>
+            <div class="d-flex flex-column align-items-center text-align-center w-100">
+              <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
+            </div>
+
+            <% @essentials.each do |hotel_amenity| %>
+              <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
+                <div class="d-flex align-items-center" style="height: 38px">
+                  <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
+                  <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
+                </div>
+
+                <% if hotel_amenity.requestable == true%>
+                  <%= form_tag reservation_requests_path, method: :post do %>
+                    <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+                    <%= submit_tag "Request", class: "btn btn-primary" %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="swiper-slide">
+          <%= render 'reservations/title_down_arrows', text: @requestables.first.amenity.category %>
+          <div class="d-flex flex-column align-items-center text-align-center w-100">
+            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
+          </div>
+
+          <% @requestables.each do |hotel_amenity| %>
+            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
+              <div class="d-flex align-items-center" style="height: 38px">
+                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
+                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
+              </div>
+
+              <% if hotel_amenity.requestable == true%>
+                <%= form_tag reservation_requests_path, method: :post do %>
+                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+                  <%= submit_tag "Request", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="swiper-slide">
+          <%= render 'reservations/title_down_arrows', text: @bed_bath.first.amenity.category %>
+          <div class="d-flex flex-column align-items-center text-align-center w-100">
+            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
+          </div>
+
+          <% @bed_bath.each do |hotel_amenity| %>
+            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
+              <div class="d-flex align-items-center" style="height: 38px">
+                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
+                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
+              </div>
+
+              <% if hotel_amenity.requestable == true%>
+                <%= form_tag reservation_requests_path, method: :post do %>
+                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+                  <%= submit_tag "Request", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="swiper-slide">
+          <%= render 'reservations/title_down_arrows', text: @kitchen.first.amenity.category %>
+          <div class="d-flex flex-column align-items-center text-align-center w-100">
+            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
+          </div>
+
+          <% @kitchen.each do |hotel_amenity| %>
+            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
+              <div class="d-flex align-items-center" style="height: 38px">
+                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
+                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
+              </div>
+
+              <% if hotel_amenity.requestable == true%>
+                <%= form_tag reservation_requests_path, method: :post do %>
+                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+                  <%= submit_tag "Request", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="swiper-slide">
+          <%= render 'reservations/title_down_arrows', text: @other.first.amenity.category %>
+          <div class="d-flex flex-column align-items-center text-align-center w-100">
+            <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
+          </div>
+
+          <% @other.each do |hotel_amenity| %>
+            <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
+              <div class="d-flex align-items-center" style="height: 38px">
+                <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
+                <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
+              </div>
+
+              <% if hotel_amenity.requestable == true%>
+                <%= form_tag reservation_requests_path, method: :post do %>
+                  <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+                  <%= submit_tag "Request", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        
+
+        <%# <div class="swiper-slide" style="background-color: blue;">Slide 1</div>
+        <div class="swiper-slide" style="background-color: red;">Slide 2</div>
+        <div class="swiper-slide" style="background-color: yellow;">Slide 3</div>
+        ... %>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination">
+      <p>hello</p>
+      <p>hello2</p>
+      <p>hello3</p>
+      <p>hello4</p>
+      <p>hello5</p>
+
+    </div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+
+<%= render 'reservations/title_down_arrows', text: "Amenities" %>
+<div class="d-flex flex-column align-items-center text-align-center w-100">
+  <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;">Things you couldn't go without.<br>Find them in your room or request extra.</p>
+</div>
+
+<div class="container font-grey px-3 py-1 rounded" style="background-color: white; width: 85%;">
   <% @hotel_amenities.each do |hotel_amenity| %>
-    <div class="d-flex justify-content-between mb-1 border-bottom py-1 align-items-center">
+    <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
         <div class="d-flex align-items-center" style="height: 38px">
-          <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 20px; height: 20px; margin-right: 16px;") %>
-          <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
+          <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
+          <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
         </div>
 
         <% if hotel_amenity.requestable == true%>
@@ -39,3 +225,35 @@
   </div>
 </div>
 
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+  const categories = ['Essentials', 'Requests', 'Bed & Bath', 'Kitchen', 'Other']
+  var mySwiper = new Swiper('.swiper-container', {
+    // Optional parameters
+    loop: true,
+
+    // If we need pagination
+    // pagination: {
+    //   el: '.swiper-pagination',
+    // },
+
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + categories[index] + '</span>';
+      },
+    },
+
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // And if we need scrollbar
+  })
+</script>
