@@ -3,8 +3,8 @@ require 'rest-client'
 
 class ReservationsController < ApplicationController
   def index
-    @upcoming_reservations = Reservation.where(user: current_user, past: false)
-    @past_reservations = Reservation.where(user: current_user, past: true)
+    @past_reservations = Reservation.where(user: current_user).where("check_out_date < ?", Date.today).order(check_in_date: :desc)    
+    @upcoming_reservations = Reservation.where(user: current_user).where("check_out_date >= ?", Date.today).order(:check_in_date)
   end
 
   def show
