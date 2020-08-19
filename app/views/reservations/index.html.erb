@@ -4,7 +4,7 @@
 <%= render 'reservations/title_down_arrows', text: "Your Stays" %>
 
 
-<div class="container-reservation">
+<div class="container-reservation d-flex flex-column">
   <% @upcoming_reservations.each do |reservation| %>
     <%= render 'reservations/reservation_card', reservation: reservation %>
   <% end %>
@@ -15,10 +15,10 @@
       <%= render 'reservations/reservation_card', reservation: reservation %>
     <% end %>
   <% end %>
+
+  <div class="bottom-sticky double-buttons">
+    <a href="https://www.section-l.co" target="_blank" class="btn btn-dark">Book New</a>
+    <%= link_to 'Find your Booking', new_reservation_path, class: "btn btn-dark"%>
+  </div>
 </div>
 
-<div class="reservation-buttons">
-
-  <a href="https://www.section-l.co" target="_blank" class="btn btn-success double-button">Book New</a>
-  <%= link_to 'Find your Booking', new_reservation_path, class: "btn btn-success double-button"%>
-</div>
