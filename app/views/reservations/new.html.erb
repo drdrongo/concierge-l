@@ -1,26 +1,36 @@
-<div class="container font-grey">
-  <h2 class="font-green">Your Info</h2>
+<%= render 'shared/back', path: 'reservations_path' %>
+
+<div class="container d-flex flex-column font-grey">
+  <div class="container-fluid d-flex flex-column mb-3 mt-3 align-items-center">
+    <h1 class="mb-0">Your Booking Info</h1>
+    <div class="d-flex align-items-center justify-content-center arrows">
+      <%= image_tag("icons/down-arrow.svg", height:25) %>
+      <%= image_tag("icons/down-arrow.svg", height:25) %>
+      <%= image_tag("icons/down-arrow.svg", height:25) %>
+      <%= image_tag("icons/down-arrow.svg", height:25) %>
+      <%= image_tag("icons/down-arrow.svg", height:25) %>
+    </div>
+  </div>
 
   <%= simple_form_for (@reservation) do |f| %>
     <%= f.error_notification %>
+    <div class="d-flex flex-column px-3 py-4" style="background-color: white; border-radius: 5px;">
+        <%= f.input :reservation_number,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "reservation_number", style: "border: 1px solid black;" },
+                    error: 'Reservation number is required'%>
+        <%= f.input :check_in_date,
+                    as: :date,
+                    html5: true,
+                    start_year: Date.today.year,
+                    required: true,
+                    input_html: { autocomplete: "check_in_date", style: "border: 1px solid black;" }%>
 
-    <div class="form-inputs">
-      <%= f.input :reservation_number,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "reservation_number" },
-                  error: 'Reservation number is required'%>
-      <%= f.input :check_in_date,
-                  as: :date,
-                  html5: true,
-                  start_year: Date.today.year,
-                  required: true,
-                  input_html: { autocomplete: "check_in_date" }%>
-    </div>
-
-    <div class="mt-3">
-      <%= f.submit "Find Your Booking", class: 'btn btn-primary button-green' %>
-      <%= link_to 'Cancel', reservations_path, class: 'btn btn-secondary ml-2' %>
+        <%= f.submit "Find Your Booking", class: 'btn btn-primary button-green w-100 mt-2 mb-4', style: "color: white; background-color: #ea5033; border: 1px solid #ea5033;" %>
+        <%= link_to 'Cancel', reservations_path, class: '', style: 'margin: 0 auto; color: black;' %>
     </div>
   <% end %>
+
+  <%= image_tag 'icons/hotel.svg', width: 120, style: "filter: invert(.7); align-self: center; margin: auto auto;" %>
 </div>

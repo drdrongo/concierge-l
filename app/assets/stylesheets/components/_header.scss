@@ -10,4 +10,11 @@
   margin-right: 3.5vw;
   width: 32px;
   object-fit: cover;
+
+  filter: invert(0);
+  transition: filter 0.3s;
+  &:hover {
+    filter: invert(0.1);
+    transition: filter 0.3s;
+  }
 }
