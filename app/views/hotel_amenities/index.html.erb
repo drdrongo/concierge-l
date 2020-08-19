@@ -2,8 +2,9 @@
   <i class="fas fa-arrow-left" style="position: absolute; top: 32px; left: 10px;"></i>
 <% end %>
 
+<%= render 'reservations/title_down_arrows', text: "Amenities" %>
+
 <div class="container font-grey" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px; width:85%">
-  <h3 class='font-bright-pink'>Amenities</h3>
   <% @hotel_amenities.each do |hotel_amenity| %>
     <div class="d-flex justify-content-between mb-1 border-bottom py-1 align-items-center">
         <div class="d-flex align-items-center" style="height: 38px">
