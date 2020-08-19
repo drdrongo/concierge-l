@@ -37,6 +37,8 @@ const clearTextBox = () => {
   });
 }
 
+
+
 document.addEventListener('turbolinks:load', () => {
   clearTextBox();
   createMessage(); 

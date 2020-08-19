@@ -13,6 +13,10 @@ class ReservationsController < ApplicationController
     @articles = @reservation.hotel.articles
   end
 
+  def edit
+    @reservation = Reservation.find(params[:id])
+  end
+
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update(reservation_params)
@@ -23,59 +27,32 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def edit
-    @reservation = Reservation.find(params[:id])
-  end
-
   def new
     @reservation = Reservation.new
   end
 
   def create
-    floors = %w[100 90 80 70 60 50 40 30 20]
-    rooms = {
-      "254974" => '1',
-      "254975" => '2',
-      "254976" => '3'
-    }
-    @reservation = Reservation.new
-    bookings_json = request_api("https://www.beds24.com/api/json/getBookings")
-    rsv_params = params["reservation"]
-    # booking = bookings_json.find { |b| b["apiReference"] == rsv_params["reservation_number"] }
-    booking = bookings_json.find do |b|
-      if b['referer'] == 'direct'
-        b['bookId'] == rsv_params["reservation_number"]
-      else
-        b["apiReference"] == rsv_params["reservation_number"]
-      end
-    end
-    check_in_date = "#{rsv_params['check_in_date(1i)']}-#{rsv_params['check_in_date(2i)'].rjust(2, '0')}-#{rsv_params['check_in_date(3i)'].rjust(2, '0')}"
-    if !booking.nil? && booking["firstNight"] == check_in_date
-      @reservation = Reservation.new(
-        check_in_date: Date.parse(booking['firstNight']),
-        check_out_date: Date.parse(booking['lastNight']) + 1.day,
-        channel: booking['referer'],
-        reservation_number: booking['referer'] == 'direct' ? booking['bookId'] : booking['apiReference'],
-        number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i
-      )
-      if booking["roomId"] == '254977'
-        @reservation.room_number = 101
-      else
-        floor = floors[booking["unitId"].to_i - 1]
-        room = rooms[booking["roomId"]]
-        @reservation.room_number = (floor + room).to_i
-      end
-      current_user.first_name = booking['guestFirstName']
-      current_user.last_name = booking['guestName']
-      current_user.save
-      @reservation.user = current_user
-      @reservation.hotel = Hotel.first
+    booking = find_booking
+    render :new unless !booking.nil? && booking["firstNight"] == params[:reservation][:check_in_date]
 
-      redirect_to edit_reservation_path(@reservation) if @reservation.save
-    else
-      flash[:notice] = 'Details incorrect. Please try again'
-      render :new
-    end
+    create_reservation_with_attributes(booking)
+    find_room(booking)
+    find_user(booking)
+    @reservation.hotel = Hotel.first
+
+    @reservation.save ? (redirect_to edit_reservation_path(@reservation)) : (render :new)
+  end
+
+  private
+
+  def create_reservation_with_attributes(booking)
+    @reservation = Reservation.new(
+      check_in_date: Date.parse(booking['firstNight']),
+      check_out_date: Date.parse(booking['lastNight']) + 1.day,
+      channel: booking['referer'],
+      reservation_number: booking['referer'] == 'direct' ? booking['bookId'] : booking['apiReference'],
+      number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i
+    )
   end
 
   def request_api(url)
@@ -91,11 +68,35 @@ class ReservationsController < ApplicationController
     return JSON.parse(response)
   end
 
-  private
+  def find_room(booking)
+    floors = %w[10 9 8 7 6 5 4 3 2]
+    rooms = {"254974" => '1', "254975" => '2', "254976" => '3'}
+    if booking["roomId"] == '254977'
+      @reservation.room_number = 101
+    else
+      floor = floors[booking["unitId"].to_i - 1]
+      room = rooms[booking["roomId"]]
+      @reservation.room_number = "#{floor}0#{room}".to_i
+    end
+  end
 
-  def sanitize_reservation
-    reservation = params['reservation']
-    reservation['check_in_date'] = "#{reservation['check_in_date(1i)']}-#{reservation['check_in_date(2i)'].rjust(2, '0')}-#{reservation['check_in_date(3i)'].rjust(2, '0')}"
+  def find_booking
+    bookings_json = request_api("https://www.beds24.com/api/json/getBookings")
+    booking = bookings_json.find do |b|
+      if b['referer'] == 'direct'
+        b['bookId'] == params[:reservation][:reservation_number]
+      else
+        b["apiReference"] == params[:reservation][:reservation_number]
+      end
+    end
+    booking
+  end
+
+  def find_user(booking)
+    current_user.first_name = booking['guestFirstName']
+    current_user.last_name = booking['guestName']
+    current_user.save
+    @reservation.user = current_user
   end
 
   def reservation_params

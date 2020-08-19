@@ -11,8 +11,11 @@
                   input_html: { autocomplete: "reservation_number" },
                   error: 'Reservation number is required'%>
       <%= f.input :check_in_date,
+                  as: :date,
+                  html5: true,
+                  start_year: Date.today.year,
                   required: true,
-                  input_html: { autocomplete: "check_in_date", type: "date" }%>
+                  input_html: { autocomplete: "check_in_date" }%>
     </div>
 
     <div class="mt-3">
