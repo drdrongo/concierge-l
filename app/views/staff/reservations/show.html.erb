@@ -2,12 +2,7 @@
 
 <div class="container mt-3">
   <div class="container-fluid px-0">
-    <h1 class="font-green mb-0"><%= @reservation.user.first_name %>'s Room</h1>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
-    <%= image_tag("icons/down-arrow.svg", height:25) %>
+    <%= render 'reservations/title_down_arrows', text: "#{@reservation.user.first_name}'s Room" %>
 
     <% room_type = (@reservation.room_number % 10).to_s %>
     <%= image_tag("room_#{room_type + (@reservation.room_number == 101 ? 'a' : '')}.jpg", class: "w-100 mt-1")  %>

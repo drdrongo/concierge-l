@@ -1,7 +1,8 @@
 <%= render 'shared/back', path: reservation_path(@reservation) %>
 
-<div class="container font-grey" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px; width:85%">
-  <h3 class='font-bright-pink'>Amenities</h3>
+<%= render 'reservations/title_down_arrows', text: "Amenities" %>
+
+<div class="container font-grey h-100" style="background-color: white; padding: 16px; border-radius: 8px;">
   <% @hotel_amenities.each do |hotel_amenity| %>
     <div class="d-flex justify-content-between mb-1 border-bottom py-1 align-items-center">
         <div class="d-flex align-items-center" style="height: 38px">
@@ -17,18 +18,23 @@
         <% end %>
     </div>
   <% end %>
-    <div class="container-flex-amenities">
+
+  <div class="container-flex-amenities">
     <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
-      <button class="btn btn-primary mb-1" style="width:140px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
+      <button class="btn btn-primary mb-1" style="width:140px">
+        <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %>
+        <br>Essentials
+      </button>
     <% end %>
+
     <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
-    <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
+      <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
     <% end %>
     <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
-    <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
+      <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
     <% end %>
     <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
-    <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
+      <button class="btn btn-primary mb-1" style="width:140px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
     <% end %>
   </div>
 </div>

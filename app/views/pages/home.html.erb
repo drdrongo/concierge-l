@@ -6,16 +6,8 @@
     <%= image_tag("CONCIERGE_L.png", style: "width: 230px; height: 50px;") %>
      </div>
 
- <div class="container font-green top-space">
-  <h2>You Can</h2>
-   </div>
-<div class="container-fluid d-flex justify-content-start">
-  <%= image_tag("icons/arrow-down.svg", height:25) %>
-  <%= image_tag("icons/arrow-down.svg", height:25) %>
-  <%= image_tag("icons/arrow-down.svg", height:25) %>
-  <%= image_tag("icons/arrow-down.svg", height:25) %>
-  <%= image_tag("icons/arrow-down.svg", height:25) %>
-  </div>
+  <%= render 'reservations/title_down_arrows', text: "You Can" %>
+
 
   <div class="container-fluid list-item-home top-space font-grey" >
   <%= image_tag("icons/time.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>

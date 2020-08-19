@@ -61,30 +61,27 @@
 
 
 <div class="container mt-3">
-  <div class="container-fluid px-0">
-    <h3 class="font-green mb-0">What Brings You to Tokyo?</h3>
-    <%= image_tag("icons/arrow-down.svg", height:25) %>
-    <%= image_tag("icons/arrow-down.svg", height:25) %>
-    <%= image_tag("icons/arrow-down.svg", height:25) %>
-    <%= image_tag("icons/arrow-down.svg", height:25) %>
-    <%= image_tag("icons/arrow-down.svg", height:25) %>
+  <%= render 'reservations/title_down_arrows', text: "What Brings You To Tokyo?" %>
 
 
-   <div class="container-fluid d-flex justify-content-start">
-      <%= simple_form_for @reservation, html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :patch do |f| %>
-        <div class="container-fluid">
-          <%= f.input :purpose, as: :radio_buttons, required: false, collection: [
-            ['Business', image_tag("icons/business.svg", height:80, class:"icon-white")],
-            ['Leisure', image_tag("icons/leisure.svg", height:80, class:"icon-white")],
-            ['Workation', image_tag("icons/workation.svg", height:80, class:"icon-white")],
-            ['TemporaryHome', image_tag("icons/temp-home.svg", height:80, class:"icon-white")]
-          ], label_method: :second, value_method: :first %>
-        </div>
-        <%= f.button :submit, class: "btn btn-success w-100" %>
-      <% end %>
-    </div>
+  <div class="container-fluid d-flex justify-content-start">
+    <%= simple_form_for @reservation, html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :patch do |f| %>
+      <div class="container-fluid">
+        <%= f.input :purpose, as: :radio_buttons, required: false, collection: [
+          ['Business', image_tag("icons/business.svg", height:80, class:"icon-white")],
+          ['Leisure', image_tag("icons/leisure.svg", height:80, class:"icon-white")],
+          ['Workation', image_tag("icons/workation.svg", height:80, class:"icon-white")],
+          ['TemporaryHome', image_tag("icons/temp-home.svg", height:80, class:"icon-white")]
+        ], label_method: :second, value_method: :first %>
+      </div>
+
+      <%= f.button :submit, class: "btn btn-success w-100" %>
+    <% end %>
+  </div>
 
 
-<%= link_to 'Skip', reservations_path, class: "left-text-2" %>
+  <%= link_to 'Skip', reservations_path, class: "left-text-2" %>
+
+</div>
 
 
