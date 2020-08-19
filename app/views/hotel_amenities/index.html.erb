@@ -1,6 +1,4 @@
-<%= link_to reservation_path(@reservation) do %>
-  <i class="fas fa-arrow-left" style="position: absolute; top: 32px; left: 10px;"></i>
-<% end %>
+<%= render 'shared/back', path: reservation_path(@reservation) %>
 
 <div class="container font-grey" style="background-color: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; margin-top: 16px; width:85%">
   <h3 class='font-bright-pink'>Amenities</h3>

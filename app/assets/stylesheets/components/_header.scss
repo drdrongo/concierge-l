@@ -1,9 +1,13 @@
 .box .row.header {
   flex: 0 1 auto;
   min-height: 6vh;
-  padding: 0 16px;
   justify-content: flex-end;
-  margin-right: 0;
-  margin-left: 0;
   align-items: flex-end;
+}
+
+.box .row.header img {
+  margin-top: 2.5vw;
+  margin-right: 3.5vw;
+  width: 32px;
+  object-fit: cover;
 }
