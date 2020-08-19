@@ -56,11 +56,15 @@
   left: 2.5vw;
   width: 40px;
   color: black;
-  border: 1px solid black;
+  border: 1px solid $dark-gray;
+  filter: invert(0.4);
   padding: 6px;
   text-align: center;
   border-radius: 50%;
+  transition: border 0.3s, filter 0.3s;
   &:hover {
-    transform: translateY(-1px);
+    filter: invert(0);
+    border: 1px solid black;
+    transition: border 0.3s, filter 0.3s;
   }
 }
