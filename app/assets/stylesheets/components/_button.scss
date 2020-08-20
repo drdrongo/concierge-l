@@ -6,29 +6,31 @@
   width: 50%;
 }
 
-.reservation-buttons {
+.bottom-sticky {
+  align-self: flex-end;
   position: sticky;
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
   bottom: 0;
+  flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  padding: 4px;
   background-color: white;
+  flex: 1 0 auto;
+  a {
+    margin: 1px;
+  }
 }
 
-.double-button {
-  flex-basis: 49%;
-  color: white !important;
+.double-buttons {
+  a {
+    flex: 1 0 48%;
+  }
 }
 
 .reservation-sticky-buttons {
   flex-grow: 0;
-  align-self: flex-end;
-  position: sticky;
-  bottom: 0;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
   padding: 8px;
   background-color: white;
 }
