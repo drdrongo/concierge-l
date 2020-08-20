@@ -2,7 +2,6 @@ class TimeRequestsController < ApplicationController
   def create
     @reservation = Reservation.find(params[:reservation_id])
     prms = params[:request]
-
     if @reservation.arrival_time != prms[:arrival_time] && @reservation.departure_time != prms[:departure_time]
       create_arrival_request(@reservation, prms).save
       create_departure_request(@reservation, prms).save
@@ -35,18 +34,20 @@ class TimeRequestsController < ApplicationController
   end
 
   def create_arrival_request(reservation, prms)
+    Time.zone = "Asia/Tokyo"
     TimeRequest.new(
       check_in: true,
       reservation: reservation,
-      time: prms[:arrival_time]
+      time: Time.parse(prms[:arrival_time])
     )
   end
 
   def create_departure_request(reservation, prms)
+    Time.zone = "Asia/Tokyo"
     TimeRequest.new(
       check_in: false,
       reservation: reservation,
-      time: prms[:departure_time]
+      time: Time.parse(prms[:departure_time])
     )
   end
 end
