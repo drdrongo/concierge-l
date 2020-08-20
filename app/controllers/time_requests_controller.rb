@@ -20,7 +20,7 @@ class TimeRequestsController < ApplicationController
     if params[:time_request][:reservation]
       update_reservation(@time_request, @reservation, params[:time_request][:reservation])
     end
-    redirect_to staff_reservation_path(@reservation)
+    redirect_to staff_reservation_path(@reservation, anchor: "time-request-#{@time_request.id}")
   end
 
   private

@@ -27,6 +27,7 @@ const createMessage = () => {
             content[0].setAttribute("id", data.id);
             if (currentUserId === data.user_id) {
               content[0].classList.add("align-self-end");
+              content.find('[data-role="message-user"]').text('Me - ')
             }
             $element.append(content);
             $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000);

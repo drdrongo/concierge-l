@@ -6,7 +6,6 @@ class RequestsController < ApplicationController
       hotel_amenity: HotelAmenity.find(params[:hotel_amenity_id])
     )
     if @request.save
-      flash[:success] = "Post submitted!"
       redirect_to reservation_hotel_amenities_path(reservation)
     end
   end
@@ -15,6 +14,6 @@ class RequestsController < ApplicationController
     reservation = Reservation.find(params[:reservation_id])
     @request = Request.find(params[:id])
     @request.update(status: params[:request][:status])
-    redirect_to staff_reservation_path(reservation)
+    redirect_to staff_reservation_path(reservation, anchor: "amenity-request-#{@request.id}")
   end
 end
