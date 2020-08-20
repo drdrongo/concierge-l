@@ -5,7 +5,7 @@
     <%= image_tag("room_#{room_type + (reservation.room_number == 101 ? 'a' : '')}.jpg")  %>
     <div class="card-reservation-content">
       <h5><%= reservation.hotel.name %></h5>
-      <p><%= "#{reservation.check_in_date.strftime('%b %e')} - #{reservation.check_out_date.strftime('%b %e, %Y')}" %></p> 
+      <p><%= "#{reservation.check_in_date.strftime('%b %e')} - #{reservation.check_out_date.strftime('%b %e, %Y')}" %></p>
     </div>
-  </div>  
+  </div>
 <% end %>

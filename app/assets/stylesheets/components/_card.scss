@@ -13,6 +13,14 @@
     transform: translateY(1px)
   }
 
+.card-reservation a {
+  color: $font-grey;
+}
+
+.card-reservation h5 {
+  color: cadetblue;
+}
+
   .card-reservation-content {
     padding: 8px 16px;
   }
@@ -23,12 +31,13 @@
     object-fit: cover;
   }
   h5 {
-    color: $bright-pink;
+    color: cadetblue;
     margin-top: 6px;
     margin-bottom: 3px;
   }
   p {
     margin-bottom: 0;
+    color: $font-grey;
   }
 }
 
@@ -90,7 +99,7 @@
   align-items: center;
   justify-content: center;
   height: 120px;
-  background-color: #d5a28eff;
+  background-color: cadetblue;
   color: white;
   padding-bottom: 0;
   img {
