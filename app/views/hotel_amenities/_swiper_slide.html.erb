@@ -4,13 +4,15 @@
 <%# description (a description of the amenity category) %>
 <%# hotel_amenities (The array(?) of hotel_amenity instances.) %>
 
+
+
 <div class="swiper-slide" style="overflow: scroll;">
   <%= render 'reservations/title_down_arrows', text: text %>
   <div class="amenity-category-description">
     <p><%= description %></p>
   </div>
 
-  <div class="swiper-content h-100" id="myGroup">
+  <div class="swiper-content h-100">
     <% hotel_amenities.each do |hotel_amenity| %>
 
         <% if hotel_amenity.requestable == false %>
@@ -21,21 +23,19 @@
         <% end %>
 
         <% if hotel_amenity.requestable == true %>
-          <a data-toggle="collapse" aria-controls="amenity-<%= hotel_amenity.id %>" data-target="#amenity-<%= hotel_amenity.id %>" href="#amenity-<%= hotel_amenity.id %>"  class="amenity-list-item py-1 w-75">
-            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
+          <div class="amenity-list-item py-1 w-75 btn btn-primary" style="position: relative; border: none; background-color: white; color: cadetblue; margin-bottom: 4px;">
+            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "filter: invert(0.2);") %>
             <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
 
-            <i class="fa mr-1" style="margin-left: auto;"></i>
-
-          </a> 
+            <div id='amenity-<%= hotel_amenity.id %>'>
+              <%= form_tag reservation_requests_path, method: :post do %>
+                <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+                <%= submit_tag '', data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "btn", style: "position: absolute; top: 0; left: 0; width: 100%; height: 100%;" %>
+              <% end %>
+            </div>
+          </div> 
 
           <%# -- Collapsable Request Button -- %>
-          <div class="collapse w-75" data-parent="#myGroup" id='amenity-<%= hotel_amenity.id %>'>
-            <%= form_tag reservation_requests_path, method: :post do %>
-              <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-              <%= submit_tag "Request #{hotel_amenity.amenity.name}", data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "btn amenity-list-item-button" %>
-            <% end %>
-          </div>
 
         <% end %>
 

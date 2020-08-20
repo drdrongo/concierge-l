@@ -4,6 +4,8 @@
   align-items: center;
   text-align: center;
   width: 100%;
+  padding-right: 16px;
+  padding-left: 16px;
   p {
     text-align: center;
     line-height: 1.2em;
@@ -16,7 +18,9 @@
   justify-content: flex-start;
   align-items: center;
   width: 75%;
-  border-bottom: 1px solid black;
+  max-height: 15%;
+  min-height: 10%;
+  flex: 1 0 10%;
   img {
     width: 5vh;
     height: 5vh;
@@ -38,5 +42,11 @@
   border-top-left-radius: 0;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-  margin-bottom: 8px
+  margin-bottom: 8px;
+  background-color: cadetblue;
+  border-radius: 8px;
+}
+
+.invisible {
+  visibility: hidden;
 }

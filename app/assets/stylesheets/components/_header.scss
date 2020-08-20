@@ -1,14 +1,13 @@
 .box .row.header {
   flex: 0 1 auto;
-  min-height: 6vh;
-  justify-content: flex-end;
-  align-items: flex-end;
+  display: flex;
+  min-height: 14vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .box .row.header img {
-  margin-top: 2.5vw;
-  margin-right: 3.5vw;
-  width: 32px;
+  width: 6vh;
   object-fit: cover;
 
   filter: invert(0);
