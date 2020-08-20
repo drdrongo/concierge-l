@@ -1,0 +1,42 @@
+.amenity-category-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  p {
+    text-align: center;
+    line-height: 1.2em;
+    margin-bottom: 8px;
+  }
+}
+
+.amenity-list-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 75%;
+  border-bottom: 1px solid black;
+  img {
+    width: 5vh;
+    height: 5vh;
+    margin-right: 3vh;
+    margin-left: 4vh;
+  }
+  p {
+    font-size: 1.2em;
+  }
+}
+
+.amenity-list-item-button {
+  width: 100%;
+  background: none;
+  color: orangered;
+  border: 1px solid black;
+  border-top: none;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-bottom: 8px
+}

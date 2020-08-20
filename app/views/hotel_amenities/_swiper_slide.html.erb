@@ -4,25 +4,41 @@
 <%# description (a description of the amenity category) %>
 <%# hotel_amenities (The array(?) of hotel_amenity instances.) %>
 
-<div class="swiper-slide">
+<div class="swiper-slide" style="overflow: scroll;">
   <%= render 'reservations/title_down_arrows', text: text %>
-  <div class="d-flex flex-column align-items-center text-align-center w-100">
-    <p style="text-align: center; line-height: 1.2em; margin-bottom: 8px;"><%= description %></p>
+  <div class="amenity-category-description">
+    <p><%= description %></p>
   </div>
 
-  <% hotel_amenities.each do |hotel_amenity| %>
-    <div class="d-flex justify-content-between mb-1 py-1 pl-5 align-items-center" style="border-bottom: 1px solid black;">
-      <div class="d-flex align-items-center" style="height: 38px">
-        <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 28px; height: 28px;  margin-right: 32px;") %>
-        <p class="mb-0" style="font-size: 1.2em;"><%= hotel_amenity.amenity.name %></p>
-      </div>
+  <div class="swiper-content h-100" id="myGroup">
+    <% hotel_amenities.each do |hotel_amenity| %>
 
-      <% if hotel_amenity.requestable == true %>
-        <%= form_tag reservation_requests_path, method: :post do %>
-          <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-          <%= submit_tag "Request", class: "btn btn-primary" %>
+        <% if hotel_amenity.requestable == false %>
+          <div class="amenity-list-item mb-1 py-1 w-75">
+            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
+            <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
+          </div>
         <% end %>
-      <% end %>
-    </div>
-  <% end %>
+
+        <% if hotel_amenity.requestable == true %>
+          <a data-toggle="collapse" aria-controls="amenity-<%= hotel_amenity.id %>" data-target="#amenity-<%= hotel_amenity.id %>" href="#amenity-<%= hotel_amenity.id %>"  class="amenity-list-item py-1 w-75">
+            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
+            <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
+
+            <i class="fa mr-1" style="margin-left: auto;"></i>
+
+          </a> 
+
+          <%# -- Collapsable Request Button -- %>
+          <div class="collapse w-75" data-parent="#myGroup" id='amenity-<%= hotel_amenity.id %>'>
+            <%= form_tag reservation_requests_path, method: :post do %>
+              <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+              <%= submit_tag "Request #{hotel_amenity.amenity.name}", data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "btn amenity-list-item-button" %>
+            <% end %>
+          </div>
+
+        <% end %>
+
+    <% end %>
+  </div>
 </div>
