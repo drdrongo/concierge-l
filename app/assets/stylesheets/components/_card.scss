@@ -89,7 +89,24 @@
   div {
     padding: 0;
   }
+}
 
+.reservation-body-header {
+  margin-bottom: .3em;
+  font-weight: bold;
+  color: cadetblue;
+  line-height: 1em;
+}
+
+.reservation-body-text {
+  line-height: 1em;
+  margin-bottom: 0;
+}
+
+.body-text-large {
+  font-size: 1.4em;
+  line-height: 1.3em;
+  margin-bottom: 0;
 }
 
 .border-right {
