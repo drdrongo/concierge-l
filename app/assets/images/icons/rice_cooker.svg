@@ -1,1 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><title>pot</title><g class="nc-icon-wrapper" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" fill="#111111" stroke="#111111"><line data-color="color-2" fill="none" stroke-miterlimit="10" x1="5" y1="36" x2="51" y2="36"/> <line data-color="color-2" fill="none" stroke-miterlimit="10" x1="27" y1="10" x2="27" y2="2"/> <line data-color="color-2" fill="none" stroke-miterlimit="10" x1="15" y1="14" x2="15" y2="6"/> <line data-color="color-2" fill="none" stroke-miterlimit="10" x1="39" y1="14" x2="39" y2="6"/> <path data-cap="butt" fill="none" stroke="#111111" stroke-miterlimit="10" d="M51,28h8c1.657,0,3-1.343,3-3v0 c0-1.657-1.343-3-3-3h-8" stroke-linecap="butt"/> <path fill="none" stroke="#111111" stroke-miterlimit="10" d="M45,62H11 c-3.314,0-6-2.686-6-6V22h46v34C51,59.314,48.314,62,45,62z"/></g></svg>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
+<path id="XMLID_1474_" d="M475,230h-15V95c0-35.841-29.159-65-65-65h-96.266C294.283,12.767,278.604,0,260,0h-30
+	c-18.604,0-34.283,12.767-38.734,30H95c-35.841,0-65,29.159-65,65v135H15c-8.284,0-15,6.716-15,15s6.716,15,15,15h15v160
+	c0,22.056,17.944,40,40,40h21.266c4.451,17.233,20.13,30,38.734,30h10c18.604,0,34.283-12.767,38.734-30h132.531
+	c4.451,17.233,20.13,30,38.734,30h10c18.604,0,34.283-12.767,38.734-30H420c22.056,0,40-17.944,40-40V260h15c8.284,0,15-6.716,15-15
+	S483.284,230,475,230z M95,60h110c8.284,0,15-6.716,15-15v-5c0-5.514,4.486-10,10-10h30c5.514,0,10,4.486,10,10v5
+	c0,8.284,6.716,15,15,15h110c17.602,0,32.21,13.061,34.644,30H60.356C62.79,73.061,77.398,60,95,60z M430,420
+	c0,5.514-4.486,10-10,10h-35c-8.284,0-15,6.716-15,15v5c0,5.514-4.486,10-10,10h-10c-5.514,0-10-4.486-10-10v-5
+	c0-8.284-6.716-15-15-15H165c-8.284,0-15,6.716-15,15v5c0,5.514-4.486,10-10,10h-10c-5.514,0-10-4.486-10-10v-5
+	c0-8.284-6.716-15-15-15H70c-5.514,0-10-4.486-10-10V260h100v75c0,35.841,29.159,65,65,65h40c35.841,0,65-29.159,65-65v-75h100V420z
+	 M190,335v-75h110v75c0,19.299-15.701,35-35,35h-40C205.701,370,190,354.299,190,335z M430,230H60V120h370V230z M235,320
+	c-8.284,0-15-6.716-15-15s6.716-15,15-15h20c8.284,0,15,6.716,15,15s-6.716,15-15,15H235z"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>

@@ -31,8 +31,8 @@
                 <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
                 
                 <%= button_tag(:submit, data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "d-flex justify-content-start align-items-center amenity-list-item py-3 w-100 btn btn-primary", style: "position: relative; border: none; background-color: white; color: cadetblue; margin-bottom: 4px; margin-right: 0px;") do %>
-                    <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "filter: invert(0.2); margin-left: 6px; margin-right: 12px;") %>
-                    <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
+                    <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "filter: invert(0.3); margin-left: 6px; margin-right: 12px;") %>
+                    <p class="mb-0" style="line-height: 1em;"><%= hotel_amenity.amenity.name %></p>
                     <div style="display: flex; position: relative; align-items: center; justify-content: center; flex-shrink: 0; margin-left: auto; width: 2em; height: 2em; background-color: white; border: 1px solid cadetblue;">
                       <% if Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "accepted").exists? %>
                         <i class="fas fa-check"></i>

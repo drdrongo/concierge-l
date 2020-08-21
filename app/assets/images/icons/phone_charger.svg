@@ -1,1 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><title>phone charging 3</title><g class="nc-icon-wrapper" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" fill="#111111" stroke="#111111"><line x1="11" y1="10" x2="53" y2="10" fill="none" stroke="#111111" stroke-miterlimit="10" data-cap="butt" stroke-linecap="butt"/><line x1="11" y1="52" x2="53" y2="52" fill="none" stroke="#111111" stroke-miterlimit="10" data-cap="butt" stroke-linecap="butt"/><path d="M48,62H16a5,5,0,0,1-5-5V7a5,5,0,0,1,5-5H48a5,5,0,0,1,5,5V57A5,5,0,0,1,48,62Z" fill="none" stroke="#111111" stroke-miterlimit="10"/><polygon points="33 18 22 34 32 34 31 44 42 28 32 28 33 18" fill="none" stroke-miterlimit="10" data-color="color-2"/></g></svg>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<polygon points="153.943,144.794 189.385,94.127 163.6,76.091 93.527,176.262 147.315,176.262 110.588,232.116 136.882,249.406 
+			205.67,144.794 		"/>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="132.281" y="340.779" width="35.664" height="31.468"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M477.179,172.872v-63.768H365.811v63.768h-15.295v108.012h55.244v169.557c0,16.592-13.5,30.092-30.092,30.092H204.195
+			c-22.482,0-40.773-18.291-40.773-40.772V422.71H280.7V0H19.527v422.709h112.428v17.05c0,39.834,32.407,72.24,72.241,72.24h171.473
+			c33.945,0,61.56-27.615,61.56-61.56V280.884h55.244V172.872H477.179z M50.995,31.468h198.238v260.019H50.995V31.468z
+			 M50.995,391.241v-68.287h198.238v68.287H50.995z M397.279,140.572h48.432v32.3h-48.432V140.572z M461.004,249.416h-79.02v-45.077
+			h79.02V249.416z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="402.75" y="148.907" width="15.438" height="13.322"/>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="424.798" y="148.907" width="15.438" height="13.322"/>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
