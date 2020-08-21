@@ -24,20 +24,32 @@
 
         <% if hotel_amenity.requestable == true %>
 
-          <div class="amenity-list-item py-1 w-75 btn btn-primary" style="position: relative; border: none; background-color: white; color: cadetblue; margin-bottom: 4px;">
-            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "filter: invert(0.2);") %>
-            <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
+         
 
-            <div id='amenity-<%= hotel_amenity.id %>'>
+            <div id='amenity-<%= hotel_amenity.id %>' class="w-75" style="height: 12%;">
               <%= form_tag reservation_requests_path, method: :post, remote: true do %>
                 <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-                <%= submit_tag '', data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "btn", style: "position: absolute; top: 0; left: 0; width: 100%; height: 100%;" %>
+                
+                <%= button_tag(:submit, data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "d-flex justify-content-start align-items-center amenity-list-item py-3 w-100 btn btn-primary", style: "position: relative; border: none; background-color: white; color: cadetblue; margin-bottom: 4px; margin-right: 0px;") do %>
+                    <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "filter: invert(0.2); margin-left: 6px; margin-right: 12px;") %>
+                    <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
+                    <div style="display: flex; position: relative; align-items: center; justify-content: center; flex-shrink: 0; margin-left: auto; width: 2em; height: 2em; background-color: white; border: 1px solid cadetblue;">
+                      <% if Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "accepted").exists? %>
+                        <i class="fas fa-check"></i>
+                        <span style="position: absolute; bottom: -2em; color: limegreen; font-size: .5em;">Accepted</span>
+                      <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "declined").exists? %>
+                        <i class="fas fa-times"></i>
+                        <span style="position: absolute; bottom: -2em; color: red; font-size: .5em;">Unavailable</span>
+                      <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation).exists? %>
+                        <i class="fas fa-hourglass-half"></i>
+                        <span style="position: absolute; bottom: -2em; color: orange; font-size: .5em;">Pending</span>
+                      <% end %>
+                    </div>
+                <% end %>
               <% end %>
             </div>
-          </div> 
 
-          <%# -- Collapsable Request Button -- %>
-
+            
         <% end %>
 
     <% end %>
