@@ -1,16 +1,7 @@
 <%= render 'shared/back', path: 'reservations_path' %>
 
 <div class="container d-flex flex-column font-grey">
-  <div class="container-fluid d-flex flex-column mb-3 mt-3 align-items-center">
-    <h1 class="mb-0">Your Booking Info</h1>
-    <div class="d-flex align-items-center justify-content-center arrows">
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-    </div>
-  </div>
+  <%= render 'reservations/title_down_arrows', text: "Your Booking Info" %>
 
   <%= simple_form_for (@reservation) do |f| %>
     <%= f.error_notification %>
