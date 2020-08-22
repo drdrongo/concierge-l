@@ -1,10 +1,8 @@
 <%= render 'shared/back', path: 'root_path' %>
 
-
 <%= render 'reservations/title_down_arrows', text: "Your Stays" %>
 
-
-<div class="container-reservation d-flex flex-column">
+<div class="container-reservation">
   <% @upcoming_reservations.each do |reservation| %>
     <%= render 'reservations/reservation_card', reservation: reservation %>
   <% end %>
@@ -16,9 +14,9 @@
     <% end %>
   <% end %>
 
-  <div class="bottom-sticky double-buttons">
-    <a href="https://www.section-l.co" target="_blank" class="btn btn-dark">Book New</a>
-    <%= link_to 'Find your Booking', new_reservation_path, class: "btn btn-dark"%>
-  </div>
 </div>
 
+  <div class="bottom-sticky double-buttons">
+    <a href="https://www.section-l.co" target="_blank" class="btn btn-warning">Book New</a>
+    <%= link_to 'Find Your Booking', new_reservation_path, class: "btn btn-primary"%>
+  </div>

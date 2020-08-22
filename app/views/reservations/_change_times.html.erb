@@ -4,14 +4,14 @@
 	}
 
 	input[type=radio]:hover + label {
-		background-color: lightgrey;
+		background-color: #018A6A;
 		transition: background-color 0.2s;
 		transition-timing-function: ease-out;
 	}
 
 	input[type=radio]:checked + label {
-		background-color: orangered;
-		border: 1px solid white;
+		background-color: #018A6A;
+		border: 1px solid #018A6A;
 		color: white;
 		transition: background-color 0.2s, color: 0.2s;
 	}
@@ -31,9 +31,11 @@
 		vertical-align: middle;
 		cursor: pointer;
 		background-color: white;
-		border: 1px solid orangered;
+		border: 1px solid black;
 		margin-bottom: 4px;
 		min-width: 150px;
+		flex-grow: 1;
+		flex-basis: 50%;
 	}
 
 	.form-check {
@@ -41,41 +43,56 @@
 	}
 </style>
 
-<!-- <p>check-in</p> -->
-<!-- <p><%= reservation.check_in_date.strftime('%b %e') %></p> -->
-
 <div  class="container-fluid d-flex w-100 font-grey card-show-page">
-	<%= simple_form_for :request, url: reservation_time_requests_path(@reservation),  html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :post do |f| %>
+	<% in_time = Time.new(2000, 1, 1, 15) %>
+	<% out_time = Time.new(2000, 1, 1, 11) %>
 
-		<div class="d-flex pr-0" style="flex-direction: column; flex-basis: 50%;">
-			<!-- <p class="mb-0 font-bright-pink">Check-in:</p> -->
-			<!-- <p class="mb-0"><%= reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")%> <small><%= reservation.check_in_date.strftime("(%a)")%></small></p> -->
-			<% in_time = Time.find_zone('Tokyo').local(2000, 1, 1, 15) %>
-			<% out_time = Time.find_zone('Tokyo').local(2000, 1, 1, 11) %>
-			<% arrivals = ['3:00PM~ (¥0)', '2:00PM (¥1,000)', '1:00PM (¥2,000)', '12:00PM (¥3,000)', '11:00AM (¥4,000)', '11:00AM (¥4,000)'] %>
-			<%= f.input :arrival_time, as: :radio_buttons, required: false, collection: [
-				[in_time - 5.hour, '10:00AM (¥5,000)'	],
-				[in_time - 4.hour, '11:00AM (¥4,000)'	],
-				[in_time - 3.hour, '12:00PM (¥3,000)'	],
-				[in_time - 2.hour, '1:00PM (¥2,000)'	],
-				[in_time - 1.hour, '2:00PM (¥1,000)'	],
-				[in_time, 				 '3:00PM~ (¥0)'			]
-			], label_method: :second, value_method: :first %>
+	<%= form_for :request, url: reservation_time_requests_path(@reservation),  html: { style: "flex-wrap: wrap; display: flex; flex-direction: column; width: 100%;"}, method: :post do |f| %>
+		<div class="d-flex flex-row">
+			<div class="d-flex flex-column" style="flex-basis: 50%; padding: 8px;">
+				<h6 class="reservation-body-header align-self-center">Arrival Time</h6>
+				<%= radio_button_tag 'arrival_time', in_time, (@reservation.arrival_time == in_time), id: 'arrival-1'%>
+					<%= label_tag 'arrival_time', '3:00PM (¥0)', for: 'arrival-1' %>
+
+				<%= radio_button_tag 'arrival_time', in_time - 1.hour, (@reservation.arrival_time == in_time - 1.hour), id: 'arrival-2' %>
+				<%= label_tag 'arrival_time', '2:00PM (¥1000)', for: 'arrival-2'  %>
+
+				<%= radio_button_tag 'arrival_time', in_time - 2.hour, (@reservation.arrival_time == in_time - 2.hour), id: 'arrival-3' %>
+				<%= label_tag 'arrival_time', '1:00PM (¥2000)', for: 'arrival-3'  %>
+
+				<%= radio_button_tag 'arrival_time', in_time - 3.hour, (@reservation.arrival_time == in_time - 3.hour), id: 'arrival-4' %>
+				<%= label_tag 'arrival_time', '12:00PM (¥3000)', for: 'arrival-4'  %>
+
+				<%= radio_button_tag 'arrival_time', in_time - 4.hour, (@reservation.arrival_time == in_time - 4.hour), id: 'arrival-5' %>
+				<%= label_tag 'arrival_time', '11:00AM (¥4000)', for: 'arrival-5'  %>
+
+				<%= radio_button_tag 'arrival_time', in_time - 5.hour, (@reservation.arrival_time == in_time - 5.hour), id: 'arrival-6' %>
+				<%= label_tag 'arrival_time', '10:00AM (¥5000)', for: 'arrival-6'  %>
+			</div>
+
+			<div class="d-flex flex-column" style="flex-basis: 50%; padding: 8px; border-left: 1px solid grey;">
+				<h6 class="reservation-body-header align-self-center">Departure Time</h6>
+				<%= radio_button_tag 'departure_time', out_time, (@reservation.departure_time == out_time), id: 'departure-1' %>
+				<%= label_tag 'departure_time', '11:00AM (¥0)', for: 'departure-1' %>
+
+				<%= radio_button_tag 'departure_time', out_time + 1.hour, (@reservation.departure_time == out_time + 1.hour), id: 'departure-2' %>
+				<%= label_tag 'departure_time', '12:00PM (¥1000)', for: 'departure-2' %>
+
+				<%= radio_button_tag 'departure_time', out_time + 2.hour, (@reservation.departure_time == out_time + 2.hour), id: 'departure-3' %>
+				<%= label_tag 'departure_time', '1:00PM (¥2000)', for: 'departure-3' %>
+
+				<%= radio_button_tag 'departure_time', out_time + 3.hour, (@reservation.departure_time == out_time + 3.hour), id: 'departure-4' %>
+				<%= label_tag 'departure_time', '2:00PM (¥3000)', for: 'departure-4' %>
+
+				<%= radio_button_tag 'departure_time', out_time + 4.hour, (@reservation.departure_time == out_time + 4.hour), id: 'departure-5' %>
+				<%= label_tag 'departure_time', '3:00PM (¥4000)', for: 'departure-5' %>
+
+				<%= radio_button_tag 'departure_time', out_time + 5.hour, (@reservation.departure_time == out_time + 5.hour), id: 'departure-6' %>
+				<%= label_tag 'departure_time', '4:00PM (¥5000)', for: 'departure-6' %>
+			</div>
 		</div>
 
-		<div class="d-flex" style="flex-direction: column; flex-basis: 50%;">
-			<!-- <p class="mb-0 font-bright-pink">Check-out:</p> -->
-			<!-- <p class="mb-0"><%= reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")%> <small><%= reservation.check_out_date.strftime("(%a)")%></small></p> -->
-			<%= f.input :departure_time, as: :radio_buttons, required: false, collection: [
-				[out_time, '~11:00AM (¥0)'],
-				[out_time - 1.hour, '~12:00PM (¥1,000)'],
-				[out_time - 2.hour, '~1:00PM (¥2,000)'],
-				[out_time - 3.hour, '~2:00PM (¥3,000)'],
-				[out_time - 4.hour, '~3:00PM (¥4,000)'],
-				[out_time - 5.hour, '~4:00PM (¥5,000)']
-			], label_method: :second, value_method: :first %>
-		</div>
-
-		<%= f.button :submit, class: "btn btn-primary w-100" %>
+		<%= f.submit 'Request Time Changes', class: 'mt-3 btn btn-primary' %>
 	<% end %>
+
 </div>

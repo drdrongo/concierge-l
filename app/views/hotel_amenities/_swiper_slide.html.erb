@@ -4,13 +4,15 @@
 <%# description (a description of the amenity category) %>
 <%# hotel_amenities (The array(?) of hotel_amenity instances.) %>
 
+
+
 <div class="swiper-slide" style="overflow: scroll;">
   <%= render 'reservations/title_down_arrows', text: text %>
   <div class="amenity-category-description">
     <p><%= description %></p>
   </div>
 
-  <div class="swiper-content h-100" id="myGroup">
+  <div class="swiper-content h-100">
     <% hotel_amenities.each do |hotel_amenity| %>
 
         <% if hotel_amenity.requestable == false %>
@@ -21,22 +23,33 @@
         <% end %>
 
         <% if hotel_amenity.requestable == true %>
-          <a data-toggle="collapse" aria-controls="amenity-<%= hotel_amenity.id %>" data-target="#amenity-<%= hotel_amenity.id %>" href="#amenity-<%= hotel_amenity.id %>"  class="amenity-list-item py-1 w-75">
-            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
-            <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
 
-            <i class="fa mr-1" style="margin-left: auto;"></i>
+         
 
-          </a> 
+            <div id='amenity-<%= hotel_amenity.id %>' class="w-75" style="height: 12%;">
+              <%= form_tag reservation_requests_path, method: :post, remote: true do %>
+                <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+                
+                <%= button_tag(:submit, data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "d-flex justify-content-start align-items-center amenity-list-item py-3 w-100 btn btn-primary", style: "position: relative; border: none; background-color: white; color: cadetblue; margin-bottom: 4px; margin-right: 0px;") do %>
+                    <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "filter: invert(0.3); margin-left: 6px; margin-right: 12px;") %>
+                    <p class="mb-0" style="line-height: 1em;"><%= hotel_amenity.amenity.name %></p>
+                    <div style="display: flex; position: relative; align-items: center; justify-content: center; flex-shrink: 0; margin-left: auto; width: 2em; height: 2em; background-color: white; border: 1px solid cadetblue;">
+                      <% if Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "accepted").exists? %>
+                        <i class="fas fa-check"></i>
+                        <span style="position: absolute; bottom: -2em; color: limegreen; font-size: .5em;">Accepted</span>
+                      <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "declined").exists? %>
+                        <i class="fas fa-times"></i>
+                        <span style="position: absolute; bottom: -2em; color: red; font-size: .5em;">Unavailable</span>
+                      <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation).exists? %>
+                        <i class="fas fa-hourglass-half"></i>
+                        <span style="position: absolute; bottom: -2em; color: orange; font-size: .5em;">Pending</span>
+                      <% end %>
+                    </div>
+                <% end %>
+              <% end %>
+            </div>
 
-          <%# -- Collapsable Request Button -- %>
-          <div class="collapse w-75" data-parent="#myGroup" id='amenity-<%= hotel_amenity.id %>'>
-            <%= form_tag reservation_requests_path, method: :post do %>
-              <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-              <%= submit_tag "Request #{hotel_amenity.amenity.name}", data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "btn amenity-list-item-button" %>
-            <% end %>
-          </div>
-
+            
         <% end %>
 
     <% end %>

@@ -3,13 +3,25 @@
 }
 
 .font-grey {
-  color: $font-grey
+  color: $font-gray
 }
 
 .font-bright-pink {
-  color: $orange
+  color: $bright-pink
 }
 
 p.thick {
   font-weight: bold;
+}
+
+.font-cadetblue {
+  color: cadetblue;
+}
+
+.font-light-purple {
+  color: $light-purple;
+}
+
+.font-purple {
+  color: $purple;
 }

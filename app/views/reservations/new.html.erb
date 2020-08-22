@@ -1,16 +1,7 @@
 <%= render 'shared/back', path: 'reservations_path' %>
 
-<div class="container d-flex flex-column font-grey">
-  <div class="container-fluid d-flex flex-column mb-3 mt-3 align-items-center">
-    <h1 class="mb-0">Your Booking Info</h1>
-    <div class="d-flex align-items-center justify-content-center arrows">
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-      <%= image_tag("icons/down-arrow.svg", height:25) %>
-    </div>
-  </div>
+<div class="container d-flex flex-column font-purple">
+  <%= render 'reservations/title_down_arrows', text: "Your Booking Info" %>
 
   <%= simple_form_for (@reservation) do |f| %>
     <%= f.error_notification %>
@@ -27,8 +18,8 @@
                     required: true,
                     input_html: { autocomplete: "check_in_date", style: "border: 1px solid black;" }%>
 
-        <%= f.submit "Find Your Booking", class: 'btn btn-primary button-green w-100 mt-2 mb-4', style: "color: white; background-color: #ea5033; border: 1px solid #ea5033;" %>
-        <%= link_to 'Cancel', reservations_path, class: '', style: 'margin: 0 auto; color: black;' %>
+        <%= f.submit "Find Your Booking", class: 'btn btn-primary w-100 mt-2 mb-4', style: "color: white; background-color: $green;" %>
+        <%= link_to 'Cancel', reservations_path, class: 'font-purple', style: 'margin: 0 auto' %>
     </div>
   <% end %>
 

@@ -9,6 +9,10 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+
+    time_requests = @reservation.time_requests.where(status: 'pending').order(created_at: :desc)
+    @latest_in_request = time_requests.where(check_in: true).first
+    @latest_out_request = time_requests.where(check_in: false).first
     @message = Message.new reservation: @reservation
     @articles = @reservation.hotel.articles
   end
