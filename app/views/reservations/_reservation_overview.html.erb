@@ -52,6 +52,6 @@
     <p class="reservation-body-header">Amenities </p>
     <p class="reservation-body-text">Check out basic & requestable amenities</p>
   </div>
-  <button type="button" class="btn btn-dark button-full-width mt-1 mb-3">See Amenities</button>
+  <%= link_to 'See Amenities', reservation_hotel_amenities_path(@reservation), class: "btn btn-dark button-full-width mt-1 mb-3" %>
 
 </div>

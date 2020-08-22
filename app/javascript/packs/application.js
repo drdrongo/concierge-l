@@ -36,7 +36,7 @@ const clearTextBox = () => {
       $(this).find('input[type="text"]').val('');
     });
   });
-}
+};
 
 
 
