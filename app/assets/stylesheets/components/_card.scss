@@ -79,12 +79,34 @@
   background-color: white;
   width: 100%;
   border-radius: 5px;
-  padding: 20px 20px 5px 20px;
+  padding: 16px 16px 16px 16px;
 }
 
 .card-reservation-time {
   display: flex;
-  padding: 10px 20px 5px 20px;
+  justify-content: space-between;
+  padding: 12px 20px 8px 20px;
+  div {
+    padding: 0;
+  }
+}
+
+.reservation-body-header {
+  margin-bottom: .3em;
+  font-weight: bold;
+  color: cadetblue;
+  line-height: 1em;
+}
+
+.reservation-body-text {
+  line-height: 1em;
+  margin-bottom: 0;
+}
+
+.body-text-large {
+  font-size: 1.4em;
+  line-height: 1.3em;
+  margin-bottom: 0;
 }
 
 .border-right {
