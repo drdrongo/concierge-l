@@ -96,35 +96,3 @@
 	<% end %>
 		
 </div>
-
-
-
-
-									<% if false %>
-										
-										<div class="d-flex pr-0" style="flex-direction: column; flex-basis: 50%;">
-											<% in_time = Time.new(2000, 1, 1, 15) %>
-											<% out_time = Time.new(2000, 1, 1, 11) %>
-											<%= f.input :arrival_time, as: :radio_buttons, required: false, collection: [
-												[in_time, 				 '3:00PM (¥0)'			],
-												[in_time - 1.hour, '2:00PM (¥1,000)'	],
-												[in_time - 2.hour, '1:00PM (¥2,000)'	],
-												[in_time - 3.hour, '12:00PM (¥3,000)'	],
-												[in_time - 4.hour, '11:00AM (¥4,000)'	],
-												[in_time - 5.hour, '10:00AM (¥5,000)'	]
-											], label_method: :second, value_method: :first %>
-										</div>
-
-										<div class="d-flex" style="flex-direction: column; flex-basis: 50%;">
-											<%= f.input :departure_time, as: :radio_buttons, required: false, collection: [
-												[out_time, '11:00AM (¥0)', ],
-												[out_time + 1.hour, '12:00PM (¥1,000)'],
-												[out_time + 2.hour, '1:00PM (¥2,000)'],
-												[out_time + 3.hour, '2:00PM (¥3,000)'],
-												[out_time + 4.hour, '3:00PM (¥4,000)'],
-												[out_time + 5.hour, '4:00PM (¥5,000)']
-											], label_method: :second, value_method: :first %>
-										</div>
-
-										<%= f.button :submit, class: "btn btn-primary w-100" %>
-									<% end %>
