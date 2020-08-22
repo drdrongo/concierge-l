@@ -2,8 +2,7 @@
 
 <%= render 'reservations/title_down_arrows', text: "Your Stays" %>
 
-
-<div class="container-reservation d-flex flex-column">
+<div class="container-reservation">
   <% @upcoming_reservations.each do |reservation| %>
     <%= render 'reservations/reservation_card', reservation: reservation %>
   <% end %>
