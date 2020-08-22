@@ -1,6 +1,6 @@
 <%= render 'shared/back', path: 'reservations_path' %>
 
-<div class="container d-flex flex-column font-purple">
+<div class="container d-flex flex-column">
   <%= render 'reservations/title_down_arrows', text: "Your Booking Info" %>
 
   <%= simple_form_for (@reservation) do |f| %>
@@ -19,7 +19,7 @@
                     input_html: { autocomplete: "check_in_date", style: "border: 1px solid black;" }%>
 
         <%= f.submit "Find Your Booking", class: 'btn btn-primary w-100 mt-2 mb-4', style: "color: white; background-color: $green;" %>
-        <%= link_to 'Cancel', reservations_path, class: 'font-purple', style: 'margin: 0 auto' %>
+        <%= link_to 'Cancel', reservations_path, class: '', style: 'margin: 0 auto' %>
     </div>
   <% end %>
 
