@@ -10,7 +10,7 @@
   }
 
   input[type=radio]:checked + label {
-    background-color: ##FDF5F6;
+    background-color: #8e5356;
     color: white;
     transition: background-color 0.2s, color: 0.2s;
   }
@@ -25,7 +25,7 @@
     margin-bottom: 0;
     font-size: 14px;
     line-height: 20px;
-    color: ##E67E22;
+    color: #E67E22;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -48,6 +48,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     flex-basis: 100%;
+    margin-top: -16px;
   }
 
   .form-check {
@@ -60,27 +61,25 @@
 </style>
 
 
-<div class="container mt-3">
-  <%= render 'reservations/title_down_arrows', text: "What Brings You To Tokyo?" %>
+<div class="container mt-3" style="display: flex; flex-direction: column;">
+  <%= render 'reservations/title_down_arrows', text: "What Brings You To Tokyo?", style: "text-align: center;" %>
 
 
-  <div class="container-fluid d-flex justify-content-start">
-    <%= simple_form_for @reservation, html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :patch do |f| %>
-      <div class="container-fluid">
-        <%= f.input :purpose, as: :radio_buttons, required: false, collection: [
-          ['Business', image_tag("icons/business.svg", height:80, class:"icon-white")],
-          ['Leisure', image_tag("icons/leisure.svg", height:80, class:"icon-white")],
-          ['Workation', image_tag("icons/workation.svg", height:80, class:"icon-white")],
-          ['TemporaryHome', image_tag("icons/temp-home.svg", height:80, class:"icon-white")]
-        ], label_method: :second, value_method: :first %>
-      </div>
+  <div class="container-fluid d-flex justify-content-start p-0" style="margin: 0 auto; width: 100%;">
+    <%= simple_form_for @reservation, html: { style: "display: flex; flex-wrap: wrap; width: 100%;"}, method: :patch do |f| %>
+      <%= f.input :purpose, as: :radio_buttons, required: false, collection: [
+        ['Business', image_tag("icons/business.svg", height:80, class:"icon-white")],
+        ['Leisure', image_tag("icons/leisure.svg", height:80, class:"icon-white")],
+        ['Workation', image_tag("icons/workation.svg", height:80, class:"icon-white")],
+        ['TemporaryHome', image_tag("icons/temp-home.svg", height:80, class:"icon-white")]
+      ], label_method: :second, value_method: :first %>
 
       <%= f.button :submit, class: "btn btn-success w-100" %>
     <% end %>
   </div>
 
 
-  <%= link_to 'Skip', reservations_path, class: "left-text-2" %>
+  <%= link_to 'Skip', reservations_path, style: "align-self: center; margin-top: 16px;" %>
 
 </div>
 
