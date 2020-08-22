@@ -14,11 +14,11 @@
   }
 
 .card-reservation a {
-  color: $font-grey;
+  color: $purple;
 }
 
 .card-reservation h5 {
-  color: cadetblue;
+  color: $green;
 }
 
   .card-reservation-content {
@@ -31,13 +31,14 @@
     object-fit: cover;
   }
   h5 {
-    color: cadetblue;
+    color: $green;
     margin-top: 6px;
     margin-bottom: 3px;
+    font-weight: bold;
   }
   p {
     margin-bottom: 0;
-    color: $font-grey;
+    color: black;
   }
 }
 
@@ -94,23 +95,25 @@
 .reservation-body-header {
   margin-bottom: .3em;
   font-weight: bold;
-  color: cadetblue;
+  color: $green;
   line-height: 1em;
 }
 
 .reservation-body-text {
   line-height: 1em;
   margin-bottom: 0;
+  color: black;
 }
 
 .body-text-large {
-  font-size: 1.4em;
+  font-size: 1.3em;
   line-height: 1.3em;
   margin-bottom: 0;
+  color: black;
 }
 
 .border-right {
-  border-right: 5px solid $font-grey;
+  border-right: 5px solid black;
   padding-right: 22px;
 }
 
@@ -121,7 +124,7 @@
   align-items: center;
   justify-content: center;
   height: 120px;
-  background-color: cadetblue;
+  background-color: $green;
   color: white;
   padding-bottom: 0;
   img {
