@@ -11,13 +11,13 @@
 </style>
 
 <!-- Slider main container -->
+    <%=  @reservation.requests.count %>
 <div class="swiper-container">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
-    <%= render 'hotel_amenities/swiper_slide', { text: @essentials.first.amenity.category, hotel_amenities: @essentials, description: 'Things you couldn\'t go without. Find them in your room or request extra.' } %>
-
     <%= render 'hotel_amenities/swiper_slide', { text: @requestables.first.amenity.category, hotel_amenities: @requestables, description: 'Order additional items for your stay. (Charges may apply)' } %>
+    <%= render 'hotel_amenities/swiper_slide', { text: @essentials.first.amenity.category, hotel_amenities: @essentials, description: 'Things you couldn\'t go without. Find them in your room or request extra.' } %>
 
     <%= render 'hotel_amenities/swiper_slide', { text: @bed_bath.first.amenity.category, hotel_amenities: @bed_bath, description: 'Stay squeaky clean during your stay.' } %>
 
@@ -78,27 +78,3 @@
                             </div>
                           </div>
                         <% end %>
-
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-  const categories = ['Essentials', 'Requests', 'Bed & Bath', 'Kitchen', 'Other']
-  var mySwiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    loop: true,
-
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + categories[index] + '</span>';
-      },
-    },
-
-
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-</script>

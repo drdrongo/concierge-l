@@ -26,7 +26,8 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { createMessage } from '../channels/reservation_channel.js'
+import { createMessage } from '../channels/reservation_channel';
+import { initSwiper } from '../channels/swiper'; 
 
 // Clears the text box after a message is successfully sent.
 const clearTextBox = () => {
@@ -42,4 +43,5 @@ const clearTextBox = () => {
 document.addEventListener('turbolinks:load', () => {
   clearTextBox();
   createMessage(); 
+  initSwiper();
 });
