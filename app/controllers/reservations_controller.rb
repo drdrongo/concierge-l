@@ -86,15 +86,10 @@ class ReservationsController < ApplicationController
   end
 
   def find_booking
-    bookings_json = request_api("https://www.beds24.com/api/json/getBookings")
-    booking = bookings_json.find do |b|
-      if b['referer'] == 'direct'
-        b['bookId'] == params[:reservation][:reservation_number]
-      else
-        b["apiReference"] == params[:reservation][:reservation_number]
-      end
+    booking_hash = request_api("https://www.beds24.com/api/json/getBookings")
+    booking_hash.find do |b|
+      b['apiSource'] == '0' && b['bookId'] == params[:reservation][:reservation_number] || b["apiReference"] == params[:reservation][:reservation_number]
     end
-    booking
   end
 
   def find_user(booking)
