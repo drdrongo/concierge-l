@@ -1,9 +1,10 @@
-<div class="container-fluid container-articles">
+<div class="container-fluid d-flex flex-column mt-3">
+  <h5 class="overview-body-header font-green thick align-self-center">House Manuals / Guides</h5>
   <% articles.each do |article| %>
-    <%= link_to  article_path(article.id), target: "_blank" do %>
-      <div class="card text-center card-article align-items-center">
-        <%= image_tag("icons/#{article.title.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
-        <h6><%= article.title.gsub('_', ' ').capitalize %></h6>
+    <%= link_to  article_path(article), target: "_blank" do %>
+      <div class="d-flex align-items-center justify-content-start mb-2 p-3" style="background-color: white; border-radius: 5px; ">
+        <%= image_tag("icons/#{article.title.gsub(' ', '_').gsub('/', ':').downcase}.svg", style: "width: 3em; margin-right: 5vw") %>
+        <h6 class="mb-0" style="font-size: 1.5em; color: black;"><%= article.title.gsub('_', ' ').capitalize %></h6>
       </div>
     <% end %>
   <% end %>
