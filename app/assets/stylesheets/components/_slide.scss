@@ -28,25 +28,48 @@
     margin-left: 4vh;
   }
   p {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
-}
-
-.amenity-list-item-button {
-  width: 100%;
-  background: none;
-  color: orangered;
-  border: 1px solid black;
-  border-top: none;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  margin-bottom: 8px;
-  background-color: cadetblue;
-  border-radius: 8px;
 }
 
 .invisible {
   visibility: hidden;
+}
+
+.swiper-amenity-button {
+  position: relative;
+  border: none;
+  background-color: white;
+  color: black;
+  margin-bottom: 8px;
+  margin-right: 0px;
+
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  width: 100%;
+  div {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: auto;
+    width: 2em;
+    height: 2em;
+    background-color: white;
+    border: 1px solid black;
+  }
+}
+
+.swiper-amenity-button .hotel-amenity-icon {
+  filter: invert(0.3);
+  margin-left: 6px;
+  margin-right: 12px;
+}
+
+.hotel-amenity-status-icon {
+  position: absolute;
+  bottom: -2em;
+  font-size: .5em;
 }
