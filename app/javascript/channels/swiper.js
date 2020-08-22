@@ -1,14 +1,15 @@
-// import Swiper JS
-import Swiper from 'swiper';
-// import Swiper styles
-import 'swiper/swiper-bundle.css';
+// core version + navigation, pagination modules:
+import Swiper, { Navigation, Pagination } from 'swiper';
+
+// configure Swiper to use modules
+Swiper.use([Navigation, Pagination]);
 
 const initSwiper = () => {
   const myCategories = ['Essentials', 'Requests', 'Bed & Bath', 'Kitchen', 'Other'];
   var mySwiper = new Swiper('.swiper-container', {
     // Optional parameters
     loop: true,
-
+    
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
@@ -22,8 +23,8 @@ const initSwiper = () => {
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
-    },
+    }
   });
-}
+};
 
 export { initSwiper };

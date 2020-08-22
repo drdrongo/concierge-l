@@ -45,8 +45,6 @@
 <!-- <p><%= reservation.check_in_date.strftime('%b %e') %></p> -->
 
 <div  class="container-fluid d-flex w-100 font-grey card-show-page">
-			<% in_time = Time.new(2000, 1, 1, 15) %>
-<%= in_time %>
 
 	<%= simple_form_for :request, url: reservation_time_requests_path(@reservation),  html: { class: "d-flex", style: "flex-wrap: wrap;"}, method: :post do |f| %>
 

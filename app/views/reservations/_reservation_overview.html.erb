@@ -37,21 +37,23 @@
   <button type="button" class="btn btn-dark button-full-width mt-1 mb-1">Read Check-In Manual</button>
 
   <div class="card-show-page my-3 pb-3">
-    <p class="thick mb-1 font-cadetblue">Amenities </p>
-    <p class="mb-2">Check out basic & requestable amenities</p>
-    <div class="container-flex-amenities">
-      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
-        <button class="btn btn-dark mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
-      <% end %>
-      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
-      <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
-      <% end %>
-      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
-      <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
-      <% end %>
-      <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
-      <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
-      <% end %>
-    </div>
+    <p class="font-bright-pink mb-2">Amenities </p>
+    <%= link_to "View Amenities", reservation_hotel_amenities_path(@reservation), class: "btn btn-dark w-100" %>
   </div>
 </div>
+
+<%# --- UNUSED OLD AMENITIES BUTTONS: --- %>
+<% if false %>
+  <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Essentials"), style: "color: white;" do %>
+    <button class="btn btn-dark mb-1" style="width:150px"> <%= image_tag "icons/towels_&_linens.svg", height:50, class:"icon-white" %><br>Essentials</button>
+  <% end %>
+  <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Bed & Bath"), style: "color: white;" do %>
+  <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/washer.svg", height:50, class:"icon-white" %> <br> Bed and Bath</button>
+  <% end %>
+  <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Kitchen"), style: "color: white;" do %>
+  <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/pots_&_pans.svg", height:50, class:"icon-white" %> <br> Kitchen</button>
+  <% end %>
+  <%= link_to reservation_hotel_amenities_path(@reservation, :category => "Other"), style: "color: white;" do %>
+  <button class="btn btn-dark mb-1" style="width:150px"><%= image_tag "icons/phone_charger.svg", height:50, class:"icon-white" %> <br>Others</button>
+  <% end %>
+<% end %>
