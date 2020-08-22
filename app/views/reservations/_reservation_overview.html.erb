@@ -8,7 +8,7 @@
         <p class="reservation-body-text d-flex align-items-center" style="color: orange;">
           <%= @latest_in_request.time.strftime("%l:%M%p") %>
           <span style="font-size: 12px; margin-left: 4px;">pending</span>
-        </p>       
+        </p>
       <% end %>
     </div>
 
@@ -20,7 +20,7 @@
           <p class="reservation-body-text d-flex align-items-center" style="color: orange;">
             <span style="font-size: 12px; margin-right: 4px;">pending</span>
             <%= @latest_out_request.time.strftime("%l:%M%p") %>
-          </p> 
+          </p>
       <% end %>
     </div>
   </div>
@@ -31,8 +31,8 @@
   <div class="card-show-page mt-2">
     <p class="reservation-body-header">Address:</p>
     <p class="reservation-body-text"> <%= reservation.hotel.name %> </p>
-    <p> <%= reservation.hotel.address %></p>
-    <p class="reservation-body-header">Room Number:</p>
+    <p class="reservation-body-text"> <%= reservation.hotel.address %></p>
+    <p class="reservation-body-header mt-2">Room Number:</p>
     <p class="reservation-body-text"> <%= reservation.room_number %></p>
   </div>
   <a class="btn btn-dark button-full-width mt-1 mb-1" target="_blank" href="https://goo.gl/maps/hD8UjpGJk3ppnxtUA">Open on Google Map</a>

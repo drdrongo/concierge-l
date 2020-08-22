@@ -4,14 +4,14 @@
 	}
 
 	input[type=radio]:hover + label {
-		background-color: lightblue;
+		background-color: #018A6A;
 		transition: background-color 0.2s;
 		transition-timing-function: ease-out;
 	}
 
 	input[type=radio]:checked + label {
-		background-color: cadetblue;
-		border: 1px solid white;
+		background-color: #018A6A;
+		border: 1px solid #018A6A;
 		color: white;
 		transition: background-color 0.2s, color: 0.2s;
 	}
@@ -31,7 +31,7 @@
 		vertical-align: middle;
 		cursor: pointer;
 		background-color: white;
-		border: 1px solid cadetblue;
+		border: 1px solid black;
 		margin-bottom: 4px;
 		min-width: 150px;
 		flex-grow: 1;
@@ -53,7 +53,7 @@
 				<h6 class="reservation-body-header align-self-center">Arrival Time</h6>
 				<%= radio_button_tag 'arrival_time', in_time, (@reservation.arrival_time == in_time), id: 'arrival-1'%>
 					<%= label_tag 'arrival_time', '3:00PM (¥0)', for: 'arrival-1' %>
-				
+
 				<%= radio_button_tag 'arrival_time', in_time - 1.hour, (@reservation.arrival_time == in_time - 1.hour), id: 'arrival-2' %>
 				<%= label_tag 'arrival_time', '2:00PM (¥1000)', for: 'arrival-2'  %>
 
@@ -74,7 +74,7 @@
 				<h6 class="reservation-body-header align-self-center">Departure Time</h6>
 				<%= radio_button_tag 'departure_time', out_time, (@reservation.departure_time == out_time), id: 'departure-1' %>
 				<%= label_tag 'departure_time', '11:00AM (¥0)', for: 'departure-1' %>
-				
+
 				<%= radio_button_tag 'departure_time', out_time + 1.hour, (@reservation.departure_time == out_time + 1.hour), id: 'departure-2' %>
 				<%= label_tag 'departure_time', '12:00PM (¥1000)', for: 'departure-2' %>
 
@@ -91,8 +91,8 @@
 				<%= label_tag 'departure_time', '4:00PM (¥5000)', for: 'departure-6' %>
 			</div>
 		</div>
-		
+
 		<%= f.submit 'Request Time Changes', class: 'mt-3 btn btn-primary' %>
 	<% end %>
-		
+
 </div>

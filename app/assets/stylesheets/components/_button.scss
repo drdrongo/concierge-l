@@ -37,14 +37,14 @@
 
 .nav-pills .nav-link {
   color: white;
-  background-color: $light-purple;
-  border: 1px solid $light-purple;
+  background-color: $green;
+  border: 1px solid $green;
 }
 
 .nav-pills .nav-link.active {
-  color: $light-purple;
+  color: $green;
   background-color: white;
-  border: 1px solid $light-purple;
+  border: 1px solid $green;
   img {
     filter: invert(0.3);
   }

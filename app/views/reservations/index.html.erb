@@ -13,9 +13,10 @@
       <%= render 'reservations/reservation_card', reservation: reservation %>
     <% end %>
   <% end %>
+
 </div>
 
-<div class="bottom-sticky double-buttons">
-  <a href="https://www.section-l.co" target="_blank" class="btn btn-success">Book New</a>
-  <%= link_to 'Find your Booking', new_reservation_path, class: "btn btn-primary"%>
-</div>
+  <div class="bottom-sticky double-buttons">
+    <a href="https://www.section-l.co" target="_blank" class="btn btn-warning">Book New</a>
+    <%= link_to 'Find Your Booking', new_reservation_path, class: "btn btn-primary"%>
+  </div>
