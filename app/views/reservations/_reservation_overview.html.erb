@@ -3,7 +3,7 @@
     <div>
       <h6 class="reservation-body-header">Check-in </h6>
       <p class="body-text-large"><%= reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")%> <small><%= reservation.check_in_date.strftime("(%a)")%></small></p>
-      <p class="body-text-large"><%= (reservation.arrival_time).strftime("%l:%M%p") %></p>
+      <p class="body-text-large"><%= (reservation.arrival_time).strftime("%l:%M%p") %> <span style="color: limegreen; align-items: center;"><small><%= 'early' if @reservation.time_requests.where({status: 'accepted', check_in: true}).first %></small></span></p>
       <% if @latest_in_request %>
         <p class="reservation-body-text d-flex align-items-center" style="color: orange;">
           <%= @latest_in_request.time.strftime("%l:%M%p") %>
@@ -15,7 +15,7 @@
     <div class="d-flex flex-column align-items-end">
       <h6 class="reservation-body-header">Check-out </h6>
       <p class="body-text-large"><%= reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")%> <small><%= reservation.check_out_date.strftime("(%a)")%></small></p>
-      <p class="body-text-large" ><%= reservation.check_out_date.strftime("#{(reservation.departure_time).strftime("%l:%M%p")}") %></p>
+      <p class="body-text-large" ><span style="color: limegreen; align-items: center;"><small><%= 'late' if @reservation.time_requests.where({status: 'accepted', check_in: false}).first %></small></span> <%= reservation.check_out_date.strftime("#{(reservation.departure_time).strftime("%l:%M%p")}") %></p>
       <% if @latest_out_request %>
           <p class="reservation-body-text d-flex align-items-center" style="color: orange;">
             <span style="font-size: 12px; margin-right: 4px;">pending</span>
