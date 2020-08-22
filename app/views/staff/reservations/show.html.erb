@@ -5,7 +5,7 @@
     <%= render 'reservations/title_down_arrows', text: "#{@reservation.user.first_name}'s Room" %>
 
     <% room_type = (@reservation.room_number % 10).to_s %>
-    <%= image_tag("room_#{room_type + (@reservation.room_number == 101 ? 'a' : '')}.jpg", class: "w-100 mt-1")  %>
+    <%#= image_tag("room_#{room_type + (@reservation.room_number == 101 ? 'a' : '')}.jpg", class: "w-100 mt-1")  %>
 
   <ul class="d-flex justify-content-around nav nav-pills nav-fill mb-3 mt-3 button-selected" id="pills-tab" role="tablist">
     <li class="nav-item mr-2" role="presentation">

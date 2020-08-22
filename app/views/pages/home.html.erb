@@ -1,40 +1,41 @@
-<div class="container-fluid p-0 d-flex flex-column" style="background-color: #FFFFFF; height: 100%">
+<div class="container-fluid p-0 d-flex flex-column" style="height: 100%">
 
-  <div class="container-fluid d-flex top-space-2" style="background-color: #FFFFFF;">
-     </div>
-  <div class="container-fluid d-flex h-25 justify-content-center top-space">
+  <div class="container-fluid d-flex top-space-2" style="background-color: #FFFFFF;"></div>
+  <div class="container-fluid d-flex justify-content-center top-space mb-3">
     <%= image_tag("CONCIERGE_L.png", style: "width: 230px; height: 50px;") %>
-     </div>
-
-  <div class="d-flex h-25 justify-content-center card-show-page">
-    <div class="d-flex flex-column text-center align-items-center">
-      <%= image_tag("checkin_l", style: "width: 90px; height: 80px; margin-right: 10px; margin-bottom: 5px;") %>
-      Check-in Early
-    </div>
-
-    <div class="d-flex flex-column text-center align-items-center left-item">
-      <%= image_tag("boss_l", style: "width: 90px; height: 80px; margin-right: 10px; margin-bottom: 5px;") %>
-        Request Amenities
-    </div>
   </div>
-  <div class="d-flex h-25 top-space justify-content-center card-show-page">
-    <div class="d-flex flex-column text-center align-items-center">
-      <%= image_tag("discover_l", style: "width: 90px; height: 85px; margin-right: 10px; margin-bottom: 5px;") %>
-      Discover Gems
-    </div>
+  <%= render 'reservations/title_down_arrows', text: "" %>
+  <div class="card-home mt-3">
+    <div class="d-flex justify-content-center mb-3">
+      <div class="d-flex flex-column text-center align-items-center">
+        <%= image_tag("checkin_l", style: "width: 90px; height: 80px; margin-right: 10px; margin-bottom: 5px;") %>
+        <p class="thick">Check-in Early</p>
+      </div>
 
-    <div class="d-flex flex-column text-center align-items-center left-item">
-      <%= image_tag("buddy_l", style: "width:90px; height: 80px; margin-right: 10px; margin-bottom: 5px; margin-top: 5px;") %>
-      Find Travel Buddies
+      <div class="d-flex flex-column text-center align-items-center left-item">
+        <%= image_tag("boss_l", style: "width: 90px; height: 80px; margin-right: 10px; margin-bottom: 5px;") %>
+          <p class="thick">Request Amenities</p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-column text-center align-items-center">
+        <%= image_tag("discover_l", style: "width: 90px; height: 85px; margin-right: 10px; margin-bottom: 5px;") %>
+        <p class="thick">Discover Gems</p>
+      </div>
+
+      <div class="d-flex flex-column text-center align-items-center left-item">
+        <%= image_tag("buddy_l", style: "width:90px; height: 80px; margin-right: 10px; margin-bottom: 5px; margin-top: 5px;") %>
+        <p class="thick">Find Travel Buddies</p>
+      </div>
     </div>
   </div>
 
       <% if user_signed_in? %>
-<%= link_to "Take me to Section L", reservations_path, class: "btn btn-primary w-100 top-space-2" %>
-<%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-secondary w-100 top-space-2" %>
+<%= link_to "Take me to Section L", reservations_path, class: "btn btn-info top-space-2 btn-sign-up" %>
+<%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn-log-out mt-3" %>
         <% else %>
-<%= link_to 'Sign Up', new_user_session_path, class: "btn btn-primary w-100" %>
-<%= link_to "Login", user_session_path, class: "btn btn-success w-100 top-space-2" %>
+<%= link_to 'Sign Up', new_user_session_path, class: "btn btn-info top-space-2 btn-sign-up" %>
+<%= link_to "Already have an account? Log in here", user_session_path, class: "top-space-2 btn-log-out mt-3 font-gray" %>
       <% end %>
 
-  </div>
+</div>

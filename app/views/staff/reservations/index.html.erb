@@ -13,13 +13,13 @@
 
     <%= link_to staff_reservation_path(reservation) do %>
       <div class="staff-reservation-card">
-        <h5 class="mb-0 mr-3 pl-2 font-green" style="flex-basis: 40%;"><%= "#{reservation.user.first_name.capitalize} #{reservation.user.last_name.capitalize}" %></h5>
+        <h5 class="mb-0 mr-3 pl-2" style="flex-basis: 40%;"><%= "#{reservation.user.first_name.capitalize} #{reservation.user.last_name.capitalize}" %></h5>
         <div class="d-flex flex-column flex-grow-1">
           <div class="d-flex flex-row justify-content-between">
             <small><p class="mb-0">
               <%= now %>
             </p></small>
-            <small><p class="mb-0"><%= reservation.hotel.name.gsub('Section L ', '@') %></p></small>
+            <small><p class="mb-0"><%= reservation.hotel.name.gsub('Section L ', '@') %> <%= reservation.room_number %></p></small>
           </div>
           <strong>
             <p class="staff-reservation-card-date"><%= "#{reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")}  -  #{reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")}" %></p>
