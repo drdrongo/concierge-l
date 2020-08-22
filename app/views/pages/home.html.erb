@@ -1,36 +1,33 @@
-<div class="container-fluid p-0 d-flex flex-column" style="background-color: #F1EEE9; height: 100%">
+<div class="container-fluid p-0 d-flex flex-column" style="background-color: #FFFFFF; height: 100%">
 
-  <div class="container-fluid d-flex h-50" style="background-color: #F1EEE9;">
+  <div class="container-fluid d-flex top-space-2" style="background-color: #FFFFFF;">
      </div>
-  <div class="container-fluid d-flex h-50 justify-content-center top-space-2">
+  <div class="container-fluid d-flex h-25 justify-content-center top-space">
     <%= image_tag("CONCIERGE_L.png", style: "width: 230px; height: 50px;") %>
      </div>
 
-  <%= render 'reservations/title_down_arrows', text: "You Can" %>
-
-
-  <div class="container-fluid list-item-home top-space font-grey" >
-  <%= image_tag("icons/time.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>
-  Customize check-in/out time
+  <div class="d-flex h-25 justify-content-center card-show-page">
+    <div class="d-flex flex-column text-center align-items-center">
+      <%= image_tag("checkin_l", style: "width: 90px; height: 80px; margin-right: 10px; margin-bottom: 5px;") %>
+      Check-in Early
     </div>
 
-  <div class="container-fluid list-item-home font-grey">
-  <%= image_tag("icons/towels_&_linens.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>
-  Request free amenities
+    <div class="d-flex flex-column text-center align-items-center left-item">
+      <%= image_tag("boss_l", style: "width: 90px; height: 80px; margin-right: 10px; margin-bottom: 5px;") %>
+        Request Amenities
+    </div>
+  </div>
+  <div class="d-flex h-25 top-space justify-content-center card-show-page">
+    <div class="d-flex flex-column text-center align-items-center">
+      <%= image_tag("discover_l", style: "width: 90px; height: 85px; margin-right: 10px; margin-bottom: 5px;") %>
+      Discover Gems
     </div>
 
-  <div class="container-fluid list-item-home font-grey">
-    <%= image_tag("icons/pin-heart.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px;") %>
-    Discover gems in the neighborhood
+    <div class="d-flex flex-column text-center align-items-center left-item">
+      <%= image_tag("buddy_l", style: "width:90px; height: 80px; margin-right: 10px; margin-bottom: 5px; margin-top: 5px;") %>
+      Find Travel Buddies
     </div>
-
-  <div class="container-fluid list-item-home font-grey">
-    <%= image_tag("icons/meeting.svg", style: "width: 20px; height: 20px; margin-right: 10px; margin-bottom: 5px; margin-top: 5px;") %>
-    Find like-minded dining buddies
-    </div>
-
-  <!-- <h5 class="thick font-light-purple" style="text-align:center;">What Are You Waiting For?</h5> -->
-
+  </div>
 
       <% if user_signed_in? %>
 <%= link_to "Take me to Section L", reservations_path, class: "btn btn-primary w-100 top-space-2" %>
