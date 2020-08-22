@@ -94,9 +94,9 @@ end
 puts 'Creating several time requests..'
 3.times do
   time_request = TimeRequest.new(
-    time: Time.now,
+    time: [ Time.new(2000, 1, 1, 15), Time.new(2000, 1, 1, 14), Time.new(2000, 1, 1, 13) ].sample,
     reservation: Reservation.all.sample,
-    check_in: true,
+    check_in: [true, false].sample,
     status: 'pending'
   )
   time_request.save
