@@ -1,0 +1,59 @@
+.suggestions {
+  width: 100%;
+  background-color: white;
+  padding: 16px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.suggestions-cards {
+  display: flex;
+  flex-basis: 33%;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.suggestions-cards .card-event {
+  flex-shrink: 1;
+  flex-grow: 1;
+  width: 30%;
+  background-color: #f8d2c1;
+  padding: 8px;
+  height: auto;
+  font-weight: lighter;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  &:hover {
+    text-decoration: none;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
+    background-color: $light-orange;
+    transform: translateY(-1px);
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  &:active {
+    transform: transateY(1px);
+  }
+}
+
+.suggestions-cards .card-event .card-event-picture h1 {
+  font-size: large;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.suggestions .event-venue {
+  word-wrap: break-word;
+}
+
+.attendee-icon {
+  width: 20px;
+  height: 20px;
+}

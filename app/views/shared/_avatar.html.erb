@@ -1,0 +1,5 @@
+<% if user.photo.attached? %>
+  <%= link_to cl_image_tag(user.photo.key, class: "avatar rounded-circle mr-3"), user_path(user) %>
+<% else %>
+  <%= image_tag("https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-27.jpg", class: "avatar rounded-circle mr-3") %>
+<% end %>

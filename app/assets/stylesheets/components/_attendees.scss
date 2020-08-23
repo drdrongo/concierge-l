@@ -1,0 +1,59 @@
+.container-window {
+  text-align: center;
+  background: white;
+  border: 1px solid white;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 16px;
+}
+
+.container-window ul {
+  padding: 0;
+  margin: 0;
+}
+
+.attendee {
+  background: white;
+  height: 80px;
+  padding: 8px;
+  margin-bottom: 8px;
+  margin-right: 0;
+}
+
+.attendee .avatar {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.attendee h5 {
+  padding-top: 8px;
+  color: green;
+}
+
+.my-button {
+  background-color: inherit;
+  border: none;
+  padding: none;
+  font-size: 32px;
+  float: right;
+  line-height: 100%;
+  padding-bottom: 16px;
+}
+
+.btn-decline {
+  color: maroon;
+  &:hover {
+    color: red;
+  }
+}
+
+.btn-accept {
+  color: green;
+  &:hover {
+    color: lightgreen;
+  }
+}

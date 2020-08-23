@@ -1,4 +1,6 @@
 <div class="font-grey">
+  <% room_type = (@reservation.room_number % 10).to_s %>
+  <%= image_tag("room_#{room_type + (@reservation.room_number == 101 ? 'a' : '')}.jpg", class: "w-100 mt-1 mb-2")  %>
   <div class="card-show-page card-reservation-time">
     <div>
       <h6 class="reservation-body-header">Check-in </h6>

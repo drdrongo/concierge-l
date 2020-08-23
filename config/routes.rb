@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   resources :articles, only: %i[ show ]
 
-  namespace :staff do 
+  namespace :staff do
     root 'reservations#index'
     resources :reservations, only: %i[ index show update ] do
       resources :messages, only: :create
@@ -19,4 +19,10 @@ Rails.application.routes.draw do
       resources :requests, only: %i[ create update ]
     end
   end
+  get '/dashboard', to: "users#dashboard"
+  resources :events do
+    resources :tickets, only: [:create]
+   end
+  resources :tickets, only: [:update]
+  resources :users
 end

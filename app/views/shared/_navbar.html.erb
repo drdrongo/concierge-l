@@ -1,0 +1,56 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag "https://images.squarespace-cdn.com/content/5eec60c93b09b86005154cce/1594183751882-RO2PIKVT9OLMSBN2WA0H/%E3%82%A2%E3%82%BB%E3%83%83%E3%83%88+2.png?content-type=image%2Fpng" %>
+  <% end %>
+<div>
+    <ul class="navbar-nav mr-auto">
+    <% if user_signed_in? %>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse topnav-right" id="navbarSupportedContent">
+
+        <li class="nav-item">
+          <%= link_to "My Dines", "/dashboard", class: "nav-link #{"active" if params[:controller] == "users" && params[:action] == "dashboard"}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "All Dines", "/events", class: "nav-link #{"active" if params[:controller] == "events" && params[:action] == "index"}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Create Dines", "/events/new", class: "nav-link #{"active" if params[:controller] == "events" && params[:action] == "new"}" %>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "My events", "#", class: "dropdown-item" %>
+            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse topnav-right" id="navbarSupportedContent">
+
+
+        <li class="nav-item">
+          <%= link_to "All Dines", "/events", class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+
+      <% end %>
+    </ul>
+
+</div>
+  </div>
+</div>

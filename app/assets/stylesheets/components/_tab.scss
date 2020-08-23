@@ -1,0 +1,37 @@
+#myTab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+#myTab li {
+  min-width: 0px;
+}
+
+.tab-host {
+  background-color: purple;
+}
+
+.tab-attendee {
+  background-color: turquoise;
+}
+
+.nav-link .active {
+  color: red;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  border: 1px solid white;
+  margin-right: 2px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
