@@ -81,3 +81,30 @@
   text-decoration: underline;
 }
 
+//frineds of l
+
+.button-green {
+  background-color: $green;
+  color: white;
+  border: 2px solid $green;
+}
+
+.button-green:hover {
+  background-color: white;
+  color: $green;
+  border: 2px solid $green;
+}
+
+.button-request-green {
+  flex-grow: 1;
+  width: 360px;
+  margin-top: 16px;
+}
+
+.button-request-grey {
+  flex-grow: 1;
+  width: 360px;
+  margin-top: 32px;
+}
+
+

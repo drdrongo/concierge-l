@@ -1,0 +1,28 @@
+<% if events.length.zero? %>
+  <div class="no-events-display">
+    <h3>No events to display!</h3>
+    <p>Browse the "All Events" tab to see events others have created,</p>
+    <p>or click "make an event" to organize your own!</p>
+  </div>
+<% else %>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <% events.each do |event| %>
+      <li class="nav-item">
+        <a class="nav-link <%= 'active' if events.first == event %>" id="event-<%=event.id%>-tab" data-toggle="tab" href="#event-<%=event.id%>" role="tab" aria-controls="event-<%=event.id%>" aria-selected="false">
+          <h6 class="ellipsis"><%=event.title%></h6>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <% events.each do |event| %>
+      <div class="tab-pane fade py-3 <%= 'show active' if events.first == event %>" id="event-<%=event.id%>" role="tabpanel" aria-labelledby="event-<%=event.id%>-tab">
+        <%= render "shared/event_details", event: event %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+

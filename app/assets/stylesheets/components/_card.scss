@@ -1,4 +1,4 @@
-.card-reservation {
+  .card-reservation {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -140,3 +140,138 @@
   width:90%;
   margin: 0 auto;
 }
+
+.card-buddy {
+  background-color: white;
+  width:90%;
+  margin: auto;
+}
+
+// friends of l
+
+.container-cards-events a {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  flex: 0 2 100%;
+}
+
+.card-event {
+  max-width: 100%;
+  height: auto;
+  padding: 10px;
+  min-width: 330px;
+  font-weight: lighter;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  &:hover {
+    text-decoration: none;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
+    // background-color: $light-orange;
+    transform: translateY(-1px);
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  &:active {
+    transform: transateY(1px);
+  }
+}
+@media screen and (min-width: 45em) {
+  .container-cards-events a {
+    flex: 0 2 calc(50% - 1em);
+  }
+
+}
+@media screen and (min-width: 72em) {
+  .container-cards-events a {
+    flex: 0 2 calc(33% - 1em);
+  }
+}
+@media screen and (min-width: 100em) {
+  .container-cards-events a {
+    flex: 0 2 calc(25% - 1em);
+  }
+}
+
+.card-event-picture {
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .5) 30%, rgba(0, 0, 0, 0.8) 100%), attr(data-background-url);
+  min-width: 300px;
+  background-size: cover;
+  width: 100%;
+  height: 150px;
+  margin: 0 auto;
+  background-position: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.card-event-picture-show {
+  min-width: 300px;
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+  margin: 0 auto;
+  background-position: center;
+  position: relative;
+  object-fit: cover;
+}
+
+.event-title {
+  font-size: 4vh;
+  padding-top: 25px;
+}
+
+.card-event-info {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  height: 110px;
+}
+
+
+.card-event-info-right {
+  position: relative;
+  text-align: center;
+  width: 104px;
+  word-wrap: break-word;
+  line-height: 1.3;
+}
+
+.card-event-info-show {
+  background: white;
+  max-width: 360px;
+  word-wrap: break-word;
+}
+
+.card-sticky {
+  position: sticky;
+  max-width: 360px;
+}
+
+.card-event-avatar {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-event-avatar-show {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  position:absolute;
+  right: 40px;
+  top:  470px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.card-event-date-stacked {
+  text-align: center;
+}
+

@@ -1,6 +1,9 @@
 <div class="card-show-page">
-  <h5 class="font-green"><strong>More Delicious Together</strong></h5>
+  <h5 class="font-green text-center justify-content-center"><strong>More Delicious Together</strong></h5>
+  <%= image_tag("buddy_l", class: "card-buddy mb-2 ml-3") %>
+
   <p>You can participate / orgainize dining out or cooking sessions with other guests staying at Section L.</p>
   <p>Like-minded buddies can make your trip more fun. What are you waiting for?</p>
 </div>
-  <a class="btn btn-dark button-full-width mt-1" target="_blank" href="http://friends-of-l.herokuapp.com/">Check out our community app</a>
+  <%= link_to "Check Out Friends of L", events_path, class: "btn btn-info w-100 thick" %>
+  <!-- <a class="btn btn-dark button-full-width mt-1" target="_blank" href="http://friends-of-l.herokuapp.com/">Check Out Friends of L</a> -->

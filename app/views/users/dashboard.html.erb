@@ -1,0 +1,29 @@
+<div class="d-flex">
+  <div class="side-bar">
+    <%= link_to dashboard_path(tab: 'hosting'), class: "side-link #{'active' if params[:tab] == "hosting"}" do %>
+      <%= image_tag "event-confirm@4x.png", class: "side-link-icon" %>
+      <p class="mb-0 text-decoration-none">hosting</p>
+    <% end %>
+    <%= link_to dashboard_path(tab: 'accepted'), class: "side-link #{'active' if params[:tab] == 'accepted'}" do %>
+      <%= image_tag "ticket@4x.png", class: "side-link-icon" %>
+      <p class="mb-0 text-decoration-none">accepted</p>
+    <% end %>
+    <%= link_to dashboard_path(tab: 'pending'), class: "side-link #{'active' if params[:tab].nil? || params[:tab] == 'pending'}" do %>
+      <%= image_tag "hourglass@4x.png", class: "side-link-icon" %>
+      <p class="mb-0 text-decoration-none">pending</p>
+    <% end %>
+  </div>
+
+  <div class="container container-events-tab">
+    <% if params[:tab] == "hosting" %>
+      <h1 class="title-green">Hosting</h1>
+      <%= render "users/events", events: @hosting %>
+    <% elsif params[:tab] == "accepted" %>
+      <h1 class="title-green">Attending</h1>
+      <%= render "users/events", events: @accepted %>
+    <% elsif params[:tab] == "pending" || params[:tab].nil? %>
+      <h1 class="title-green">Pending requests</h1>
+      <%= render "users/events", events: @pending %>
+    <% end %>
+  </div>
+</div>

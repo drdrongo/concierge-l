@@ -49,3 +49,27 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+//friends of l
+.container-cards-events {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-light-pink {
+  background-color: $lightest-pink;
+}
+
+.container-white {
+  background-color: white;
+}

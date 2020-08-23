@@ -1,0 +1,61 @@
+<div class="d-flex flex-column align-items-stretch">
+
+  <% accepted = event.tickets.where(status: "accepted") %>
+  <p class="thick">Attendees (<%= accepted.length + 1 %>)</p>
+  <ul class="ul-no-indentation" style="list-style-type:none">
+
+    <li class="d-flex attendee align-items-center">
+        <%= render "shared/avatar", user: event.user %>
+        <p class="mb-0 text-decoration-none"><%= link_to event.user.first_name.capitalize, user_path(event.user) %> (Host)</p>
+    </li>
+
+    <% if event.user != current_user %>
+
+      <% accepted.each do |ticket| %>
+        <li>
+          <div class="d-flex attendee align-items-center text-decoration-none">
+            <%= render "shared/avatar", user: ticket.user %>
+            <%= link_to ticket.user.first_name, user_path(ticket.user) %>
+          </div>
+        </li>
+      <% end %>
+
+    <% else %>
+
+      <% event.tickets.where(status: "pending").each do |ticket| %>
+        <li>
+          <div class="d-flex attendee align-items-center justify-content-between">
+            <%= render "shared/avatar", user: ticket.user %>
+            <%= link_to ticket.user.first_name, user_path(ticket.user) %>
+
+            <div class="d-flex align-items-center">
+              <%= simple_form_for(ticket) do |f| %>
+                <%= f.input :status, input_html: { value: "accepted" }, as: :hidden %>
+                <%= button_tag type: 'submit', class: "my-button btn-accept" do %>
+                  <i class="far fa-check-circle"></i>
+                <% end %>
+              <% end %>
+              <%= simple_form_for(ticket) do |f| %>
+                <%= f.input :status, input_html: { value: "declined" }, as: :hidden %>
+                <%= button_tag type: 'submit', class: "my-button btn-decline" do %>
+                  <i class="far fa-times-circle"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+      <% accepted.each do |ticket| %>
+        <li>
+          <div class="d-flex attendee align-items-center justify-content-between">
+            <%= render "shared/avatar", user: ticket.user %>
+            <%= link_to ticket.user.first_name, user_path(ticket.user) %><h5 class="font-italic pr-2">Accepted</h5>
+          </div>
+        </li>
+      <% end %>
+
+    <% end %>
+  </ul>
+</div>
+

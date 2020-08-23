@@ -1,0 +1,106 @@
+<div class="event-container ">
+  <div>
+    <% if event.photo.attached? %>
+      <%= cl_image_tag event.photo.key, class:"card-event-picture-show mb-2" %>
+    <% else %>
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" alt="Breakfast Pic" width=700px>
+    <% end %>
+  </div>
+  <div class="card-show-page">
+    <% category_icon = event.category == 'Cooking' ? 'chef@4x.png' : 'cutlery@4x.png' %>
+    <p class="mb-1"> <%= image_tag category_icon, height:20 %>  <%= event.category %></p>
+    <h4 class="font-green thick"><%= event.title %></h4>
+      <div class="flex-between">
+        <div>
+          <div class="flex">
+            <div>
+              <% d = event.datetime %>
+              <%= image_tag "time-alarm@4x.png", height:30 %>
+            </div>
+            <div >
+              <p class="mb-0 ml-2"> <%= d.strftime("%b #{d.day.ordinalize} (%a)") %> <br> <%= d.strftime("%l:%M%p") %> - 9:00pm </p>
+            </div>
+          </div>
+
+          <div class="flex">
+            <%= image_tag "pin-star@4x.png", height:30 %> <p class="mb-0 ml-2"> <%= event.venue%></p>
+          </div>
+          <% if Ticket.where(user: current_user, event: event, status: "accepted").exists? %>
+            <p> <%= image_tag "pin-star@4x.png",   height:30 %> <%= event.user.email %></p>
+          <% end %>
+        </div>
+
+        <div class="card-event-avatar-show" >
+          <% if event.user.photo.attached? %>
+            <%= link_to cl_image_tag(event.user.photo.key, class: "avatar-large"), user_path(event.user) %>
+          <% else %>
+            <%= image_tag("https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80", class: "avatar-large") %>
+          <% end %>
+          <p class="mb-0 text-decoration-none"> <%= link_to event.user.first_name.capitalize, user_path(event.user) %></p>
+        </div>
+
+      </div>
+      <p class="thick mt-3 mb-1"> Event Details</p>
+        <%= simple_format(event.description) %>
+
+        <% if event.user != current_user %>
+            <div>
+              <% if Ticket.where(user: current_user, event: event).exists? %>
+                <button class="btn btn-warning w-100 mt-3" disabled>Request Sent</button>
+              <% else %>
+                <%= simple_form_for [event, Ticket.new] do |f| %>
+                  <%= f.input :status, as: :hidden %>
+                  <%= f.submit "Request to join", class: "btn btn-warning w-100"%>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+    </div>
+    <div class="card-show-page mt-3"><%= render 'shared/approval', event: event %></div>
+
+
+
+<!-- <div class="suggestions">
+  <h2>More Suggestions For You</h2>
+  <div class="suggestions-cards">
+    <% events = Event.all.sample(3) %>
+    <% events.each do |event| %>
+      <%= link_to(event) do %>
+        <% d = event.datetime %>
+        <div class="card-event mb-3">
+        <% background_url = event.photo.attached? ? cl_image_path(event.photo.key, height: 300, width: 300, crop: :fill)  : "https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80" %>
+
+          <div class="card-event-picture"
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .5) 30%, rgba(0, 0, 0, 0.8) 100%), url( <%= background_url %>);">
+
+            <h1 class="event-title"><%= event.title %></h1>
+            <p class="event-venue"><%= event.venue %></p>
+          </div>
+          <div class="card-event-info m-0">
+            <div class="card-event-info-left align-items-center mb-2">
+              <div class="card-event-date d-flex align-items-center">
+                <h1 class="align-text-bottom mb-0 mr-2"><%= d.strftime("#{d.day.ordinalize}")%></h1>
+                <div class="card-event-date-stacked">
+                  <small><h6 class="mb-1"><%= d.strftime('%b') %></h6></small>
+                  <h5>(<%= d.strftime('%a') %>)</h5>
+                </div>
+              </div>
+              <h5 class="ml-2"><%= d.strftime("%l:%M%P") %> - 9pm</h5>
+            </div>
+            <div class="card-event-info-right">
+            <% if event.user.photo.attached? %>
+              <%= cl_image_tag(event.user.photo.key, class: "card-event-avatar") %>
+                <% else %>
+                <%= image_tag("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80", class: "card-event-avatar") %>
+              <% end %>
+              <p class="mb-2"><strong><%= event.user.first_name %></strong></p>
+              <p class="mb-0 mt-4"><%= event.tickets.where(status: "accepted").length + 1 %> <%= image_tag "single-02@4x.png", class: "attendee-icon" %></p>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+  </div>
+</div>
+ -->

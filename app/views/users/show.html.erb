@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="profile-top"> Hi! I'm <%= @user.first_name %> </h1>
+  <% if @user.photo.attached? %>
+    <%= cl_image_tag @user.photo.key, class: "avatar-extra-large profile" %>
+  <% else %>
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" alt="" width=700px>
+  <% end %>
+
+  <div class="profile-description">
+  <% user_age = ((DateTime.now - @user.birthday.to_date)/365).floor %>
+  <p class="mb-1"> Age: <%= user_age %></p>
+  <%= simple_format(@user.description) %>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<%#= render 'shared/back', path: 'reservation_path' %>
+<div class="container-fluid">
+  <div class="container-cards-events">
+    <%= render 'reservations/title_down_arrows', text: "All Events" %>
+    <% @events.each do |event| %>
+    <%= link_to(event) do %>
+      <% d = event.datetime %>
+      <div class="card-event">
+      <% background_url = event.photo.attached? ? cl_image_path(event.photo.key, height: 300, width: 300, crop: :fill)  : "https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80" %>
+
+        <div class="card-event-picture" style="background-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .5) 30%, rgba(0, 0, 0, 0.8) 100%), url( <%= background_url %>);">
+          <div>
+            <h3 class="event-title"><%= event.title %></h3>
+            <p >@<%= event.venue %></p>
+          </div>
+        </div>
+        <div class="card-event-info">
+          <div class="card-event-info-left align-items-center mb-2">
+            <div class="card-event-date d-flex align-items-center">
+              <p class="align-text-bottom mb-0 mr-2 mt-2" style="font-size: 3vh"><%= d.strftime("%b #{d.day.ordinalize} (%a)")%></p>
+              <div class="card-event-date-stacked">
+                <!-- <small><h6 class="mb-1"><%= d.strftime('%b') %></h6></small> -->
+                <!-- <h5>(<%= d.strftime('%a') %>)</h5> -->
+              </div>
+            </div>
+            <p style="font-size: 2.5vh"><%= d.strftime("%l:%M%p") %> - 9:00pm</p>
+          </div>
+          <div class="card-event-info-right">
+          <% if event.user.photo.attached? %>
+            <%= cl_image_tag(event.user.photo.key, class: "card-event-avatar") %>
+              <% else %>
+              <%= image_tag("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80", class: "card-event-avatar") %>
+            <% end %>
+            <p class="mb-2 font-green"><strong><%= event.user.first_name %></strong></p>
+            <!-- <p class="mb-0">2/<%= event.capacity %></p> -->
+            <!-- <p class="mb-0">capacity</p> -->
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
