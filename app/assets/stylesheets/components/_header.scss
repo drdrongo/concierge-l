@@ -1,7 +1,8 @@
 .box .row.header {
   flex: 0 1 auto;
   display: flex;
-  min-height: 14vh;
+  max-height: 10vh;
+  min-height: 10vh;
   justify-content: center;
   align-items: center;
 }
