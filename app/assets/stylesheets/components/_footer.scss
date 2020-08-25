@@ -16,3 +16,32 @@
   color: white;
 }
 
+.concierge-footer {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  min-height: 10vh;
+  max-height: 10vh;
+  width: 100%;
+  align-items: center;
+  i {
+    font-size: 24px;
+  }
+  .concierge-footer-content {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: flex-end;
+    height: 50%;
+    width: 35%;
+    justify-content: space-between;
+    a {
+      display: flex;
+    }
+  }
+}
+
+.lighten-color {
+  filter: invert(0.3);
+}

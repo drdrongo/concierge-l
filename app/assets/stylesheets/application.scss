@@ -30,16 +30,7 @@ body {
 
 .box .row.content {
   flex: 1 1 auto;
-  height: calc(100% - 14vh);
+  height: calc(100vh - 10vh);
+  overflow: scroll;
 }
 
-.box .row.footer {
-  flex: 0 1 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  ul {
-    list-style: none;
-    display: flex;
-  }
-}
