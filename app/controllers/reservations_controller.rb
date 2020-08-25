@@ -38,14 +38,15 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new
     booking = find_booking
-    render :new unless !booking.nil? && booking["firstNight"] == params[:reservation][:check_in_date]
-
-    create_reservation_with_attributes(booking)
-    find_room(booking)
-    find_user(booking)
-    @reservation.hotel = Hotel.first
-
-    @reservation.save ? (redirect_to edit_reservation_path(@reservation)) : (render :new)
+    if booking.nil? && booking["firstNight"] != params[:reservation][:check_in_date]
+      render :new
+    else
+      create_reservation_with_attributes(booking)
+      find_room(booking)
+      find_user(booking)
+      @reservation.hotel = Hotel.first
+      @reservation.save ? (redirect_to edit_reservation_path(@reservation)) : (render :new)
+    end
   end
 
   private
