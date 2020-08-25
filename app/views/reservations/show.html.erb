@@ -4,9 +4,6 @@
 
   <%= render 'reservations/title_down_arrows', text: "Current Stay" %>
 
-  <%# room_type = (@reservation.room_number % 10).to_s %>
-  <%#= image_tag("room_#{room_type + (@reservation.room_number == 101 ? 'a' : '')}.jpg", class: "w-100 mt-1 mb-2")  %>
-
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
       <%= render 'reservation_overview', reservation: @reservation %>
