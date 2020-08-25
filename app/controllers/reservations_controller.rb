@@ -38,14 +38,16 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new
     booking = find_booking
-    render :new unless !booking.nil? && booking["firstNight"] == params[:reservation][:check_in_date]
+    if booking.nil? && booking["firstNight"] != params[:reservation][:check_in_date]
+      render :new
+    else
+      create_reservation_with_attributes(booking)
+      find_room(booking)
+      find_user(booking)
+      @reservation.hotel = Hotel.first
 
-    create_reservation_with_attributes(booking)
-    find_room(booking)
-    find_user(booking)
-    @reservation.hotel = Hotel.first
-
-    @reservation.save ? (redirect_to edit_reservation_path(@reservation)) : (render :new)
+      @reservation.save ? (redirect_to edit_reservation_path(@reservation)) : (render :new)
+    end
   end
 
   private
@@ -56,7 +58,9 @@ class ReservationsController < ApplicationController
       check_out_date: Date.parse(booking['lastNight']) + 1.day,
       channel: booking['referer'],
       reservation_number: booking['referer'] == 'direct' ? booking['bookId'] : booking['apiReference'],
-      number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i
+      number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i,
+      arrival_time: Time.new(2000, 1, 1, 15, 0, 0, "+00:00").utc,
+      departure_time: Time.new(2000, 1, 1, 11, 0, 0, "+00:00").utc
     )
   end
 

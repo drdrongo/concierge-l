@@ -34,20 +34,20 @@ class TimeRequestsController < ApplicationController
   end
 
   def create_arrival_request(reservation, prms)
-    Time.zone = "Asia/Tokyo"
+    Time.zone = "Etc/UTC"
     TimeRequest.new(
       check_in: true,
       reservation: reservation,
-      time: Time.parse(prms[:arrival_time])
+      time: Time.parse(prms[:arrival_time]).utc
     )
   end
 
   def create_departure_request(reservation, prms)
-    Time.zone = "Asia/Tokyo"
+    Time.zone = "Etc/UTC"
     TimeRequest.new(
       check_in: false,
       reservation: reservation,
-      time: Time.parse(prms[:departure_time])
+      time: Time.parse(prms[:departure_time]).utc
     )
   end
 end
