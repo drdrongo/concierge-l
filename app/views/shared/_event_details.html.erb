@@ -3,7 +3,7 @@
     <% if event.photo.attached? %>
       <%= cl_image_tag event.photo.key, class:"card-event-picture-show mb-2" %>
     <% else %>
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" alt="Breakfast Pic" width=700px>
+      <img class="card-event-picture-show mb-2" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" alt="Breakfast Pic" >
     <% end %>
   </div>
   <div class="card-show-page">

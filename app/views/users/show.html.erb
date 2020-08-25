@@ -1,3 +1,5 @@
+<a href="javascript:history.back()"><%= image_tag 'icons/back-arrow.svg', class: 'back-button' %></a>
+<%#= render 'shared/back', path: 'javascript:history.back()' %>
 <div class="container">
   <h1 class="profile-top"> Hi! I'm <%= @user.first_name %> </h1>
   <% if @user.photo.attached? %>

@@ -1,3 +1,4 @@
+<a href="javascript:history.back()"><%= image_tag 'icons/back-arrow.svg', class: 'back-button' %></a>
 <%#= render 'shared/back', path: 'reservation_path' %>
 <div class="container-fluid">
   <div class="container-cards-events">
@@ -39,6 +40,10 @@
       </div>
       <% end %>
     <% end %>
+    <div class="bottom-sticky double-buttons">
+      <%= link_to 'My Dines', dashboard_path, class: "btn btn-warning"%>
+      <%= link_to 'Create Dine', new_event_path, class: "btn btn-primary"%>
+    </div>
   </div>
 </div>
 
