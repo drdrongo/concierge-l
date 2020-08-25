@@ -12,7 +12,7 @@ Rails.application.configure do
   config.eager_load = true
 
   #time zone
-  config.time_zone = 'Asia/Tokyo'
+  config.time_zone = 'Etc/UTC'
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false

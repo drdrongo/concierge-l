@@ -44,8 +44,8 @@
 </style>
 
 <div  class="container-fluid d-flex w-100 font-grey card-show-page">
-	<% in_time = Time.new(2000, 1, 1, 15) %>
-	<% out_time = Time.new(2000, 1, 1, 11) %>
+	<% in_time = Time.new(2000, 1, 1, 15, 0, 0, "+00:00").utc %>
+	<% out_time = Time.new(2000, 1, 1, 11, 0, 0, "+00:00").utc %>
 
 	<%= form_for :request, url: reservation_time_requests_path(@reservation),  html: { style: "flex-wrap: wrap; display: flex; flex-direction: column; width: 100%;"}, method: :post do |f| %>
 		<div class="d-flex flex-row">
