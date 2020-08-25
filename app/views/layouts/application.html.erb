@@ -29,6 +29,9 @@
       <div class="row content">
         <%= yield %>
       </div>
+      <% if controller_name == "pages"%>
+        <%= render 'shared/footer'%>
+      <% end %>
     </div>
   </body>
 </html>

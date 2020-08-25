@@ -3,14 +3,19 @@
 <%= render 'reservations/title_down_arrows', text: "Your Stays" %>
 
 <div class="container-reservation">
-  <% @upcoming_reservations.each do |reservation| %>
-    <%= render 'reservations/reservation_card', reservation: reservation %>
-  <% end %>
-  <% if @past_reservations.length > 0 %>
-      <%= render 'reservations/title_down_arrows', text: "Where You've Stayed" %>
 
-    <% @past_reservations.each do |reservation| %>
+  <% if @upcoming_reservations.length.zero? && @past_reservations.length.zero? %>
+    <p style="color: grey;">No reservations to show!</p>
+  <% else %>
+    <% @upcoming_reservations.each do |reservation| %>
       <%= render 'reservations/reservation_card', reservation: reservation %>
+    <% end %>
+    <% if @past_reservations.length > 0 %>
+        <%= render 'reservations/title_down_arrows', text: "Where You've Stayed" %>
+
+      <% @past_reservations.each do |reservation| %>
+        <%= render 'reservations/reservation_card', reservation: reservation %>
+      <% end %>
     <% end %>
   <% end %>
 
