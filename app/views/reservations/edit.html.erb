@@ -10,9 +10,7 @@
   }
 
   input[type=radio]:checked + label {
-    background-color: #8e5356;
-    color: white;
-    transition: background-color 0.2s, color: 0.2s;
+    border-color: #018A6A;
   }
 
   input[type=radio] {
@@ -29,8 +27,8 @@
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    background-color: #B27C7E;
-    border: 1px solid #B27C7E;
+    background-color: white;
+      border: 1px solid #B27C7E;
     margin-bottom: 4px;
     display: flex;
     align-items: center;
@@ -68,13 +66,13 @@
   <div class="container-fluid d-flex justify-content-start p-0" style="margin: 0 auto; width: 100%;">
     <%= simple_form_for @reservation, html: { style: "display: flex; flex-wrap: wrap; width: 100%;"}, method: :patch do |f| %>
       <%= f.input :purpose, as: :radio_buttons, required: false, collection: [
-        ['Business', image_tag("icons/business.svg", height:80, class:"icon-white")],
-        ['Leisure', image_tag("icons/leisure.svg", height:80, class:"icon-white")],
-        ['Workation', image_tag("icons/workation.svg", height:80, class:"icon-white")],
-        ['TemporaryHome', image_tag("icons/temp-home.svg", height:80, class:"icon-white")]
+        ['Business', image_tag("purpose_business.jpg", height:90)],
+        ['Leisure', image_tag("purpose_leisure.jpg", height:90)],
+        ['Workation', image_tag("purpose_workation.jpg", height:90)],
+        ['TemporaryHome', image_tag("purpose_home.jpg", height:90)]
       ], label_method: :second, value_method: :first %>
 
-      <%= f.button :submit, class: "btn btn-success w-100" %>
+      <%= f.button :submit, class: "btn btn-primary w-100" %>
     <% end %>
   </div>
 
