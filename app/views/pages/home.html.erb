@@ -30,14 +30,10 @@
   </div>
 
   <% if user_signed_in? %>
-    <% if current_user.reservations.length.zero? %>
-      <%= link_to "Take me to Section L", new_reservation_path, class: "btn btn-info top-space-2 btn-sign-up" %>
-    <% else %>
-      <%= link_to "Take me to Section L", reservations_path, class: "btn btn-info top-space-2 btn-sign-up" %>
-    <% end %>
+    <%= link_to "Take me to Section L", (current_user.reservations.size.zero? ? new_reservation_path : reservations_path), class: "btn btn-info top-space-2 btn-sign-up" %>
     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn-log-out mt-3" %>
   <% else %>
-    <%= link_to 'Sign Up', new_user_session_path, class: "btn btn-info top-space-2 btn-sign-up" %>
+    <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-info top-space-2 btn-sign-up" %>
     <%= link_to "Already have an account? Log in here", user_session_path, class: "top-space-2 btn-log-out mt-3 font-gray" %>
   <% end %>
 
