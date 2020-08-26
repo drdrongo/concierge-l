@@ -18,7 +18,6 @@ const initSwiper = () => {
       },
     },
 
-
     // Navigation arrows
     navigation: {
       nextEl: '.swiper-button-next',

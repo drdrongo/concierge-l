@@ -4,10 +4,8 @@ class HotelAmenitiesController < ApplicationController
     @request = Request.new
 
     @hotel_amenities = @reservation.hotel.hotel_amenities.includes(:amenity)
-    @requestables = @hotel_amenities.where(hotel_amenities: { requestable: true })
 
-    @hotel_amenities = @hotel_amenities.where(hotel_amenities: { requestable: false })
-
+    @additional_items = @hotel_amenities.where(amenities: { category: 'Additional Items' })
     @essentials = @hotel_amenities.where(amenities: { category: 'Essentials' })
     @bed_bath = @hotel_amenities.where(amenities: { category: 'Bed & Bath' })
     @kitchen = @hotel_amenities.where(amenities: { category: 'Kitchen' })

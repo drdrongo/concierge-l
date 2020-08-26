@@ -14,44 +14,39 @@
 
   <div class="swiper-content h-100">
     <% hotel_amenities.each do |hotel_amenity| %>
-
-        <% if hotel_amenity.requestable == false %>
-          <div class="amenity-list-item mb-1 py-1 w-75">
-            <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
-            <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
-          </div>
-        <% end %>
-
-        <% if hotel_amenity.requestable == true %>
-
-         
-
-            <div id='amenity-<%= hotel_amenity.id %>' class="w-75" style="height: 10vh;">
-              <%= form_tag reservation_requests_path, method: :post, remote: true do %>
-                <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
-                
-                <%= button_tag(:submit, data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "amenity-list-item py-3 btn btn-primary swiper-amenity-button") do %>
-                    <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", class: "hotel-amenity-icon") %>
-                    <p class="mb-0" style="line-height: 1em;"><%= hotel_amenity.amenity.name %></p>
-                    <div>
-                      <% if Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "accepted").exists? %>
-                        <i class="fas fa-check"></i>
-                        <span class="hotel-amenity-status-icon" style="color: limegreen;">Accepted</span>
-                      <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "declined").exists? %>
-                        <i class="fas fa-times"></i>
-                        <span class="hotel-amenity-status-icon" style="color: red;">Unavailable</span>
-                      <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation).exists? %>
-                        <i class="fas fa-hourglass-half"></i>
-                        <span class="hotel-amenity-status-icon" style="color: orange;">Pending</span>
-                      <% end %>
-                    </div>
-                <% end %>
+      <% if hotel_amenity.amenity.category == 'Additional Items' %>
+      
+          <div id='amenity-<%= hotel_amenity.id %>' class="w-75 mb-1" style="height: 10vh;">
+            <%= form_tag reservation_requests_path, method: :post, remote: true do %>
+              <%= hidden_field_tag :hotel_amenity_id, hotel_amenity.id %>
+              
+              <%= button_tag(:submit, data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "amenity-list-item py-3 btn swiper-amenity-button") do %>
+                  <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", class: "hotel-amenity-icon") %>
+                  <p class="mb-0" style="line-height: 1em;"><%= hotel_amenity.amenity.name %></p>
+                  <div>
+                    <% if Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "accepted").exists? %>
+                      <i class="fas fa-check"></i>
+                      <span class="hotel-amenity-status-icon" style="color: limegreen;">Accepted</span>
+                    <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "declined").exists? %>
+                      <i class="fas fa-times"></i>
+                      <span class="hotel-amenity-status-icon" style="color: red;">Unavailable</span>
+                    <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation).exists? %>
+                      <i class="fas fa-hourglass-half"></i>
+                      <span class="hotel-amenity-status-icon" style="color: orange;">Pending</span>
+                    <% end %>
+                  </div>
               <% end %>
-            </div>
+            <% end %>
+          </div>
 
-            
-        <% end %>
+      <% else %>
 
+        <div class="amenity-list-item mb-1 py-1 w-75">
+          <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg") %>
+          <p class="mb-0"><%= hotel_amenity.amenity.name %></p>
+        </div>  
+
+      <% end %>
     <% end %>
   </div>
 </div>
