@@ -51,6 +51,8 @@ def create_reservation(user:, hotel:)
   reservation = Reservation.new(
     user: user,
     hotel: hotel,
+    arrival_time: Time.new(2000, 1, 1, 15, 0, 0, "+00:00").utc,
+    departure_time: Time.new(2000, 1, 1, 11, 0, 0, "+00:00").utc,
     check_in_date: Date.today + rand(0..10),
     reservation_number: rand(5555..9999),
     number_of_guests: rand(1..3),
