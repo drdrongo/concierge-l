@@ -65,10 +65,11 @@ end
 # Method that creates many amenities based on the names and categories provided.
 def create_amenities
   amenities_hash = {
-    'Essentials' => ["Wifi", "Heating", "A/C", "First Aid Kit"],
-    'Bed & Bath' => ["Tooth Brush", "Comb", "Razor", "Washer", "Hairdryer", "Iron", "Towels & Linens", "Hangers", "Additional Towels","Additional Linens", "Extra Bed"],
-    'Kitchen'    => ["Dishwasher", "Pots & Pans", "Plates & Glassware", "Cutlery", "Rice Cooker", "Salt & Pepper"],
-    'Other'      => ["TV", "Desk & Chair", "Lobby Coffee Bar", "Slippers", "Vacuum Cleaner","Bluetooth Speaker", "Phone Charger",]
+    'Additional Items' => ["Additional Towels", "Additional Linens", "Extra Bed", "Vacuum Cleaner", "Rice Cooker", "Bluetooth Speaker", "Phone Charger", "Salt & Pepper"],
+    'Essentials'   => ["Wifi", "Heating", "A/C", "First Aid Kit"],
+    'Bed & Bath'   => ["Tooth Brush", "Comb", "Razor", "Washer", "Hairdryer", "Iron", "Towels & Linens", "Hangers"],
+    'Kitchen'      => ["Dishwasher", "Pots & Pans", "Plates & Glassware", "Cutlery"],
+    'Other'        => ["TV", "Desk & Chair", "Lobby Coffee Bar", "Slippers"]
   }
   
   amenities_hash.each_pair do |category, amenities|
@@ -82,13 +83,10 @@ def create_amenities
 end
 
 # Method that links an amenity with a hotel.
-def create_hotel_amenity(amenity:, hotel:)
-  requestables = ["Additional Towels","Additional Linens", "Extra Bed", "Vacuum Cleaner", "Rice Cooker", "Bluetooth Speaker", "Phone Charger", "Salt & Pepper"]
-  
+def create_hotel_amenity(amenity:, hotel:)  
   HotelAmenity.create(
     amenity: amenity,
     hotel: hotel,
-    requestable: requestables.include?(amenity.name)
   )
 end
 
