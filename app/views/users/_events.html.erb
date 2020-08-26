@@ -5,19 +5,8 @@
   </div>
 <% else %>
 
-<!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <% events.each do |event| %>
-      <li class="nav-item">
-        <a class="nav-link <%= 'active' if events.first == event %>" id="event-<%=event.id%>-tab" data-toggle="tab" href="#event-<%=event.id%>" role="tab" aria-controls="event-<%=event.id%>" aria-selected="false">
-          <h6 class="ellipsis"><%=event.title%></h6>
-        </a>
-      </li>
-    <% end %>
-  </ul> -->
-
   <div class="" id="">
     <% events.each do |event| %>
-      <div class=" <%= 'show active' if events.first == event %>" id="event-<%=event.id%>" role="tabpanel" aria-labelledby="event-<%=event.id%>-tab">
         <%= render "shared/event_details", event: event %>
       </div>
     <% end %>
