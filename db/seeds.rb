@@ -111,7 +111,7 @@ end
 
 # Method that creates an Article and HotelArticle for each of the articles in the array.
 def create_articles(hotel:)
-  titles = %w[house_manual neighborhood_guide recycling washer_&_dryer dishwasher heating wifi ]
+  titles = %w[house_manual recycling washer_&_dryer dishwasher heating wifi ]
   
   titles.each do |title|
     HotelArticle.create(article: Article.create(title: title), hotel: hotel)
@@ -230,10 +230,6 @@ puts 'Time requests created successfully!'
 puts 'Creating articles / Guides'
 create_articles(hotel: ginza_east)
 puts 'Articles / guides created successfully!!'
-
-
-
-
 
 # Method that creates an event.
 def create_specific_event(user:, title:, venue:, category:, number:, datetime:)
