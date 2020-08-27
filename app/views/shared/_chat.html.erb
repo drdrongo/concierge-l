@@ -21,7 +21,7 @@
     </div>
 
     <%= simple_form_for message, url: reservation_messages_path(reservation), remote: true do |form| %>
-      <div class="input-group mb-3">
+      <div class="input-group">
         <%= form.input :content, as: :string,
                                   wrapper: false,
                                   label: false,
