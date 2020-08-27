@@ -14,6 +14,7 @@
 
   <div class="swiper-content h-100">
     <% hotel_amenities.each do |hotel_amenity| %>
+
       <% if hotel_amenity.amenity.category == 'Additional Items' %>
       
           <div id='amenity-<%= hotel_amenity.id %>' class="w-75 mb-1" style="height: 10vh;">

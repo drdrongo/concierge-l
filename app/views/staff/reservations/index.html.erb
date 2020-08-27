@@ -12,7 +12,7 @@
     <% end %>
 
     <%= link_to staff_reservation_path(reservation) do %>
-      <div class="staff-reservation-card">
+      <div class="staff-reservation-card <%= 'reservation-card-alert' unless reservation.seen? %>">
         <h5 class="mb-0 mr-3 pl-2" style="flex-basis: 40%;"><%= "#{reservation.user.first_name.capitalize} #{reservation.user.last_name.capitalize}" %></h5>
         <div class="d-flex flex-column flex-grow-1">
           <div class="d-flex flex-row justify-content-between">
