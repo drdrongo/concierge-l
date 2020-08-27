@@ -176,13 +176,13 @@ def create_specific_user(first_name:, last_name:, number:, age: )
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     birthday: age.years.ago
   )
-  user.email = "#{user.first_name}#{number}@gmail.com",
+  user.email = "#{user.first_name}#{number}@gmail.com"
 
-  # url = "app/assets/images/user_#{number}.jpg"
+  url = "app/assets/images/user_#{number}.jpg"
 
-  # file = URI.open(url)
-  # user.photo.attach(io: file, filename: "#{user.first_name}_#{user.last_name}.jpg", content_type: 'image/jpg')
-  user.save
+  file = File.open(url)
+  user.photo.attach(io: file, filename: "#{user.first_name}_#{user.last_name}.jpg", content_type: 'image/jpg')
+  user.save!
 end
 
 # User creation
@@ -245,7 +245,7 @@ def create_specific_event(user:, title:, venue:, category:, number:, datetime:)
     category: category,
   )
   url = "app/assets/images/dine_#{number}.jpg"
-  file = URI.open(url)
+  file = File.open(url)
   event.photo.attach(io: file, filename: "#{event.title}.png", content_type: 'image/png')
   event.end_time = event.datetime + rand(1..3).hours
   event.user = user
