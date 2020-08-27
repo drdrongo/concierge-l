@@ -9,6 +9,7 @@ const scrollChatToBottom = () => {
 };
 
 const createMessage = () => {
+  const userId = parseInt(document.cookie.split(/user_id=/).pop(), 10);
   $(function() {
     $('[data-channel-subscribe="reservation"]').each(function(index, element) {
       var $element = $(element),
@@ -31,12 +32,15 @@ const createMessage = () => {
             var content = messageTemplate.children().clone(true, true);
             content.find('[data-role="message-text"]').text(data.message.content);
             content.find('[data-role="message-date"]').text(data.time_ago);
-
-            content[0].setAttribute("id", data.id);
-
-            content[0].classList.add("align-self-end");
+            content[0].setAttribute("id", "message-" + data.message.id);
+            
+            if (userId === data.author.id) {
+              content[0].classList.add("message-container-self");
+            } else {
+              content[0].classList.add("message-container-buddy");
+            }
+            
             content.find('[data-role="message-user"]').text(data.author.first_name)
-
             $element.append(content);
             scrollChatToBottom();
           }
