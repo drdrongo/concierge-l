@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   def create
     reservation = Reservation.find(params[:reservation_id])
+    reservation.update(seen: false)
     @request = Request.new(
       reservation: reservation,
       hotel_amenity: HotelAmenity.find(params[:hotel_amenity_id])
