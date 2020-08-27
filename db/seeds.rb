@@ -19,7 +19,7 @@ def create_user
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     birthday: rand(52.years.ago .. 20.years.ago)
   )
-  file = URI.open("https://i.pravatar.cc/500")
+  file = URI.open("https://source.unsplash.com/featured/?portrait")
   user.photo.attach(io: file, filename: "#{user.first_name}_#{user.last_name}.png", content_type: 'image/png')
   user.save
   return user
@@ -51,6 +51,8 @@ def create_reservation(user:, hotel:)
   reservation = Reservation.new(
     user: user,
     hotel: hotel,
+    arrival_time: Time.new(2000, 1, 1, 15, 0, 0, "+00:00").utc,
+    departure_time: Time.new(2000, 1, 1, 11, 0, 0, "+00:00").utc,
     check_in_date: Date.today + rand(0..10),
     reservation_number: rand(5555..9999),
     number_of_guests: rand(1..3),
@@ -65,10 +67,11 @@ end
 # Method that creates many amenities based on the names and categories provided.
 def create_amenities
   amenities_hash = {
-    'Essentials' => ["Wifi", "Heating", "A/C", "First Aid Kit"],
-    'Bed & Bath' => ["Tooth Brush", "Comb", "Razor", "Washer", "Hairdryer", "Iron", "Towels & Linens", "Hangers", "Additional Towels","Additional Linens", "Extra Bed"],
-    'Kitchen'    => ["Dishwasher", "Pots & Pans", "Plates & Glassware", "Cutlery", "Rice Cooker", "Salt & Pepper"],
-    'Other'      => ["TV", "Desk & Chair", "Lobby Coffee Bar", "Slippers", "Vacuum Cleaner","Bluetooth Speaker", "Phone Charger",]
+    'Additional Items' => ["Additional Towels", "Additional Linens", "Extra Bed", "Vacuum Cleaner", "Rice Cooker", "Bluetooth Speaker", "Phone Charger", "Salt & Pepper"],
+    'Essentials'   => ["Wifi", "Heating", "A/C", "First Aid Kit"],
+    'Bed & Bath'   => ["Tooth Brush", "Comb", "Razor", "Washer", "Hairdryer", "Iron", "Towels & Linens", "Hangers"],
+    'Kitchen'      => ["Dishwasher", "Pots & Pans", "Plates & Glassware", "Cutlery"],
+    'Other'        => ["TV", "Desk & Chair", "Lobby Coffee Bar", "Slippers"]
   }
   
   amenities_hash.each_pair do |category, amenities|
@@ -82,13 +85,10 @@ def create_amenities
 end
 
 # Method that links an amenity with a hotel.
-def create_hotel_amenity(amenity:, hotel:)
-  requestables = ["Additional Towels","Additional Linens", "Extra Bed", "Vacuum Cleaner", "Rice Cooker", "Bluetooth Speaker", "Phone Charger", "Salt & Pepper"]
-  
+def create_hotel_amenity(amenity:, hotel:)  
   HotelAmenity.create(
     amenity: amenity,
     hotel: hotel,
-    requestable: requestables.include?(amenity.name)
   )
 end
 
@@ -123,7 +123,7 @@ def create_event(user)
     capacity: rand(2..8),
     category: Faker::Restaurant.type,
   )
-  file = URI.open("https://source.unsplash.com/featured/?japanese/food&#{rand(10000)}")
+  file = URI.open("https://source.unsplash.com/1600x900/?japanese/food&#{rand(10000)}")
   event.photo.attach(io: file, filename: "#{event.title}.png", content_type: 'image/png')
   event.end_time = event.datetime + rand(1..3).hours
   event.user = user
@@ -158,7 +158,7 @@ puts 'Database cleared successfully!'
 
 # User creation
 puts 'Creating 10 random users'
-10.times { create_user }
+3.times { create_user }
 puts '10 random users created successfully!.'
 
 puts 'Creating 2 admin users'
@@ -186,7 +186,7 @@ Amenity.all.each{ |amenity| create_hotel_amenity(amenity: amenity, hotel: ginza_
 puts 'Hotel amenities created successfully!'
 
 puts 'Creating 10 time requests'
-10.times{ create_time_request }
+5.times{ create_time_request }
 puts 'Time requests created successfully!'
 
 puts 'Creating articles / Guides'
