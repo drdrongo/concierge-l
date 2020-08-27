@@ -5,6 +5,8 @@ include ActionView::Helpers::DateHelper
 class MessagesController < ApplicationController
   def create
     @reservation = Reservation.find(params[:reservation_id])
+    @reservation.update(seen: false)
+
     @message = Message.create user: current_user,
                               reservation: @reservation,
                               content: message_params[:content]

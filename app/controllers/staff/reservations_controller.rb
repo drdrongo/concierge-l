@@ -10,6 +10,12 @@ class Staff::ReservationsController < ApplicationController
       ].compact.max_by(&:updated_at)
       [reservation, latest_event]
     end
+
+    # Sorts events by whether they were seen or not. Unseen events become pink on the index page.
+    @reservations_with_event.sort_by { |x| x[0].seen? ? 0 : 1 }
+
+    # Old code for mmaybe sorting by updated_at on the latest_event, but didn't work when ALL latest_events were nil.
+    # @reservations_with_event.sort_by { |_x, y| [y ? y[:updated_at] : 1000] }
   end
 
   def show

@@ -1,6 +1,7 @@
 class TimeRequestsController < ApplicationController
   def create
     @reservation = Reservation.find(params[:reservation_id])
+    @reservation.update(seen: false)
     prms = params
     if @reservation.arrival_time != prms[:arrival_time] && @reservation.departure_time != prms[:departure_time]
       create_arrival_request(@reservation, prms).save
