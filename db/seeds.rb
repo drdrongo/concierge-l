@@ -25,26 +25,12 @@ def create_user
   return user
 end
 
-# creating a specific user.
-# Is PNG okay here?
-# How do we attach images?
-def create_specific_user(first_name:, last_name:, number:, age: )
-  user = User.new(
-    first_name: first_name,
-    last_name: last_name,
-    password: 'secret',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    birthday: age.years.ago
-  )
-  user.email = "#{user.first_name}#{number}@gmail.com",
+# ===================================    DEMO DAY -=======================================
 
-  url = "app/assets/images/user_#{number}.jpg"
 
-  file = URI.open(url)
-  user.photo.attach(io: file, filename: "#{user.first_name}_#{user.last_name}.jpg", content_type: 'image/jpg')
-  user.save
-  return user
-end
+# ============================================================================================
+
+
 
 # Method that creates an admin user
 def create_admin(first_name:, last_name:, email:)
@@ -171,12 +157,33 @@ end
 
 
 
+
 # Database Clearing
 puts 'Clearing database'
 destroy_everything
 puts 'Database cleared successfully!'
 
 
+
+# creating a specific user.
+# Is PNG okay here?
+# How do we attach images?
+def create_specific_user(first_name:, last_name:, number:, age: )
+  user = User.new(
+    first_name: first_name,
+    last_name: last_name,
+    password: 'secret',
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    birthday: age.years.ago
+  )
+  user.email = "#{user.first_name}#{number}@gmail.com",
+
+  # url = "app/assets/images/user_#{number}.jpg"
+
+  # file = URI.open(url)
+  # user.photo.attach(io: file, filename: "#{user.first_name}_#{user.last_name}.jpg", content_type: 'image/jpg')
+  user.save
+end
 
 # User creation
 puts 'Creating 7 specific  users'
@@ -225,14 +232,45 @@ puts 'Articles / guides created successfully!!'
 
 
 
+
+
+# Method that creates an event.
+def create_specific_event(user:, title:, venue:, category:, number:, datetime:)
+  event = Event.new(
+    title: title,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    datetime: datetime,
+    venue: venue,
+    capacity: 5,
+    category: category,
+  )
+  url = "app/assets/images/dine_#{number}.jpg"
+  file = URI.open(url)
+  event.photo.attach(io: file, filename: "#{event.title}.png", content_type: 'image/png')
+  event.end_time = event.datetime + rand(1..3).hours
+  event.user = user
+  event.save
+end
+
 # Friends of L-related Seeds
-puts 'Creating an event per user (~12)'
-User.all.each{ |user| create_event(user) }
+puts 'Creating 7 specific events'
+create_specific_event(user: User.first, datetime: Time.new(2020, 8, 28, 20, 0, 0, "+00:00").utc, title: 'Sushi night with Emily!', venue: 'Section L Ginza', category: 'Cooking', number: 1)
+create_specific_event(user: User.second, datetime: Time.new(2020, 8, 29, 20, 0, 0, "+00:00").utc, title: 'Ramen Night at Takahashi Ginza', venue: 'Takahashi Ginza', category: 'Japanese', number: 2)
+create_specific_event(user: User.third, datetime: Time.new(2020, 8, 30, 12, 0, 0, "+00:00").utc, title: 'Tonkatsu Lunch', venue: 'Miyagi', category: 'Japanese', number: 3)
+create_specific_event(user: User.fourth, datetime: Time.new(2020, 8, 30, 17, 30, 0, "+00:00").utc, title: 'Seafood Hopping', venue: 'Tsukiji Market', category: 'Seafood', number: 4)
+create_specific_event(user: User.fifth, datetime: Time.new(2020, 8, 29, 18, 0, 0, "+00:00").utc, title: 'Craft Beer Pub Crawl', venue: 'iBrew Ginza', category: 'Drinking', number: 5)
+create_specific_event(user: User.where(first_name: 'Mike').first, datetime: Time.new(2020, 9, 03, 19, 30, 0, "+00:00").utc, title: 'Let’s Cook Japanese Curry!', venue: 'Section L Ginza', category: 'Cooking', number: 6)
+create_specific_event(user: User.where(first_name: 'Toshiaki').first, datetime: Time.new(2020, 9, 01, 14, 0, 0, "+00:00").utc, title: 'Coffee Hunt in Yanaka', venue: 'Yanaka & Sendagi', category: 'Coffee', number: 7)
 puts 'Events created successfully!'
+
+
+
+
 
 puts 'Creating 4-6 tickets for each event'
 Event.all.each{ |event| create_event_tickets(event) }
 puts 'Tickets created successfully!'
+
 
 
 
