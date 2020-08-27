@@ -12,3 +12,12 @@
   height: 8em;
   max-height: 8em;
 }
+
+.grid-element {
+  background-color: white;
+  border: 1px solid lightgrey;
+  min-height: 72vh;
+  max-height: 72vh;
+  border-radius: 8px;
+  padding: 1em;
+}

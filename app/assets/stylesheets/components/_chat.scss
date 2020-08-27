@@ -2,11 +2,9 @@
 
 .chat-container {
   width: 100%;
-  padding: 1em;
   border-radius: 8px;
   color: grey;
   background-color: white;
-  border: 1px solid lightgrey;
 }
 
 #messages {
@@ -40,15 +38,12 @@
   border-bottom-right-radius: 8px;
 }
 
-.grid-element {
-  background-color: white;
-  border-radius: 8px;
-}
 
 .tab-pane .chat-container {
-  padding-bottom: 0;
+  padding: 1em;
+  padding-bottom: 2px;
   #messages {
-    min-height: 57vh;
-    max-height: 57vh;
+    min-height: 60vh;
+    max-height: 60vh;
   }
 }

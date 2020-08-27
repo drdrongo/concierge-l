@@ -7,7 +7,7 @@
   <%= render 'detail_overview', reservation: @reservation, class: 'staff-detail-overview' %>
 
   <div class="reservation-grid-container">
-    <div class="grid-element" style="overflow: scrolll; max-height: 60vh; min-height: 60vh;">
+    <div class="grid-element" style="overflow: scroll;">
       <%= render 'requests', reservation: @reservation, all_requests: @all_requests %>
     </div>
     <div class="grid-element h-100">
