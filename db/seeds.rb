@@ -176,7 +176,7 @@ def create_specific_user(first_name:, last_name:, number:, age: )
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     birthday: age.years.ago
   )
-  user.email = "#{user.first_name}#{number}@gmail.com"
+  user.email = "#{user.first_name}@gmail.com"
 
   url = "app/assets/images/user_#{number}.jpg"
 
@@ -195,6 +195,7 @@ create_specific_user(first_name: 'Evelyn', last_name: 'Jenner', number: 4, age: 
 create_specific_user(first_name: 'Jenny', last_name: 'Henderson', number: 5, age: 31)
 create_specific_user(first_name: 'Mike', last_name: 'Duville', number: 6, age: 39)
 create_specific_user(first_name: 'Toshiaki', last_name: 'Yamada', number: 7, age: 34)
+
 
 puts '7 specific users created successfully!.'
 
@@ -254,18 +255,24 @@ end
 
 # Friends of L-related Seeds
 puts 'Creating 7 specific events'
-create_specific_event(user: User.first, datetime: Time.new(2020, 8, 28, 20, 0, 0, "+00:00").utc, title: 'Sushi night with Emily!', venue: 'Section L Ginza', category: 'Cooking', number: 1)
-create_specific_event(user: User.second, datetime: Time.new(2020, 8, 29, 20, 0, 0, "+00:00").utc, title: 'Ramen Night at Takahashi Ginza', venue: 'Takahashi Ginza', category: 'Japanese', number: 2)
-create_specific_event(user: User.third, datetime: Time.new(2020, 8, 30, 12, 0, 0, "+00:00").utc, title: 'Tonkatsu Lunch', venue: 'Miyagi', category: 'Japanese', number: 3)
-create_specific_event(user: User.fourth, datetime: Time.new(2020, 8, 30, 17, 30, 0, "+00:00").utc, title: 'Seafood Hopping', venue: 'Tsukiji Market', category: 'Seafood', number: 4)
-create_specific_event(user: User.fifth, datetime: Time.new(2020, 8, 29, 18, 0, 0, "+00:00").utc, title: 'Craft Beer Pub Crawl', venue: 'iBrew Ginza', category: 'Drinking', number: 5)
+create_specific_event(user: User.where(first_name: 'Emily').first, datetime: Time.new(2020, 8, 28, 20, 0, 0, "+00:00").utc, title: 'Sushi night with Emily!', venue: 'Section L Ginza', category: 'Cooking', number: 1)
+create_specific_event(user: User.where(first_name: 'Zeke').first, datetime: Time.new(2020, 8, 29, 20, 0, 0, "+00:00").utc, title: 'Ramen Night at Takahashi Ginza', venue: 'Takahashi Ginza', category: 'Japanese', number: 2)
+create_specific_event(user: User.where(first_name: 'Julian').first, datetime: Time.new(2020, 8, 30, 12, 0, 0, "+00:00").utc, title: 'Tonkatsu Lunch', venue: 'Miyagi', category: 'Japanese', number: 3)
+create_specific_event(user: User.where(first_name: 'Evelyn').first, datetime: Time.new(2020, 8, 30, 17, 30, 0, "+00:00").utc, title: 'Seafood Hopping', venue: 'Tsukiji Market', category: 'Seafood', number: 4)
+create_specific_event(user: User.where(first_name: 'Jenny').first, datetime: Time.new(2020, 8, 29, 18, 0, 0, "+00:00").utc, title: 'Craft Beer Pub Crawl', venue: 'iBrew Ginza', category: 'Drinking', number: 5)
 create_specific_event(user: User.where(first_name: 'Mike').first, datetime: Time.new(2020, 9, 03, 19, 30, 0, "+00:00").utc, title: 'Let’s Cook Japanese Curry!', venue: 'Section L Ginza', category: 'Cooking', number: 6)
 create_specific_event(user: User.where(first_name: 'Toshiaki').first, datetime: Time.new(2020, 9, 01, 14, 0, 0, "+00:00").utc, title: 'Coffee Hunt in Yanaka', venue: 'Yanaka & Sendagi', category: 'Coffee', number: 7)
 puts 'Events created successfully!'
 
+emily = User.where(first_name: 'Emily').first
+emily.update(description: "Hi, I am a web designer from Australia.
+  I came to Tokyo for a business trip and extending my trip for 2 weeks to explore. It is my 1st time in Japan and I love seafood!
+  My favorite movies are Die Hard 1, Rambo: First Blood, and Predator; as you can see, I’m a big 80's action movie buff!
+  I have a dog, whose name is Hafu, and he’s the love of my life!
+  If you’re interested in getting to know me, let’s go out for a drink!")
 
-
-
+event = Event.where(user: User.where(first_name: 'Emily').first).first
+event.update(description: 'Hi, I\'m hosting a sushi making event in my room! We\'ll be making both vegetarian and some more adventurous rolls, to accommodate for everyone, so please request if you\'re interested in joining!')
 
 puts 'Creating 4-6 tickets for each event'
 Event.all.each{ |event| create_event_tickets(event) }
@@ -273,10 +280,7 @@ puts 'Tickets created successfully!'
 
 
 
-
-
-
-
+create_specific_user(first_name: 'Saara', last_name: 'Makinen', number: 8, age: 32)
 
 # Completed message
 puts 'Seeding completed. Have a nice day.'
