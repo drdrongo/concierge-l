@@ -24,7 +24,7 @@
                 <!-- <h5>(<%= d.strftime('%a') %>)</h5> -->
               </div>
             </div>
-            <p style="font-size: 2.5vh"><%= d.strftime("%l:%M%p") %> - 9:00pm</p>
+            <p style="font-size: 2.5vh"><%= d.strftime("%l:%M%p") %> - <%= d.strftime("%l:%M%p") %></p>
           </div>
           <div class="card-event-info-right">
           <% if event.user.photo.attached? %>
