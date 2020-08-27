@@ -1,0 +1,14 @@
+.reservation-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: calc(90% - 4em);
+  column-gap: 8px;
+}
+
+.staff-detail-overview {
+  position: sticky;
+  top: auto;
+  height: 8em;
+  max-height: 8em;
+}
