@@ -12,6 +12,7 @@
     <h4 class="font-green thick"><%= event.title %></h4>
       <div class="flex-between">
         <div>
+
           <div class="flex">
             <div>
               <% d = event.datetime %>
@@ -23,11 +24,14 @@
           </div>
 
           <div class="flex">
-            <%= image_tag "pin-star@4x.png", height:30 %> <p class="mb-0 ml-2"> <%= event.venue%></p>
+            <%= image_tag "pin-star@4x.png", height:30, class:"mb-2" %> <p class="mb-0 ml-2 mt-1"> <%= event.venue%></p>
           </div>
+
+          <div class="flex">
           <% if Ticket.where(user: current_user, event: event, status: "accepted").exists? %>
-            <p> <%= image_tag "pin-star@4x.png",   height:30 %> <%= event.user.email %></p>
+            <%= image_tag "icons/newsletter.svg",  height:30 %> <p class="mb-0 ml-2 mt-1"><%= event.user.email %></p>
           <% end %>
+          </div>
         </div>
 
         <div class="card-event-avatar-show" >
