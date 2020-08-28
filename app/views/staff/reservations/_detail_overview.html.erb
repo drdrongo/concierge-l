@@ -39,13 +39,13 @@
     <div class="border-right" style="flex: 0 0 50%; padding: 8px;">
       <p class="font-green mb-0">Check in: </p>
       <p class="mb-0" style="font-size: 1.3em"><%= reservation.check_in_date.strftime("%b #{reservation.check_in_date.day.ordinalize}")%> <small><%= reservation.check_in_date.strftime("(%a)")%></small></p>
-      <p class="m-0" style="font-size: 1.3em"><%= (reservation.arrival_time + 9.hours).strftime("%l:%M%p") %></p>
+      <p class="m-0" style="font-size: 1.3em"><%= (reservation.arrival_time).strftime("%l:%M%p") %></p>
     </div>
 
     <div class="" style="flex: 0 0 50%; padding: 8px;">
       <p class="font-green mb-0">Check out: </p>
       <p class="m-0" style="font-size: 1.3em"><%= reservation.check_out_date.strftime("%b #{reservation.check_out_date.day.ordinalize}")%> <small><%= reservation.check_out_date.strftime("(%a)")%></small></p>
-      <p class="m-0" style="font-size: 1.3em" ><%= reservation.check_out_date.strftime("#{(reservation.departure_time + 9.hours).strftime("%l:%M%p")}") %></p>
+      <p class="m-0" style="font-size: 1.3em" ><%= reservation.check_out_date.strftime("#{(reservation.departure_time).strftime("%l:%M%p")}") %></p>
     </div>
   </div>
 

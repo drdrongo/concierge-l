@@ -49,7 +49,9 @@
 
         <% if event.user != current_user %>
             <div>
-              <% if Ticket.where(user: current_user, event: event).exists? %>
+              <% if Ticket.where(user: current_user, event: event, status: 'accepted').exists? %>
+                <button class="btn btn-primary w-100 mt-3" disabled>Accepted</button>
+              <% elsif Ticket.where(user: current_user, event: event).exists? %>
                 <button class="btn btn-warning w-100 mt-3" disabled>Request Sent</button>
               <% else %>
                 <%= simple_form_for [event, Ticket.new] do |f| %>

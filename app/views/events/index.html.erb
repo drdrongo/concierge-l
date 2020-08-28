@@ -6,6 +6,7 @@
     <% @events.each do |event| %>
     <%= link_to(event) do %>
       <% d = event.datetime %>
+      <% e = event.end_time %>
       <div class="card-event">
       <% background_url = event.photo.attached? ? cl_image_path(event.photo.key, height: 300, width: 300, crop: :fill)  : "https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80" %>
 
@@ -20,11 +21,9 @@
             <div class="card-event-date d-flex align-items-center">
               <p class="align-text-bottom mb-0 mr-2 mt-2" style="font-size: 3vh"><%= d.strftime("%b #{d.day.ordinalize} (%a)")%></p>
               <div class="card-event-date-stacked">
-                <!-- <small><h6 class="mb-1"><%= d.strftime('%b') %></h6></small> -->
-                <!-- <h5>(<%= d.strftime('%a') %>)</h5> -->
               </div>
             </div>
-            <p style="font-size: 2.5vh"><%= d.strftime("%l:%M%p") %> - <%= d.strftime("%l:%M%p") %></p>
+            <p style="font-size: 2.5vh"><%= d.strftime("%l:%M%p") %> - <%= e.strftime("%l:%M%p") %></p>
           </div>
           <div class="card-event-info-right">
           <% if event.user.photo.attached? %>
@@ -33,8 +32,6 @@
               <%= image_tag("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80", class: "card-event-avatar") %>
             <% end %>
             <p class="mb-2 font-green"><strong><%= event.user.first_name %></strong></p>
-            <!-- <p class="mb-0">2/<%= event.capacity %></p> -->
-            <!-- <p class="mb-0">capacity</p> -->
           </div>
         </div>
       </div>
