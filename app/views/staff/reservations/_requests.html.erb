@@ -99,7 +99,7 @@
 
           <%= form_for request, url: reservation_request_path(reservation, request), remote: true, method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
             <%= f.hidden_field :status, value: 'declined' %>
-            <%= f.submit 'Decline', class: 'btn btn-primary flex-grow-1' %>
+            <%= f.submit 'Decline', class: 'btn btn-warning flex-grow-1' %>
           <% end %>
 
           <% unless request.status == "hold" %>
