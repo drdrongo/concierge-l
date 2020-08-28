@@ -24,7 +24,7 @@
               <%= button_tag(:submit, data: { confirm: "Are you sure you wish to request #{hotel_amenity.amenity.name}?" }, class: "amenity-list-item py-3 btn swiper-amenity-button") do %>
                   <%= image_tag("icons/#{hotel_amenity.amenity.name.gsub(' ', '_').gsub('/', ':').downcase}.svg", class: "hotel-amenity-icon") %>
                   <p class="mb-0" style="line-height: 1em;"><%= hotel_amenity.amenity.name %></p>
-                  <div>
+                  <div style="border-radius: 3px;">
                     <% if Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "accepted").exists? %>
                       <i class="fas fa-check"></i>
                       <span class="hotel-amenity-status-icon" style="color: limegreen;">Delivered</span>
