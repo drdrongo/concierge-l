@@ -47,13 +47,13 @@
                   <%= a.hidden_field :departure_time, value: request.time %>
                 <% end %>
               <% end %>
-            <%= f.submit 'Accept', class: 'btn btn-warning flex-grow-1' %>
+            <%= f.submit 'Accept', class: 'btn btn-primary flex-grow-1' %>
           <% end %>
 
           <%# time request decline button %>
           <%= form_for request, url: reservation_time_request_path(reservation, request), remote: true, method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
             <%= f.hidden_field :status, value: 'declined' %>
-            <%= f.submit 'Decline', class: 'btn btn-primary flex-grow-1' %>
+            <%= f.submit 'Decline', class: 'btn btn-warning flex-grow-1' %>
           <% end %>
 
           <%# time request hold button: Disappears after you've clicked "hold" %>
@@ -68,7 +68,7 @@
       <% else %>
 
         <%# Displays a Disabled button once a choice is made (time request is 'accepted/declined') %>
-        <div class="w-100 disabled btn btn-<%= request.status == 'accepted' ? 'warning' : 'primary' %>">
+        <div class="w-100 disabled btn btn-<%= request.status == 'accepted' ? 'primary' : 'warning' %>">
           <%= request.status == 'accepted' ? 'Accepted' : 'Declined' %>
         </div>
       <% end %>
@@ -94,7 +94,7 @@
         <% if request.status == "pending" || request.status == "hold" %>
           <%= form_for request, url: reservation_request_path(reservation, request), remote: true, method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
             <%= f.hidden_field :status, value: 'accepted' %>
-            <%= f.submit 'Accept', class: 'btn btn-warning flex-grow-1' %>
+            <%= f.submit 'Accept', class: 'btn btn-primary flex-grow-1' %>
           <% end %>
 
           <%= form_for request, url: reservation_request_path(reservation, request), remote: true, method: :patch, html: { style: "flex-grow: 1; display: flex;" } do |f| %>
