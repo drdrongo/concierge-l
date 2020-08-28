@@ -27,13 +27,15 @@
                   <div>
                     <% if Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "accepted").exists? %>
                       <i class="fas fa-check"></i>
-                      <span class="hotel-amenity-status-icon" style="color: limegreen;">Accepted</span>
+                      <span class="hotel-amenity-status-icon" style="color: limegreen;">Delivered</span>
                     <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation, status: "declined").exists? %>
                       <i class="fas fa-times"></i>
                       <span class="hotel-amenity-status-icon" style="color: red;">Unavailable</span>
                     <% elsif Request.where(hotel_amenity: hotel_amenity, reservation: @reservation).exists? %>
                       <i class="fas fa-hourglass-half"></i>
-                      <span class="hotel-amenity-status-icon" style="color: orange;">Pending</span>
+                      <span class="hotel-amenity-status-icon" style="color: orange;">Requested</span>
+                    <% else %>
+                      <span class="thick">+1</span>
                     <% end %>
                   </div>
               <% end %>
