@@ -96,7 +96,7 @@ end
 # Method that creates a time change request for a reservation.
 def create_time_request
   TimeRequest.create(
-    time: [ Time.new(2000, 1, 1, 15), Time.new(2000, 1, 1, 14), Time.new(2000, 1, 1, 13) ].sample,
+    time: [ Time.new(2000, 1, 1, 14, 0, 0, "+00:00").utc, Time.new(2000, 1, 1, 13, 0, 0, "+00:00").utc, Time.new(2000, 1, 1, 12, 0, 0, "+00:00").utc ].sample,
     reservation: Reservation.all.sample,
     check_in: [true, false].sample,
     status: 'pending'
