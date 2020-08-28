@@ -1,5 +1,11 @@
 <div class="container-fluid d-flex flex-column mt-3">
   <h5 class="overview-body-header font-green thick align-self-center">House Manuals / Guides</h5>
+  <a href="https://www.google.com/maps/d/viewer?mid=1P01PhSU5zqZHb8z2_W0ONxCFd_pA9NZe&ll=35.6674937837871%2C139.76995701872772&z=14">
+    <div class="d-flex align-items-center justify-content-start mb-2 p-3" style="background-color: white; border-radius: 5px; ">
+      <%= image_tag("icons/neighborhood_guide.svg", style: "width: 3em; margin-right: 5vw") %>
+      <h6 class="mb-0" style="font-size: 1.5em; color: black;">Neighborhood Guide</h6>
+    </div>
+  </a>
   <% articles.each do |article| %>
     <%= link_to  article_path(article), target: "_blank" do %>
       <div class="d-flex align-items-center justify-content-start mb-2 p-3" style="background-color: white; border-radius: 5px; ">
