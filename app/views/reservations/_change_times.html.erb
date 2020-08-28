@@ -52,43 +52,43 @@
 			<div class="d-flex flex-column" style="flex-basis: 50%; padding: 8px;">
 				<h6 class="reservation-body-header align-self-center">Arrival Time</h6>
 				<%= radio_button_tag 'arrival_time', in_time, (@reservation.arrival_time == in_time), id: 'arrival-1'%>
-					<%= label_tag 'arrival_time', '3:00PM (¥0)', for: 'arrival-1' %>
+					<%= label_tag 'arrival_time', '3:00PM', for: 'arrival-1' %>
 
 				<%= radio_button_tag 'arrival_time', in_time - 1.hour, (@reservation.arrival_time == in_time - 1.hour), id: 'arrival-2' %>
-				<%= label_tag 'arrival_time', '2:00PM (¥1000)', for: 'arrival-2'  %>
+				<%= label_tag 'arrival_time', '2:00PM', for: 'arrival-2'  %>
 
 				<%= radio_button_tag 'arrival_time', in_time - 2.hour, (@reservation.arrival_time == in_time - 2.hour), id: 'arrival-3' %>
-				<%= label_tag 'arrival_time', '1:00PM (¥2000)', for: 'arrival-3'  %>
+				<%= label_tag 'arrival_time', '1:00PM', for: 'arrival-3'  %>
 
 				<%= radio_button_tag 'arrival_time', in_time - 3.hour, (@reservation.arrival_time == in_time - 3.hour), id: 'arrival-4' %>
-				<%= label_tag 'arrival_time', '12:00PM (¥3000)', for: 'arrival-4'  %>
+				<%= label_tag 'arrival_time', '12:00PM', for: 'arrival-4'  %>
 
 				<%= radio_button_tag 'arrival_time', in_time - 4.hour, (@reservation.arrival_time == in_time - 4.hour), id: 'arrival-5' %>
-				<%= label_tag 'arrival_time', '11:00AM (¥4000)', for: 'arrival-5'  %>
+				<%= label_tag 'arrival_time', '11:00AM', for: 'arrival-5'  %>
 
 				<%= radio_button_tag 'arrival_time', in_time - 5.hour, (@reservation.arrival_time == in_time - 5.hour), id: 'arrival-6' %>
-				<%= label_tag 'arrival_time', '10:00AM (¥5000)', for: 'arrival-6'  %>
+				<%= label_tag 'arrival_time', '10:00AM', for: 'arrival-6'  %>
 			</div>
 
 			<div class="d-flex flex-column" style="flex-basis: 50%; padding: 8px; border-left: 1px solid grey;">
 				<h6 class="reservation-body-header align-self-center">Departure Time</h6>
 				<%= radio_button_tag 'departure_time', out_time, (@reservation.departure_time == out_time), id: 'departure-1' %>
-				<%= label_tag 'departure_time', '11:00AM (¥0)', for: 'departure-1' %>
+				<%= label_tag 'departure_time', '11:00AM', for: 'departure-1' %>
 
 				<%= radio_button_tag 'departure_time', out_time + 1.hour, (@reservation.departure_time == out_time + 1.hour), id: 'departure-2' %>
-				<%= label_tag 'departure_time', '12:00PM (¥1000)', for: 'departure-2' %>
+				<%= label_tag 'departure_time', '12:00PM', for: 'departure-2' %>
 
 				<%= radio_button_tag 'departure_time', out_time + 2.hour, (@reservation.departure_time == out_time + 2.hour), id: 'departure-3' %>
-				<%= label_tag 'departure_time', '1:00PM (¥2000)', for: 'departure-3' %>
+				<%= label_tag 'departure_time', '1:00PM', for: 'departure-3' %>
 
 				<%= radio_button_tag 'departure_time', out_time + 3.hour, (@reservation.departure_time == out_time + 3.hour), id: 'departure-4' %>
-				<%= label_tag 'departure_time', '2:00PM (¥3000)', for: 'departure-4' %>
+				<%= label_tag 'departure_time', '2:00PM', for: 'departure-4' %>
 
 				<%= radio_button_tag 'departure_time', out_time + 4.hour, (@reservation.departure_time == out_time + 4.hour), id: 'departure-5' %>
-				<%= label_tag 'departure_time', '3:00PM (¥4000)', for: 'departure-5' %>
+				<%= label_tag 'departure_time', '3:00PM', for: 'departure-5' %>
 
 				<%= radio_button_tag 'departure_time', out_time + 5.hour, (@reservation.departure_time == out_time + 5.hour), id: 'departure-6' %>
-				<%= label_tag 'departure_time', '4:00PM (¥5000)', for: 'departure-6' %>
+				<%= label_tag 'departure_time', '4:00PM', for: 'departure-6' %>
 			</div>
 		</div>
 

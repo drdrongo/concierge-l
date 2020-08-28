@@ -57,7 +57,7 @@ class ReservationsController < ApplicationController
       check_in_date: Date.parse(booking['firstNight']),
       check_out_date: Date.parse(booking['lastNight']) + 1.day,
       channel: booking['referer'],
-      reservation_number: booking['referer'] == 'direct' ? booking['bookId'] : booking['apiReference'],
+      reservation_number: booking['apiSource'] == '0' ? booking['bookId'] : booking['apiReference'],
       number_of_guests: booking['numAdult'].to_i + booking['numChild'].to_i,
       arrival_time: Time.new(2000, 1, 1, 15, 0, 0, "+00:00").utc,
       departure_time: Time.new(2000, 1, 1, 11, 0, 0, "+00:00").utc

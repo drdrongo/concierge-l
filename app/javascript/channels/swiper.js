@@ -5,7 +5,7 @@ import Swiper, { Navigation, Pagination } from 'swiper';
 Swiper.use([Navigation, Pagination]);
 
 const initSwiper = () => {
-  const myCategories = ['Essentials', 'Requests', 'Bed & Bath', 'Kitchen', 'Other'];
+  const myCategories = ['Additionals', 'Essentials', 'Bed & Bath', 'Kitchen', 'Other'];
   var mySwiper = new Swiper('.swiper-container', {
     // Optional parameters
     loop: true,
